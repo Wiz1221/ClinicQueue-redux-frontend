@@ -1,0 +1,145 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/*********************/
+html, body {
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+#map-container, #map-container .row{
+  height: 100%
+}
+
+#map {
+  height: 90%;
+  overflow: auto;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  font-size: 40px;
+  padding: 20px 20px 5px 20px;
+  line-height: 1.2em;
+  height: 100%;
+}
+
+#bs-example-navbar-collapse-1 {
+  height:68px;
+}
+
+.navbar-right {
+  font-size: 20px;
+  padding: 20px 20px 5px 20px;
+  line-height: 1em;
+  height: 100%;
+  margin-top: 18px;
+  color: #cccccc;
+}
+
+.sg {
+  color: #d13131;
+}
+
+a, a:hover {
+  color: #00B7FF;
+}
+
+a:active {
+  color: #8b0a50;
+}
+
+.form-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.legend-container {
+  text-align: center;
+}
+
+.btn-form {
+  margin-right: 10px;
+}
+
+.well-signup {
+  background-color: #E6F1FF;
+}
+
+.form-group-photo {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.footer {
+  position: fixed;
+  bottom:0px;
+  left:0px;
+}
+
+
+
+.pin {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 38px;
+    left: 38px;
+    background: rgba(209, 49, 49, 1);
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.pin-effect {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    display: block;
+    background: rgba(209, 49, 49, 0.6);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulsate 2400ms ease-out infinite;
+}
+
+/* Pulsate */
+@keyframes pulsate {
+    0% {
+    transform: scale(0.1);
+    opacity: 0;
+    }
+    50% {
+    opacity: 1;
+    }
+    100% {
+    transform: scale(1.2);
+    opacity: 0;
+    }
+}
