@@ -26,8 +26,6 @@
 /*********************/
 html, body {
   padding: 0px;
-  height: 100%;
-  width: 100%;
 }
 
 #map-container, #map-container .row{
@@ -39,11 +37,11 @@ html, body {
   overflow: auto;
 }
 
-.navbar {
+Navbar {
   margin-bottom: 0;
 }
 
-.navbar-brand {
+Navbar.Brand {
   font-size: 40px;
   padding: 20px 20px 5px 20px;
   line-height: 1.2em;
@@ -54,7 +52,7 @@ html, body {
   height:68px;
 }
 
-.navbar-right {
+Nav .rightNavBar {
   font-size: 20px;
   padding: 20px 20px 5px 20px;
   line-height: 1em;

@@ -22,11 +22,9 @@ class Header extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav>
-              <NavItem eventKey={1} href="#">Link</NavItem>
-            </Nav>
-            <Nav pullRight>
-              <p>At a clinic? Submit a queue report <Link to='/login'><p>Login</p></Link></p>
+
+            <Nav pullRight className="rightNavBar">
+              <p>At a clinic? Submit a queue report <Link to='/login'><span>Login</span></Link></p>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -34,6 +32,10 @@ class Header extends Component {
     );
   }
 }
+//
+// <Nav>
+//   <NavItem eventKey={1} href="#">Link</NavItem>
+// </Nav>
 
 const mapStateToProps = (state) => {
 
