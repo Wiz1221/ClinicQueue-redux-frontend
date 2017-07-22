@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+
+import io from 'socket.io-client';
+export const socket = io.connect('http://localhost:3001');
+
 const storeClinic = (clinic) => {
   return {
     type: 'STORE_CLINIC',
@@ -16,12 +20,19 @@ const loadingClinicError = (error) => {
 
 export const getClinic = () => {
   return (dispatch) => {
-    axios.get('/clinic/')
-    .then( (response) => {
-      dispatch(storeClinic(response.data));
+
+    socket.emit('getAllClinic');
+    socket.on('allClinic', (clinic) => {
+      dispatch(storeClinic(clinic));
     })
-    .catch((error) => {
-      dispatch(loadingClinicError(error));
-    })
+
+    // axios.get('/clinic/')
+    // .then( (response) => {
+    //   dispatch(storeClinic(response.data));
+    // })
+    // .catch((error) => {
+    //   dispatch(loadingClinicError(error));
+    // })
+
   }
 }

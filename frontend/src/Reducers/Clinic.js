@@ -2,7 +2,9 @@
 const Clinic = (state = [], action) => {
   switch (action.type) {
     case 'STORE_CLINIC':
-      return action.clinic
+
+      return action.clinic || []
+      
       break;
     // case 'ADD_RESTAURENT':
     //   return [

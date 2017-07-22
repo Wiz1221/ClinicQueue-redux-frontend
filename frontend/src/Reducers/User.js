@@ -2,7 +2,9 @@
 const User = (state = {}, action) => {
   switch (action.type) {
     case 'STORE_USER':
-      return action.user
+
+      return action.user || {}
+      
       break;
     default:
       return state
