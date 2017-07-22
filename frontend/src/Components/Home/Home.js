@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 
-import Header from '../Header/Header';
+//import Header from '../Header/Header';
+import NavBar from '../NavBar/NavBar';
+import SideBar from '../SideBar/SideBar';
+
 import MyGreatPlace from './my_great_place.jsx';
 
 import './Home.css'
@@ -33,11 +36,15 @@ class Home extends Component {
   //   });
   // }
 
+
+
   render() {
 
     return (
       <div>
-        <Header/>
+        <NavBar/>
+        <SideBar/>
+
         <div style={{width: this.state.width ,height:this.state.height}}>
         <GoogleMap
          center={{ lat: 1.352083, lng: 103.819836 }}

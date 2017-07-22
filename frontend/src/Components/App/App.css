@@ -67,6 +67,7 @@ Nav .rightNavBar {
 
 a, a:hover {
   color: #00B7FF;
+  text-decoration: none;
 }
 
 a:active {
