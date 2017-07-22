@@ -1,8 +1,8 @@
 import axios from 'axios';
 
+
 import io from 'socket.io-client';
 export const socket = io.connect('http://localhost:3001');
-
 
 const storeClinic = (clinic) => {
   return {
@@ -33,5 +33,6 @@ export const getClinic = () => {
     // .catch((error) => {
     //   dispatch(loadingClinicError(error));
     // })
+
   }
 }
