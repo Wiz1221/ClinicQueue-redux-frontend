@@ -1,41 +1,21 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { withGoogleMap, GoogleMap, Marker, Circle } from "react-google-maps";
+import GoogleMap from 'google-map-react';
 
 import Header from '../Header/Header';
+import MyGreatPlace from './my_great_place.jsx';
+
+import './Home.css'
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // markers: [
-      //   {
-      //     position: new google.maps.LatLng(-27.363882, 137.044922),
-      //     showInfo: false,
-      //     infoContent: (
-      //       <svg
-      //         id="Layer_1"
-      //         xmlns="http://www.w3.org/2000/svg"
-      //         width="16"
-      //         height="16"
-      //         viewBox="0 0 16 16"
-      //       />
-      //     ),
-      //   },
-      //   {
-      //     position: new google.maps.LatLng(-23.363882, 129.044922),
-      //     showInfo: false,
-      //     infoContent: (
-      //       <svg
-      //         id="Layer_1"
-      //         xmlns="http://www.w3.org/2000/svg"
-      //         width="16"
-      //         height="16"
-      //         viewBox="0 0 16 16"
-      //       />
-      //     ),
-      //   },
-      // ],
+      width: '100vw',
+      height: '100vh',
+    center: [1.352083, 103.819836],
+    zoom: 12,
+    greatPlaceCoords: {lat: 1.352083, lng: 103.819836 }
     }
   }
 
@@ -54,27 +34,19 @@ class Home extends Component {
   // }
 
   render() {
-    const SimpleMapExampleGoogleMap = withGoogleMap(props => (
-        <GoogleMap
-          ref={props.onMapLoad}
-          defaultZoom={12}
-          defaultCenter={{ lat: 1.352083, lng: 103.819836 }}
-        >
 
-          </GoogleMap>
-      ));
     return (
       <div>
         <Header/>
-        <SimpleMapExampleGoogleMap
-                containerElement={
-                  <div style={{ height: `100vh` }} />
-                }
-                mapElement={
-                  <div style={{ height: `100vh` }} />
-                }
-
-        />
+        <div style={{width: this.state.width ,height:this.state.height}}>
+        <GoogleMap
+         center={{ lat: 1.352083, lng: 103.819836 }}
+         zoom={this.state.zoom}
+         >
+         <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'}  />
+         <MyGreatPlace {...this.state.greatPlaceCoords} text={'B'}  />
+       </GoogleMap>
+       </div>
 
       </div>
     );

@@ -11,7 +11,11 @@ import App from './Components/App/App';
 
 // Redux
 import { Provider } from 'react-redux';
-import { initStore } from './Store/Store';  
+import { initStore } from './Store/Store';
+
+// Actions
+import { getClinic } from './Actions/Clinic';
+import { getUser } from './Actions/User';
 //API
 // import {setAdmin, getAdmin} from './API/generalAPI';
 
@@ -21,6 +25,11 @@ const store = initStore();
 //   const state = store.getState();
 //   setAdmin(state.admin);
 // })
+
+
+store.dispatch(getClinic());
+
+// store.dispatch(getUser());
 
 ReactDOM.render(
   <Provider store={store}>
