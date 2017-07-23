@@ -27,14 +27,15 @@ class Map extends Component {
   }
 
   renderClinicMapComponent = () => {
-    let clinicArray = this.props.clinic;
-
     if (!this.props.clinic) {
       return  (<div></div>)
     } else {
-      return clinicArray.map((clinic) => {
+      let onlyPolyClinicArray = this.props.clinic.filter((clinic,index) => {
+        return clinic.properties.type === "public";
+      })
+
+      return onlyPolyClinicArray.map((clinic) => {
         return (
-          //conditional for public==render
           <ClinicMarker lat={clinic.geometry.coordinates[1]}
                   lng={clinic.geometry.coordinates[0]}
                   clinic={clinic}
