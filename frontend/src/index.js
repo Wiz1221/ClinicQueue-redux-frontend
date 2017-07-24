@@ -19,7 +19,7 @@ import { getUser } from './Actions/User';
 //API
 // import {setAdmin, getAdmin} from './API/generalAPI';
 
-const store = initStore();
+export const store = initStore();
 
 // store.subscribe( () => {
 //   const state = store.getState();
