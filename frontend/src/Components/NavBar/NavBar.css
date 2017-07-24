@@ -14,12 +14,12 @@ nav {
 
 .logo {
   margin-top: -10px;
-  margin-left: 20px;
+  margin-left: 2%;
 }
 .logoName {
   display: inline-block;
   margin-top: 12px;
-  margin-left: 10px;
+  margin-left: 1%;
   color: white;
   font-size: 25px;
   font-weight: 500;
@@ -98,7 +98,7 @@ width: 200px;
   font-weight: 700;
   font-size: 25px;
   margin-top: 12px;
-  margin-right: 50px;
+  margin-right: 3%;
   letter-spacing: 0.01em;
 }
 .navLogin:hover {
@@ -116,7 +116,7 @@ width: 200px;
 
 .nearsetBtn {
   margin-top: -10px;
-  margin-left: 50px;
+  margin-left: 5%;
   color: white;
   font-size: 20px;
 }
@@ -124,5 +124,18 @@ width: 200px;
   cursor: pointer;
   text-decoration: underline;
   color: white;
+  font-size: 20px;
+}
+
+.sideBarBtn {
+  margin-left: 2%;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+.sideBarBtn:hover {
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
   font-size: 20px;
 }

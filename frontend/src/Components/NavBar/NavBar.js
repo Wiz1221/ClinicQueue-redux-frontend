@@ -18,6 +18,8 @@ export default class NavBar extends React.Component {
             <p className='logoName'>ClinicQueueSG</p>
           </a>
           <a className="nearsetBtn">Nearest Clinic</a>
+          <a className="sideBarBtn">Side Bar</a>
+
           <a href='#' className="navLogin pull-right">Login</a>
 
           <div className="box pull-right">
