@@ -2,6 +2,7 @@
 const User = (state = {}, action) => {
   switch (action.type) {
     case 'STORE_USER':
+
       return action.user || {}
       break;
     case 'STORE_NEW_QUEUE_IN_USER':
@@ -10,6 +11,7 @@ const User = (state = {}, action) => {
       return Object.assign({}, state, {
         queue: queue
       })
+
       break;
     default:
       return state

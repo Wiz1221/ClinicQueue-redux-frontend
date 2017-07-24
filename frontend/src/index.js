@@ -26,7 +26,9 @@ export const store = initStore();
 //   setAdmin(state.admin);
 // })
 
+
 store.dispatch(getClinic());
+
 // store.dispatch(getUser());
 
 ReactDOM.render(

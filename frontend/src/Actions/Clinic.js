@@ -3,7 +3,6 @@ import axios from 'axios';
 import io from 'socket.io-client';
 export const socket = io.connect('http://localhost:3001');
 
-
 const storeClinic = (clinic) => {
   return {
     type: 'STORE_CLINIC',
@@ -52,5 +51,6 @@ export const activeClinic = (clinic) => {
   return {
     type: 'ACTIVE_CLINIC',
     clinic
+
   }
 }
