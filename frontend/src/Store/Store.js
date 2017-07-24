@@ -1,14 +1,19 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
 import UserReducer from '../Reducers/User';
 import ClinicReducer from '../Reducers/Clinic';
-import thunk from 'redux-thunk';
+import QueueReducer from '../Reducers/Queue';
+import ActiveClinicReducer from '../Reducers/ActiveClinic';
+
 
 export let initStore = () => {
 
   const reducer = combineReducers({
     user: UserReducer,
     clinic: ClinicReducer,
-
+    queue: QueueReducer,
+    activeClinic: ActiveClinicReducer,
 
   });
 

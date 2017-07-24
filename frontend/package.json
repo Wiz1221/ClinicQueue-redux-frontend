@@ -28,16 +28,8 @@
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:3001",
-      "ws": false
-    },
-    "/auth": {
-      "target": "http://localhost:3001",
-      "ws": false
-    }
-  },
+  "proxy": "http://localhost:3001",
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
