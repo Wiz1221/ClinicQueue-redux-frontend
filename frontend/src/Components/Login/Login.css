@@ -14,8 +14,8 @@
 }
 
 .LogoNameLogin {
-  font-size: 35px;
-  margin-left: 30px;
+  font-size: 30px;
+  margin-left: 20%;
 }
 
 .LoginField {
@@ -38,8 +38,8 @@
   box-shadow: 0 0 5px 1px #a87ee8;
 }
 
-#password {
-  margin-top: 30px;
+#password, #RePassword, #SignEmail {
+  margin-top: 20px;
 }
 
 /* button style */

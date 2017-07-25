@@ -29,8 +29,12 @@ class Login extends Component {
   }
 
   localLogin = (e) => {
+    if (this.state.email == "" || this.state.password == "") {
     e.preventDefault();
-    this.props.Login(this.state);
+    console.log("Eror! email or password is empty!");
+    } else {
+      this.props.Login(this.state);
+    }
   }
 
   render() {
@@ -38,10 +42,10 @@ class Login extends Component {
       <div className="Login">
         <div className='LoginForm'>
           <img src={logo} width={80} height={80} className="logo"/>
-          <p className='logoName LogoNameLogin'>ClinicQueueSG</p>
+          <p className='logoName LogoNameLogin'>Log in</p>
           <hr/>
-          <input type="text" name="email" id="email" className='LoginField' placeholder="Email Address" />
-          <input type="text" name="password" id="password" className='LoginField' placeholder="Password" />
+          <input type="text" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange}/>
+          <input type="text" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange}/>
           <Link to='/'><button className="LoginBtn" onClick={this.localLogin}>Log in</button></Link>
           <hr/>
           <Link to='/signup'><button className="SignUpBtn">Sign Up</button></Link>
