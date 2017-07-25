@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { markerStyle } from './markerStyle.js';
+import { markerStyle } from './markerStylePoly.js';
 
-class ClinicMarker extends Component {
+class PolyClinicMarker extends Component {
 
   onClick = () => {
     this.props.onClick(this.props.clinic)
@@ -11,10 +11,10 @@ class ClinicMarker extends Component {
   render() {
     return (
       <div onClick={this.onClick} style={markerStyle}>
-      {this.props.clinic.properties.name}
+        {this.props.clinic.properties.name}
       </div>
     );
   }
 }
 
-export default ClinicMarker;
+export default PolyClinicMarker;

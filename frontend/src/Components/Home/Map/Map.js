@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 
 // Components
-import ClinicMarker from '../Markers/ClinicMarker';
+import PolyClinicMarker from '../Markers/PolyClinicMarker';
+import PrivateClinicMarker from '../Markers/PrivateClinicMarker';
 
 // Actions
 import { activeClinic } from '../../../Actions/Clinic';
@@ -26,7 +27,18 @@ class Map extends Component {
     this.props.activeClinic(clinic);
   }
 
-  renderClinicMapComponent = () => {
+  renderPrivateClinicMapComponent = () => {
+    if(this.props.activeClinicObject._id){
+      if(this.props.activeClinicObject.properties.type==="Private"){
+        return (<PrivateClinicMarker lat={this.props.activeClinicObject.geometry.coordinates[1]}
+                                     lng={this.props.activeClinicObject.geometry.coordinates[0]}
+                                     clinic={this.props.activeClinicObject}/>
+        )
+      }
+    }
+  }
+
+  renderPolyClinicMapComponent = () => {
     if (!this.props.clinic) {
       return  (<div></div>)
     } else {
@@ -36,30 +48,31 @@ class Map extends Component {
 
       return onlyPolyClinicArray.map((clinic) => {
         return (
-          <ClinicMarker lat={clinic.geometry.coordinates[1]}
-                  lng={clinic.geometry.coordinates[0]}
-                  clinic={clinic}
-                  key={clinic._id}
-                  name={clinic.name_full}
-                  id={clinic._id}
-                  onClick={this.onClick}
-                   />
+          <PolyClinicMarker lat={clinic.geometry.coordinates[1]}
+                            lng={clinic.geometry.coordinates[0]}
+                            clinic={clinic}
+                            key={clinic._id}
+                            name={clinic.name_full}
+                            id={clinic._id}
+                            onClick={this.onClick}
+
+                             />
         )
       });
     }
   }
 
   render() {
-
     return (
-        <div style={{width: this.state.width ,height:this.state.height}}>
-        <GoogleMap
-         center={{ lat: 1.352083, lng: 103.819836 }}
-         zoom={this.state.zoom}
-         onChildClick={this.onClinicClick}
-         >
-         {this.renderClinicMapComponent()}
-       </GoogleMap>
+        <div style={this.props.activeClinicObject._id? ({width: `80vw`, height: `100vh`}): ({width: `100vw`, height: `100vh`})}>
+          <GoogleMap
+           center={this.props.activeClinicObject._id? { lat: this.props.activeClinicObject.geometry.coordinates[1], lng: this.props.activeClinicObject.geometry.coordinates[0] } :{ lat: 1.352083, lng: 103.819836 }}
+           zoom={this.state.zoom}
+           onChildClick={this.onClinicClick}
+           >
+           {this.renderPolyClinicMapComponent()}
+           {this.renderPrivateClinicMapComponent()}
+         </GoogleMap>
        </div>
     );
   }
@@ -71,7 +84,7 @@ const mapStateToProps = (state) => {
   return {
     //user: state.user
     clinic: state.clinic,
-    // activeClinic: state.activeClinic
+    activeClinicObject: state.activeClinic
   }
 }
 
