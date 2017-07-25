@@ -30,7 +30,7 @@ class PrivateClinicInfo extends Component {
   render() {
     return (
       <div>
-        <h3>{this.props.activeClinic.properties.name}</h3>
+        <h3>{this.props.activeClinic.properties.name_full}</h3>
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>

@@ -139,3 +139,18 @@ width: 200px;
   text-decoration: underline;
   font-size: 20px;
 }
+
+/*.DropDownList {
+  visibility: hidden;
+}
+
+.container-2:active + .DropDownList {
+  visibility: visible;
+}*/
+
+.dropDownList {
+  background-color: white;
+  border: 1px solid red;
+  overflow: scroll;
+  overflow-x: hidden;
+}
