@@ -31,7 +31,7 @@ class Map extends Component {
       return  (<div></div>)
     } else {
       let onlyPolyClinicArray = this.props.clinic.filter((clinic,index) => {
-        return clinic.properties.type === "public";
+        return clinic.properties.type === "Public";
       })
 
       return onlyPolyClinicArray.map((clinic) => {

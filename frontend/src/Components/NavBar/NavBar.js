@@ -1,4 +1,7 @@
 import React, {PropTypes} from 'react';
+
+// impoprt react router dom to link the login button to login page
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 //import { Navbar, Nav, NavItem} from 'react-bootstrap';
 import logo from '../../ClinicQueue_White.png';
 
@@ -20,7 +23,7 @@ export default class NavBar extends React.Component {
           <a className="nearsetBtn">Nearest Clinic</a>
           <a className="sideBarBtn">Side Bar</a>
 
-          <a href='#' className="navLogin pull-right">Login</a>
+          <Link to='/login' className="navLogin pull-right">Login</Link>
 
           <div className="box pull-right">
             <div className="container-2">
