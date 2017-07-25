@@ -1,0 +1,155 @@
+.Login {
+  background: #4776E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+  width: 100vw;
+}
+.LoginForm {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  height: 70%;
+  width: 30%;
+}
+
+.LogoNameLogin {
+  font-size: 35px;
+  margin-left: 30px;
+}
+
+.LoginField {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+}
+.LoginField:focus {
+  outline: none;
+  border: solid 1px #a87ee8;
+  box-shadow: 0 0 5px 1px #a87ee8;
+}
+
+#password {
+  margin-top: 30px;
+}
+
+/* button style */
+.LoginBtn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 12px;
+  display: inline-block;
+  margin-top: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 30px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+  border: 3px solid #fff;
+  color: #fff;
+  overflow: hidden;
+}
+.LoginBtn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.LoginBtn:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.LoginBtn:hover {
+	background: #fff;
+  color: #7456e9;
+}
+.LoginBtn:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.LoginBtn:active:before {
+	color: #fff;
+  outline: none;
+}
+
+.SignUpBtn, .backBtn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 12px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 20px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 45%;
+  border: 3px solid #fff;
+  color: #fff;
+  overflow: hidden;
+}
+.SignUpBtn:after, .backBtn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.SignUpBtn:active, .backBtn:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.SignUpBtn:hover, .backBtn:hover {
+	background: #fff;
+  color: #7456e9;
+}
+.SignUpBtn:before, .backBtn:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.SignUpBtn:active:before, .backBtn:active:before {
+	color: #fff;
+  outline: none;
+}
+.backBtn {
+  margin-left: 10%;
+}
