@@ -140,17 +140,13 @@ width: 200px;
   font-size: 20px;
 }
 
-/*.DropDownList {
-  visibility: hidden;
-}
-
-.container-2:active + .DropDownList {
-  visibility: visible;
-}*/
-
 .dropDownList {
+  position:absolute;
   background-color: white;
-  border: 1px solid red;
+  border-radius: 5px;
+  width: 300px;
+  height: 90vh;
   overflow: scroll;
   overflow-x: hidden;
+  right:20px;
 }
