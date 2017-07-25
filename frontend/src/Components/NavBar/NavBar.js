@@ -1,5 +1,10 @@
+
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
+// impoprt react router dom to link the login button to login page
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 //import { Navbar, Nav, NavItem} from 'react-bootstrap';
 
 // import SearchBar from './SearchBar/SearchBar';
@@ -88,7 +93,8 @@ class NavBar extends Component {
           <a className="nearsetBtn">Nearest Clinic</a>
           <a className="sideBarBtn">Side Bar</a>
 
-          <a href='#' className="navLogin pull-right">Login</a>
+          <Link to='/login' className="navLogin pull-right">Login</Link>
+
           <div className="box pull-right">
             <div className="container-2">
                 <span className="icon"><i className="fa fa-lg fa-search"></i></span>
