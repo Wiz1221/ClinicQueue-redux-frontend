@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import TypeAhead from 'react-bootstrap-typeahead';
 
-
-
-class AccountPage extends Component {
-  constructor(props) {
-    super(props);
-  }
+class SearchBar extends Component {
 
   render() {
+
     return (
       <div>
 
@@ -18,16 +15,15 @@ class AccountPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-
   return {
-    //user: state.user
+    clinic: state.clinic,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
+
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
