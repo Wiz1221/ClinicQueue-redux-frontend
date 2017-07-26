@@ -29,7 +29,7 @@ class NavBar extends Component {
   onChange = (event) => {
 
     let clinicDropDownList = this.props.clinic.filter((clinic,index) => {
-      return clinic.properties.name_full.toLowerCase().includes(event.target.value);
+      return clinic.properties.name_full.toLowerCase().includes(event.target.value.toLowerCase());
     })
 
     clinicDropDownList.sort( (a,b) => {
@@ -78,7 +78,7 @@ class NavBar extends Component {
         clinicDropDownList: [],
         searchTerm:""
       })
-    },100)
+    },200)
   }
 
   execLogout = (e) => {
@@ -92,12 +92,11 @@ class NavBar extends Component {
     return (
       <div >
         <nav className="Navbar navbar-fixed" >
-          <a href="#">
+          <a href="/">
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a>
           <a className="nearsetBtn">Nearest Clinic</a>
-          <a className="sideBarBtn">Side Bar</a>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
