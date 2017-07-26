@@ -10,8 +10,8 @@ class PrivateClinicMarker extends Component {
 
   render() {
     return (
-      <div onClick={this.onClick} style={markerStyle}>
-        {this.props.clinic.properties.name_full}
+      <div onClick={this.onClick} style={markerStyle()}>
+
       </div>
     );
   }
