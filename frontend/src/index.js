@@ -29,7 +29,7 @@ export const store = initStore();
 
 store.dispatch(getClinic());
 
-// store.dispatch(getUser());
+store.dispatch(getUser());
 
 ReactDOM.render(
   <Provider store={store}>

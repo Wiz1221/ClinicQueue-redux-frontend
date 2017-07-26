@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
@@ -8,11 +7,12 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 //import { Navbar, Nav, NavItem} from 'react-bootstrap';
 
 // import SearchBar from './SearchBar/SearchBar';
-import DropDownItem from './DropDownItem';
+import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
 
 // Actions
 import { activeClinic } from '../../Actions/Clinic';
+import { localLogout } from '../../Actions/User';
 
 import './NavBar.css';
 
@@ -81,6 +81,12 @@ class NavBar extends Component {
     },100)
   }
 
+  execLogout = (e) => {
+    //e.preventDefault();
+    this.props.Logout();
+    //window.location.href = "/";
+  }
+
   render() {
 
     return (
@@ -93,7 +99,8 @@ class NavBar extends Component {
           <a className="nearsetBtn">Nearest Clinic</a>
           <a className="sideBarBtn">Side Bar</a>
 
-          <Link to='/login' className="navLogin pull-right">Login</Link>
+          {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
+          <Link to='/login' className="navLogin pull-right">Login</Link>}
 
           <div className="box pull-right">
             <div className="container-2">
@@ -111,9 +118,8 @@ class NavBar extends Component {
 
             </div>
           </div>
-          <div className="pull-right dropDownList" >
-            {this.renderDropDown()}
-          </div>
+          {this.state.searching?(<div className="dropDownList" >{this.renderDropDown()}</div>): null}
+
         </nav>
 
       </div>
@@ -124,12 +130,14 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
   return {
     clinic: state.clinic,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    Logout: () => {dispatch(localLogout());}
   }
 }
 

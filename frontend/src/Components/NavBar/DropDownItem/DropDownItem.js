@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+
+import './dropDownItem.css';
 
 class DropDownItem extends Component {
   // constructor(props) {
@@ -13,7 +14,7 @@ class DropDownItem extends Component {
 
   render() {
     return (
-      <div onClick={this.onClick}>
+      <div onClick={this.onClick} className="dropDownItem">
         {this.props.clinic.properties.name_full}
       </div>
     );
