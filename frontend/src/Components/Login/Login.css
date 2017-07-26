@@ -7,15 +7,15 @@
 }
 .LoginForm {
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 35%;
   height: 70%;
   width: 30%;
 }
 
 .LogoNameLogin {
-  font-size: 35px;
-  margin-left: 30px;
+  font-size: 30px;
+  margin-left: 15%;
 }
 
 .LoginField {
@@ -38,8 +38,26 @@
   box-shadow: 0 0 5px 1px #a87ee8;
 }
 
-#password {
-  margin-top: 30px;
+.LoginComments {
+  color: white;
+  font-size: 12px;
+  margin-top: -15px;
+  letter-spacing: 0.03em;
+}
+
+.notif {
+background-color: rgba(255, 131, 131, 1);
+height: 50px;
+margin-bottom: 10px;
+text-align: center;
+border-radius: 2px;
+padding: 15px 0;
+font-weight: 400;
+margin-top: -60px;
+}
+
+#password, #RePassword, #SignEmail {
+  margin-top: 20px;
 }
 
 /* button style */
