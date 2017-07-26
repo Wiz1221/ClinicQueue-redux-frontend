@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Pulse from '../Pulse/Pulse';
 
 import { markerStyle} from './markerStylePoly.js';
 import injectStyle from '../injectStyle';
