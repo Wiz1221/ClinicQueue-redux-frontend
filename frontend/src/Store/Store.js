@@ -5,6 +5,7 @@ import UserReducer from '../Reducers/User';
 import ClinicReducer from '../Reducers/Clinic';
 import QueueReducer from '../Reducers/Queue';
 import ActiveClinicReducer from '../Reducers/ActiveClinic';
+import AppReducer from '../Reducers/AppReducer';
 
 
 export let initStore = () => {
@@ -14,7 +15,7 @@ export let initStore = () => {
     clinic: ClinicReducer,
     queue: QueueReducer,
     activeClinic: ActiveClinicReducer,
-
+    notification: AppReducer
   });
 
   const store = createStore( reducer,

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
-import { localLogin } from '../../Actions/User';
+import { localLogin, userNotification } from '../../Actions/User';
+import { clearNotif } from '../../Actions/AppAction';
 
 // import css
 import './Login.css';
@@ -15,9 +16,13 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      error: ""
+      notification: ""
     }
   }
+
+  // clearNotif = () => {
+  //   this.props.clearNotif();
+  // }
 
   onChange = (e) => {
     let state = this.state;
@@ -26,12 +31,19 @@ class Login extends Component {
 
     state[key] = value;
     this.setState(state);
+
+    this.props.clearNotif();
   }
 
   localLogin = (e) => {
     if (this.state.email == "" || this.state.password == "") {
+    // this.setState({
+    //   notification: this.props.notification
+    // });
+    //console.log("Eror! email or password is empty!");
+    console.log(this.props.notification);
+    this.props.userNotification("Please enter your login details.");
     e.preventDefault();
-    console.log("Eror! email or password is empty!");
     } else {
       this.props.Login(this.state);
     }
@@ -41,16 +53,18 @@ class Login extends Component {
     return (
       <div className="Login">
         <div className='LoginForm'>
+          {this.props.notification ? <div className='notif'>{this.props.notification}</div> : ""}
           <img src={logo} width={80} height={80} className="logo"/>
           <p className='logoName LogoNameLogin'>Log in</p>
           <hr/>
-          <input type="text" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange}/>
-          <input type="text" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange}/>
-          <Link to='/'><button className="LoginBtn" onClick={this.localLogin}>Log in</button></Link>
+          <input type="email" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange}/>
+          <input type="password" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange}/>
+          <button className="LoginBtn" onClick={this.localLogin}>Log in</button>
           <hr/>
-          <Link to='/signup'><button className="SignUpBtn">Sign Up</button></Link>
-          <Link to='/'><button className="backBtn">Back</button></Link>
+          <Link to='/signup'><button className="SignUpBtn" onClick={this.onChange}>Sign Up</button></Link>
+          <Link to='/'><button className="backBtn" onClick={this.onChange}>Back</button></Link>
           <hr/>
+          <p className="LoginComments">Click sign up if you have yet to register an account.</p>
         </div>
       </div>
     );
@@ -61,14 +75,16 @@ const mapStateToProps = (state) => {
 
   return {
     //user: state.user,
-    //notification: state.notification
+    notification: state.notification
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
-    Login: (credentials) => {dispatch(localLogin(credentials));}
+    Login: (credentials) => {dispatch(localLogin(credentials));},
+    userNotification: (message) => {dispatch(userNotification(message));},
+    clearNotif: () => {dispatch(clearNotif());}
   }
 }
 
