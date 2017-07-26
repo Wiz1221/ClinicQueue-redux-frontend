@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QueueList from './Queue/QueueList';
-import Subscribe from './Subscribe';
-import SubmitQueue from './SubmitQueue/SubmitQueue';
+import QueueList from '../Queue/QueueList';
+import Subscribe from '../Subscribe/Subscribe';
+import SubmitQueue from '../SubmitQueue/SubmitQueue';
 
 
 
-class PolyClinicInfo extends Component {
+class PrivateClinicInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PolyClinicInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateClinicInfo);
