@@ -11,8 +11,9 @@ import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
 
 // Actions
-import { activeClinic } from '../../Actions/Clinic';
-import { localLogout } from '../../Actions/User';
+import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
+import { localLogout } from '../../Actions/UserAction';
+import { nearestClinic, nearestClinicOff } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -51,6 +52,7 @@ class NavBar extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
+    this.props.nearestClinicOff()
     this.props.activeClinic(clinic);
   }
 
@@ -81,6 +83,11 @@ class NavBar extends Component {
     },200)
   }
 
+  clickNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinic();
+  }
+
   execLogout = (e) => {
     //e.preventDefault();
     this.props.Logout();
@@ -96,7 +103,9 @@ class NavBar extends Component {
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a>
-          <a className="nearsetBtn">Nearest Clinic</a>
+
+          <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
+          <a className="sideBarBtn">Side Bar</a>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
@@ -136,7 +145,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
-    Logout: () => {dispatch(localLogout());}
+    removeActiveClinic: () => {dispatch(removeActiveClinic())},
+    Logout: () => {dispatch(localLogout());},
+    nearestClinic: () => {dispatch(nearestClinic())},
+    nearestClinicOff: () => {dispatch(nearestClinicOff())},
   }
 }
 

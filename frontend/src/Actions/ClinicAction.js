@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-// socket 
+// socket
 import io from 'socket.io-client';
 export const socket = io.connect('http://localhost:3001');
 
@@ -41,7 +41,7 @@ export const getClinic = () => {
           allQueue.push(queue);
         })
       })
-      console.log(allQueue);
+      // console.log(allQueue);
       // store queue info in store (queue have its own reducer)
       dispatch(storeQueueInfoInReducer(allQueue));
     })
@@ -54,5 +54,11 @@ export const activeClinic = (clinic) => {
     type: 'ACTIVE_CLINIC',
     clinic
 
+  }
+}
+
+export const removeActiveClinic = () => {
+  return {
+    type: 'ACTIVE_CLINIC'
   }
 }
