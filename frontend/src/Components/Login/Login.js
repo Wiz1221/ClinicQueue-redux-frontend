@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
-import { localLogin, userNotification } from '../../Actions/User';
+import { localLogin, userNotification } from '../../Actions/UserAction';
 import { clearNotif } from '../../Actions/AppAction';
 
 // import css
@@ -49,6 +49,22 @@ class Login extends Component {
     }
   }
 
+  enterKeyPress = (e) => {
+    if(e.charCode==13){
+      if (this.state.email == "" || this.state.password == "") {
+      // this.setState({
+      //   notification: this.props.notification
+      // });
+      //console.log("Eror! email or password is empty!");
+      console.log(this.props.notification);
+      this.props.userNotification("Please enter your login details.");
+      e.preventDefault();
+      } else {
+        this.props.Login(this.state);
+      }
+    }
+  }
+
   render() {
     return (
       <div className="Login">
@@ -57,8 +73,8 @@ class Login extends Component {
           <img src={logo} width={80} height={80} className="logo"/>
           <p className='logoName LogoNameLogin'>Log in</p>
           <hr/>
-          <input type="email" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange}/>
-          <input type="password" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange}/>
+          <input type="email" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange} />
+          <input type="password" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
           <button className="LoginBtn" onClick={this.localLogin}>Log in</button>
           <hr/>
           <Link to='/signup'><button className="SignUpBtn" onClick={this.onChange}>Sign Up</button></Link>

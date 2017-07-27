@@ -14,8 +14,8 @@ import { Provider } from 'react-redux';
 import { initStore } from './Store/Store';
 
 // Actions
-import { getClinic } from './Actions/Clinic';
-import { getUser } from './Actions/User';
+import { getClinic } from './Actions/ClinicAction';
+import { getUser } from './Actions/UserAction';
 //API
 // import {setAdmin, getAdmin} from './API/generalAPI';
 
