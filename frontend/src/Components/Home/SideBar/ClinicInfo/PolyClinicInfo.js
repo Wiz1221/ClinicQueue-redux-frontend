@@ -6,10 +6,12 @@ import { axisBottom, axisLeft } from 'd3-axis';
 import { min, max } from 'd3-array';
 import { select } from 'd3-selection';
 import { transition } from 'd3-transition';
+import { Link } from 'react-router-dom';
 
-import QueueList from '../Queue/QueueList';
 import Subscribe from '../Subscribe/Subscribe';
-import SubmitQueue from '../SubmitQueue/SubmitQueue';
+
+import { userNotification } from '../../../../Actions/UserAction';
+import { clearNotif } from '../../../../Actions/AppAction';
 
 import './PolyClinicInfo.css';
 
@@ -24,6 +26,13 @@ class PolyClinicInfo extends Component {
   }
 
   onClick = (event) => {
+    if(!this.props.user._id){
+      this.props.userNotification("Please Login to Subscribe");
+      setTimeout(() => {
+        this.props.clearNotif();
+      },2000);
+      return;
+    }
     this.setState({
       showWhichComponent: event.target.id
     })
@@ -245,14 +254,12 @@ class PolyClinicInfo extends Component {
 
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
-            <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
-          ) : this.state.showWhichComponent==="submitQueueButton" ? (
-            <SubmitQueue clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
+            <Subscribe backToClinicInfo={this.backToClinicInfo} />
           ) : (
             <div>
-              <QueueList queue={this.props.activeClinic.queue}/>
-              <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this clinic</button>
-              <button id="submitQueueButton" type="submit" className="btn btn-info" onClick={this.onClick}>Submit a Queue Report</button>
+
+              <Link to="/seeQueue"><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
+              <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )
         }
@@ -277,13 +284,15 @@ class PolyClinicInfo extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeClinic: state.activeClinic
+    activeClinic: state.activeClinic,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    userNotification: (message) => {dispatch(userNotification(message));},
+    clearNotif: () => {dispatch(clearNotif());}
   }
 }
 
