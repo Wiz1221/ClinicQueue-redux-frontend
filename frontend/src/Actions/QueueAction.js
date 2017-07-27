@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from '../index.js';
-import { socket } from './ClinicAction';
+import { socket } from './Clinic';
 
 const loadingQueueError = (error) => {
   return{
@@ -38,7 +38,7 @@ export const submitQueue = (pic, queue) => {
     let picQueueToBackend = new FormData();
     picQueueToBackend.append('pic', pic);
     picQueueToBackend.append('comment', queue.comment);
-    // picQueueToBackend.append('user_id', queue.user_id);
+    picQueueToBackend.append('user_id', queue.user_id);
     picQueueToBackend.append('clinic_id', queue.clinic_id);
 
     axios.post('/queue/', picQueueToBackend)
@@ -47,7 +47,7 @@ export const submitQueue = (pic, queue) => {
       //here pic is a url from cloudinary
       dispatch(storeQueue(response.data));
       dispatch(storeQueueInClinic(response.data));
-      // dispatch(storeQueueInUser(response.data));
+      dispatch(storeQueueInUser(response.data));
       socket.emit('latestQueueForAllUser', response.data)
     }).catch( (error) =>{
       dispatch(loadingQueueError(error));
