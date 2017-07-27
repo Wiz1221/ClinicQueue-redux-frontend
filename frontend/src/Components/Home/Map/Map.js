@@ -11,7 +11,7 @@ import { calculateNearest } from '../Markers/calculateNearestClinic';
 import injectStyle from '../Markers/injectStyle';
 
 // Actions
-import { activeClinic } from '../../../Actions/Clinic';
+import { activeClinic } from '../../../Actions/ClinicAction';
 
 class Map extends Component {
   constructor(props){

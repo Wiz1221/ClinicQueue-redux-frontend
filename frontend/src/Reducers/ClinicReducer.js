@@ -2,6 +2,7 @@
 const Clinic = (state = [], action) => {
   switch (action.type) {
     case 'STORE_CLINIC':
+
       return action.clinic || []
       break;
     case 'STORE_NEW_QUEUE_IN_CLINIC':
