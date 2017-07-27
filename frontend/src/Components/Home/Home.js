@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import NavBar from '../NavBar/NavBar';
 import SideBar from './SideBar/SideBar';
+import About from '../About/About';
+import NotificationBar from './NotificationBar/NotificationBar';
 
 // Components
 import Map from './Map/Map';
@@ -22,9 +24,10 @@ class Home extends Component {
       <div>
 
         <NavBar/>
-
+        <NotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
 
+        <About />
         <Map />
 
       </div>

@@ -33,29 +33,36 @@ class SubmitQueue extends Component {
   }
 
   postQueue = () => {
-    if(!this.state.pic){
+    if(this.props.user._id){
+      if(!this.state.pic){
+        this.setState({
+          missing: true,
+          adminMessage: "Please upload a picture of Queue"
+        })
+      }else{
+        let newQueue = this.state.queue;
+        newQueue.user_id = this.props.user._id;
+        newQueue.clinic_id = this.props.clinic._id;
+        /*
+        how newQueue looks like
+        {
+          pic: file/url, (at submitting stage, this field does not exist, but when backend comes back, this field will be populated)
+          comment: String,
+          user_id:
+          clinic_id:
+        }
+        */
+        this.props.submitQueue(this.state.pic, newQueue);
+        this.setState({
+          submitSuccessful: true,
+          missing: false,
+          adminMessage: ""
+        })
+      }
+    }else{
       this.setState({
         missing: true,
-        adminMessage: "Please upload a picture of Queue"
-      })
-    }else{
-      let newQueue = this.state.queue;
-      // newQueue.user_id = this.props.user._id;
-      newQueue.clinic_id = this.props.clinic._id;
-      /*
-      how newQueue looks like
-      {
-        pic: file/url, (at submitting stage, this field does not exist, but when backend comes back, this field will be populated)
-        comment: String,
-        user_id:
-        clinic_id:
-      }
-      */
-      this.props.submitQueue(this.state.pic, newQueue);
-      this.setState({
-        submitSuccessful: true,
-        missing: false,
-        adminMessage: ""
+        adminMessage: "Please login to submit Queue report"
       })
     }
   }

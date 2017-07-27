@@ -11,8 +11,9 @@ import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
 
 // Actions
-import { activeClinic } from '../../Actions/ClinicAction';
+import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
+import { nearestClinic, nearestClinicOff } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -29,7 +30,7 @@ class NavBar extends Component {
   onChange = (event) => {
 
     let clinicDropDownList = this.props.clinic.filter((clinic,index) => {
-      return clinic.properties.name_full.toLowerCase().includes(event.target.value);
+      return clinic.properties.name_full.toLowerCase().includes(event.target.value.toLowerCase());
     })
 
     clinicDropDownList.sort( (a,b) => {
@@ -51,6 +52,7 @@ class NavBar extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
+    this.props.nearestClinicOff()
     this.props.activeClinic(clinic);
   }
 
@@ -78,7 +80,12 @@ class NavBar extends Component {
         clinicDropDownList: [],
         searchTerm:""
       })
-    },100)
+    },200)
+  }
+
+  clickNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinic();
   }
 
   execLogout = (e) => {
@@ -92,11 +99,12 @@ class NavBar extends Component {
     return (
       <div >
         <nav className="Navbar navbar-fixed" >
-          <a href="#">
+          <a href="/">
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a>
-          <a className="nearsetBtn">Nearest Clinic</a>
+
+          <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
           <a className="sideBarBtn">Side Bar</a>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
@@ -137,7 +145,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
-    Logout: () => {dispatch(localLogout());}
+    removeActiveClinic: () => {dispatch(removeActiveClinic())},
+    Logout: () => {dispatch(localLogout());},
+    nearestClinic: () => {dispatch(nearestClinic())},
+    nearestClinicOff: () => {dispatch(nearestClinicOff())},
   }
 }
 

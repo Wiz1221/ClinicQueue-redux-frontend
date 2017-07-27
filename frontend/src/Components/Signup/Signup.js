@@ -47,6 +47,22 @@ class Signup extends Component {
     }
   }
 
+  enterKeyPress = (e) => {
+    if(e.charCode==13){
+      if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "") {
+        console.log(this.props.notification);
+        this.props.userNotification("Please enter your details.");
+        e.preventDefault();
+      } else if (this.state.password == this.state.RePassword){
+        this.props.Signup(this.state);
+      } else {
+        console.log(this.props.notification);
+        this.props.userNotification("Please enter matching passwords.");
+        e.preventDefault();
+      }
+    }
+  }
+
   render() {
     return (
       <div className="Login">
@@ -58,7 +74,7 @@ class Signup extends Component {
           <input type="text" name="username" id="username" className='LoginField' placeholder="User Name" onChange={this.onChange}/>
           <input type="email" name="email" id="SignEmail" className='LoginField' placeholder="Email Address" onChange={this.onChange}/>
           <input type="password" name="password" id="password" className='LoginField' placeholder="Password" onChange={this.onChange}/>
-          <input type="password" name="RePassword" id="RePassword" className='LoginField' placeholder="Re-enter Password" onChange={this.onChange}/>
+          <input type="password" name="RePassword" id="RePassword" className='LoginField' placeholder="Re-enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
           <button className="LoginBtn" onClick={this.localSignup}>Sign up</button>
           <hr/>
           <Link to='/'><button className="SignUpBtn" onClick={this.onChange}>Home</button></Link>
