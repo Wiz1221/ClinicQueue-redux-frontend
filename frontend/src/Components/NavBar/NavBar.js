@@ -11,8 +11,9 @@ import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
 
 // Actions
-import { activeClinic } from '../../Actions/ClinicAction';
+import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
+import { nearestClinic, nearestClinicOff } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
