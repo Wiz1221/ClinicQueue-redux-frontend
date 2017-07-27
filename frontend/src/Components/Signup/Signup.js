@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
-import { localSignup, userNotification } from '../../Actions/User';
+import { localSignup, userNotification } from '../../Actions/UserAction';
 import { clearNotif } from '../../Actions/AppAction';
 
 // import css

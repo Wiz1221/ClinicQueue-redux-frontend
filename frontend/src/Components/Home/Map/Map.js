@@ -7,7 +7,7 @@ import PolyClinicMarker from '../Markers/PolyClinicMarker/PolyClinicMarker';
 import PrivateClinicMarker from '../Markers/PrivateClinicMarker/PrivateClinicMarker';
 
 // Actions
-import { activeClinic } from '../../../Actions/Clinic';
+import { activeClinic } from '../../../Actions/ClinicAction';
 
 class Map extends Component {
   // constructor(props) {

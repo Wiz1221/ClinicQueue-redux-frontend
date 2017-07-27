@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { submitQueue } from '../../../../Actions/Queue';
+import { submitQueue } from '../../../../Actions/QueueAction';
 
 import './SubmitQueue.css';
 

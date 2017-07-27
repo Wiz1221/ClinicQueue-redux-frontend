@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from '../index.js';
-import { socket } from './Clinic';
+import { socket } from './ClinicAction';
 
 const loadingQueueError = (error) => {
   return{
