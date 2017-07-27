@@ -99,10 +99,11 @@ class NavBar extends Component {
     return (
       <div >
         <nav className="Navbar navbar-fixed" >
-          <a href="#">
+          <a href="/">
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a>
+
           <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
           <a className="sideBarBtn">Side Bar</a>
 

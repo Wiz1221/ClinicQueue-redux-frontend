@@ -1,5 +1,5 @@
 nav {
-  height: 60px;
+  height: 70px;
   background: #4776E6;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top left, #4776E6, #8E54E9);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -7,7 +7,7 @@ nav {
 }
 .navbar-fixed {
     top: 0;
-    z-index: 100;
+    z-index: 10;
     position: fixed;
     width: 100%;
 }
@@ -18,7 +18,7 @@ nav {
 }
 .logoName {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 17px;
   margin-left: 1%;
   color: white;
   font-size: 25px;
@@ -31,7 +31,7 @@ nav {
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-right: 20px;
 }
 .container-2 input#search{
@@ -97,7 +97,7 @@ width: 200px;
   color: white;
   font-weight: 700;
   font-size: 25px;
-  margin-top: 12px;
+  margin-top: 17px;
   margin-right: 3%;
   letter-spacing: 0.01em;
 }
@@ -142,11 +142,11 @@ width: 200px;
 
 .dropDownList {
   position:absolute;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  width: 300px;
-  height: 90vh;
+  width: 265px;
+  height: 70vh;
   overflow: scroll;
   overflow-x: hidden;
-  right:20px;
+  right: 4%;
 }
