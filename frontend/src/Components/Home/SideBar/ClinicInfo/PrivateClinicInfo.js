@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Subscribe from '../Subscribe/Subscribe';
+import QueueList from '../Queue/QueueList';
 
 
 class PrivateClinicInfo extends Component {
@@ -34,7 +35,7 @@ class PrivateClinicInfo extends Component {
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
           ) : (
             <div>
-
+              <QueueList queue= {this.props.clinic.queue}/>
               <Link to="/seeQueue"><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
