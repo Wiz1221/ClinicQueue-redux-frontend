@@ -86,9 +86,9 @@ class PolyClinicInfo extends Component {
     const x = scaleTime().range([0, width]),
           y = scaleLinear().range([height, 0]),
           xAxis = axisBottom(x).tickFormat(timeFormat('%H')),
-          yAxis = axisLeft(y)//.ticks(4).orient("left");
+          yAxis = axisLeft(y);//.ticks(4).orient("left");
 
-    // A line generator, for the dark stroke.
+    // A line generator for historicalQueue, for the dark stroke.
     const line = d3.line()
                   .x(function(d) { return x(d.date); })
                   .y(function(d) { return y(d.queueQty); })
@@ -96,7 +96,8 @@ class PolyClinicInfo extends Component {
 
     // Compute the minimum and maximum date, and the maximum queue.
     x.domain([hQ[0].date, hQ[hQ.length - 1].date]);
-    y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
+    //y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
+    y.domain([0,220]);
 
 
     const colors  = scaleOrdinal(schemeCategory10)
@@ -127,6 +128,7 @@ class PolyClinicInfo extends Component {
               .attr("transform", "translate(" + width + ",0)")
               .call(yAxis)
               .text("No. of people waiting");
+
         qLine.selectAll('.line')
              .data([hQ,cQ])
              .enter()
@@ -152,6 +154,8 @@ class PolyClinicInfo extends Component {
                .attr('d', function(d) {
                  return line(d);
                });
+        break;
+        default:
         break;
     }
 
@@ -242,12 +246,13 @@ class PolyClinicInfo extends Component {
   }
 
   render() {
+    const differenceQueue = parseFloat(this.props.activeClinic.properties.differenceQueue);
     return (
       <div>
         <h3>{this.props.activeClinic.properties.name_full}</h3>
-        <h4>is now <span className={this.classParser(parseFloat(this.props.activeClinic.properties.differenceQueue))}>
-        {parseFloat(this.props.activeClinic.properties.differenceQueue).toFixed(0)}%</span>
-        {parseFloat(this.props.activeClinic.properties.differenceQueue) > 0 ? " busier than the average hourly queue" : " less busy compared to the average hourly queue"}</h4>
+        <h4>is now <span className={this.classParser(differenceQueue)}>
+        {differenceQueue > 0 ? (differenceQueue.toFixed(0) + "%more") :
+        (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than the average queue at this hour</h4>
 
         <svg ref={node => this.node = node}
               viewBox="0 0 960 500">
