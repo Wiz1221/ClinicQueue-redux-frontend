@@ -1,39 +1,51 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import './NotificationBar.css';
+import { clearNotif } from '../../../Actions/AppAction';
+
+import './ErrorNotificationBar.css';
 
 class NotificationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: 'animated fadeInDownBig notificationBar',
-      renderDiv: true
+      newNotification:false,
+      class: 'animated fadeInDownBig notificationBar'
     }
   }
 
-  notifDisappear = () => {
-    setTimeout(()=>{
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps)
+    if(nextProps.notification !== ""){
+      console.log(nextProps)
       this.setState({
-        class: 'fadeOutUp animated notificationBar'
-      });
-    },5000);
-    setTimeout(()=>{
-      this.setState({
-        renderDiv: false
-     });
-   },7000);
+        newNotification: true,
+        class: 'animated fadeInDownBig notificationBar'
+      })
+    }else{
+      console.log("else", nextProps)
+      this.notifDisappear()
+      setTimeout(()=>{
+        this.setState({
+          newNotification: false});
+      }, 500)
+
+    }
+
   }
 
+  notifDisappear = () => {
+      this.setState({
+        class: 'fadeOutUp animated notificationBar'
+  })
+}
+
   renderNotificationMessage = () => {
-    if(this.props.user._id){
-      if (this.state.renderDiv){
-        return (
-          <div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>
-        )
-      }
-    }else{
-      return;
+    console.log(this.state.class);
+    if(this.state.newNotification){
+      return (<div className={this.state.class}><p>Please Login to Subscribe</p></div>)
+    } else {
+      return<div></div>
     }
   }
 
@@ -45,7 +57,7 @@ class NotificationBar extends React.Component {
     return (
       <div>
         {this.renderNotificationMessage()}
-        {this.notifDisappear()}
+
       </div>
     );
   }
@@ -70,6 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    clearNotif: () => {dispatch(clearNotif());}
   }
 }
 
