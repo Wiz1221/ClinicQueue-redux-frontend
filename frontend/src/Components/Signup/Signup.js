@@ -20,14 +20,15 @@ class Signup extends Component {
         username: "",
         email: "",
         password: "",
-        contact: ""
+        contact: "",
+        role: "regularUser",
+        myClinic: ""
       },
       RePassword:"",
       notification: "",
       searchTerm: "",
       clinicDropDownList: [],
       searching: false,
-      selectedClinic: {},
       clinicAdmin: false
     }
   }
@@ -39,7 +40,7 @@ class Signup extends Component {
 
     userState[key] = value;
     this.setState(userState);
-    console.log(userState)
+    console.log(userState);
     this.props.clearNotif();
   }
 
@@ -61,19 +62,28 @@ class Signup extends Component {
       return aLower < bLower ? -1 : 1
     })
 
+    let userState = this.state.user;
+    let key = event.target.name;
+    let value = event.target.value;
+
+    userState[key] = value;
+    this.setState(userState);
+    console.log(userState);
+
     this.setState({
       searchTerm: event.target.value,
-      clinicDropDownList: clinicDropDownList
-    })
+      clinicDropDownList: clinicDropDownList,
+    });
   }
 
   localSignup = (e) => {
+    console.log(this.state.user.role);
     if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
       console.log(this.props.notification);
       this.props.userNotification("Please enter your details.");
       e.preventDefault();
     } else if (this.state.password == this.state.RePassword){
-      this.props.Signup(this.state);
+      this.props.Signup(this.state.user);
     } else {
       console.log(this.props.notification);
       this.props.userNotification("Please enter matching passwords.");
@@ -88,7 +98,7 @@ class Signup extends Component {
         this.props.userNotification("Please enter your details.");
         e.preventDefault();
       } else if (this.state.password == this.state.RePassword){
-        this.props.Signup(this.state);
+        this.props.Signup(this.state.user);
       } else {
         console.log(this.props.notification);
         this.props.userNotification("Please enter matching passwords.");
@@ -114,9 +124,14 @@ class Signup extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
-    console.log("test")
+    let userState = this.state.user;
+    let key = 'myClinic';
+    let value = clinic._id;
+
+    userState[key] = value;
+    this.setState(userState);
+    console.log(userState);
     this.setState({
-      selectedClinic: clinic,
       searchTerm: clinic.properties.name_full
     });
   }
@@ -132,11 +147,27 @@ class Signup extends Component {
   }
 
   clinicAdmin = () => {
+    let userState = this.state.user;
+    let key = 'role';
+
     if(this.state.clinicAdmin) {
+
+      let value = 'regularUser';
+
+      userState[key] = value;
+      this.setState(userState);
+      console.log(userState);
+
       this.setState({
         clinicAdmin: false
       });
     } else {
+      let value2 = 'clinicAdmin';
+
+      userState[key] = value2;
+      this.setState(userState);
+      console.log(userState);
+
       this.setState({
         clinicAdmin: true
       });
@@ -158,10 +189,10 @@ class Signup extends Component {
           <input type="password" name="RePassword" id="SRePassword" className='SignupField' placeholder="Re-enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
 
           <div className="signWell">
-            <div className="checkbox" >
+            <div className="checkbox">
               <form>
                 <div>
-                  <input className="checkBoxInput" type="checkbox" id="check" name="clinicAdmin" defaultValue />
+                  <input className="checkBoxInput" type="checkbox" id="check" name="role" defaultValue />
                   <label className="checkBoxLabel" htmlFor="check" onClick={this.clinicAdmin}>
                     <span className="checkBoxSpan">{/* This span is needed to create the "checkbox" element */}</span>Sign up as clinic admin?
                   </label>
@@ -172,7 +203,7 @@ class Signup extends Component {
             <div>
             <input className="searchList searchInput"
                    type="search"
-                   name="search"
+                   name="myClinic"
                    id="search"
                    value={this.state.searchTerm ? this.state.searchTerm:""}
                    placeholder="Input Clinic"
