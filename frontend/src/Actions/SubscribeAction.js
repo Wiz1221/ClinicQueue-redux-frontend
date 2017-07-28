@@ -16,6 +16,8 @@ const storeSubscribeInUser = (clinic_id) => {
 
 export const postNewSubscribe = (newSubscribe) => {
   return (dispatch) => {
+    console.log("subscribe action reached")
+    console.log(newSubscribe)
     socket.emit('new subscribe to back end', newSubscribe);
     socket.on('subscription successful', (newSubscribe) => {
       dispatch(storeSubscribeInClinic(newSubscribe.user));

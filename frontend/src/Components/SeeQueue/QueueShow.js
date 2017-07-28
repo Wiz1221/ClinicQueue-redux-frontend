@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-import QueueItem from './QueueItem';
+import QueueItem from './QueueGallery/QueueItem';
 
-class QueueGallery extends Component {
+class QueueShow extends Component {
   // constructor(props) {
   //   super(props);
   //
   // }
 
   componentWillReceiveProps(nextProps){
-    console.log(this.props.clinic.queue)
+    console.log(nextProps.activeClinic)
   }
 
   renderClinicAdminQueueItem = () => {
-    let queueArray = this.props.clinic.queue;
+    let queueArray = this.props.activeClinic.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
       return  (<div>No Queues yet</div>)
@@ -35,7 +35,7 @@ class QueueGallery extends Component {
   }
 
   renderUserQueueItem = () => {
-    let queueArray = this.props.clinic.queue;
+    let queueArray = this.props.activeClinic.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
       return  (<div>No Queues yet</div>)
@@ -55,8 +55,8 @@ class QueueGallery extends Component {
   }
 
   render() {
-    console.log(this.props.clinic.queue)
-    console.log("why is this not printing?")
+    // console.log(this.props.clinic.queue)
+    // console.log("why is this not printing?")
     return (
       <div >
         <div>From Clinic
@@ -74,16 +74,16 @@ class QueueGallery extends Component {
 // {this.renderClinicAdminQueueItem()}
 //   {this.renderUserQueueItem()}
 
-// const mapStateToProps = (state) => {
-//   return {
-//     activeClinic: state.activeClinic
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    activeClinic: state.activeClinic
+  }
+}
 
-export default QueueGallery;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QueueShow);

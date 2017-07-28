@@ -32,7 +32,7 @@ class Subscribe extends Component {
       }
       let newSubscribe = {}
       newSubscribe.user = this.props.user;
-      newSubscribe.clinic = this.props.clinic;
+      newSubscribe.clinic = this.props.activeClinic;
       this.props.postNewSubscribe(newSubscribe)
     }else{
       this.props.userNotification("Please confirm phone number is correct");

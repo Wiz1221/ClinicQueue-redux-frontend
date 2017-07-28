@@ -20,6 +20,10 @@ class SubmitQueue extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log(this.props.clinic)
+  }
+
   statusButtonClicked = (status) => {
     let queue = this.state.queue
     queue.status = status
@@ -51,7 +55,7 @@ class SubmitQueue extends Component {
         })
       }else{
 
-        if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
+        if(this.props.user.role==="clinicAdmin"&&!this.state.queue.status){
           this.setState({
             missing: true,
             adminMessage: "Please choose a clinic status"
@@ -60,8 +64,10 @@ class SubmitQueue extends Component {
         }
 
         let newQueue = this.state.queue;
+
         newQueue.user_id = this.props.user._id;
         newQueue.clinic_id = this.props.clinic._id;
+        console.log(newQueue)
         /*
         how newQueue looks like
         {
@@ -91,6 +97,8 @@ class SubmitQueue extends Component {
   }
 
   render() {
+    // console.log(this.props.clinic)
+    // console.log(this.props.clinic.queue)
     return (
       <div id="submitQueue">
         <div className="adminMessage">{
