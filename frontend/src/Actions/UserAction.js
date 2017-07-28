@@ -60,7 +60,7 @@ export const localSignup = (credentials) => {
   return(dispatch) => {
     axios.post('/auth/signup', credentials)
     .then((response) => {
-      const data = response.date;
+      const data = response.data;
       //dispatch(getUser());
 
       if(data.error){
