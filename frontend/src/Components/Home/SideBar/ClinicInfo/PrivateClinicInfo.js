@@ -27,9 +27,13 @@ class PrivateClinicInfo extends Component {
   }
 
   render() {
+    const properties = this.props.activeClinic.properties
+
     return (
       <div>
         <h3>{this.props.activeClinic.properties.name_full}</h3>
+        <h5> Address: {properties.ADDRESSBLOCKHOUSENUMBER} {properties.ADDRESSSTREETNAME} {properties.ADDRESSBUILDINGNAME} #{properties.ADDRESSFLOORNUMBER}-{properties.ADDRESSUNITNUMBER} S{properties.ADDRESSPOSTALCODE}</h5>
+        <h5> Telephone: {properties.Telephone} </h5>
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
