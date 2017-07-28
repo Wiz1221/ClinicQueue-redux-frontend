@@ -37,6 +37,7 @@ export const submitQueue = (pic, queue) => {
     // here pic is a file
     let picQueueToBackend = new FormData();
     picQueueToBackend.append('pic', pic);
+    picQueueToBackend.append('status', queue.status || "");
     picQueueToBackend.append('comment', queue.comment);
     picQueueToBackend.append('user_id', queue.user_id);
     picQueueToBackend.append('clinic_id', queue.clinic_id);
