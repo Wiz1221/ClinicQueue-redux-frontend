@@ -115,8 +115,15 @@ class SubmitQueue extends Component {
                    />
           </div>
 
-          <label>Please comment on Queue Status</label>
-          <QueueStatus onClick={this.statusButtonClicked}/>
+          {
+            (this.props.user.role === "clinicAdmin" || "appAdmin")&&(this.props.clinic._id===this.props.user.myClinic)  ?
+            (
+              <div>
+                <label>Please comment on Queue Status</label>
+                <QueueStatus onClick={this.statusButtonClicked}/>
+              </div>
+            ) : null
+          }
 
           <div className="form-group">
             <label>Comments</label>

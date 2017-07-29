@@ -88,6 +88,11 @@ class NavBar extends Component {
     this.props.nearestClinic();
   }
 
+  removeActiveClinicAndNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
+  }
+
   execLogout = (e) => {
     //e.preventDefault();
     this.props.Logout();
@@ -99,13 +104,13 @@ class NavBar extends Component {
     return (
       <div >
         <nav className="Navbar navbar-fixed" >
-          <a href="/">
+          <a href="/" onClick={this.removeActiveClinicAndNearestClinic}>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a>
 
           <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
-          <a className="sideBarBtn">Side Bar</a>
+          <Link to="/" className="sideBarBtn" onClick={this.removeActiveClinicAndNearestClinic}>Back to Landing Page</Link>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}

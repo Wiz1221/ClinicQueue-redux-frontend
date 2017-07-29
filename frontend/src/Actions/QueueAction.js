@@ -23,6 +23,14 @@ const storeQueueInUser = (queue) => {
   }
 }
 
+const storeQueueInActiveClinic = (queue) => {
+  return {
+    type: "STORE_NEW_QUEUE_IN_ACTIVE_CLINIC",
+    queue
+  }
+}
+
+
 const storeQueue = (queue) => {
   return {
     type: "STORE_NEW_QUEUE",
@@ -49,6 +57,8 @@ export const submitQueue = (pic, queue) => {
       dispatch(storeQueue(response.data));
       dispatch(storeQueueInClinic(response.data));
       dispatch(storeQueueInUser(response.data));
+      dispatch(storeQueueInActiveClinic(response.data));
+
       socket.emit('latestQueueForAllUser', response.data)
     }).catch( (error) =>{
       dispatch(loadingQueueError(error));
@@ -60,4 +70,5 @@ export const submitQueue = (pic, queue) => {
 socket.on('queueForAllUser', (queue) => {
   store.dispatch(storeQueue(queue));
   store.dispatch(storeQueueInClinic(queue));
+  store.dispatch(storeQueueInActiveClinic(queue));
 })

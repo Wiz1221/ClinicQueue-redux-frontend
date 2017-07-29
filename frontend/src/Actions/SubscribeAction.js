@@ -1,5 +1,12 @@
 import { socket } from './ClinicAction';
 
+const storeSubscribeInActiveClinic = (user_id) => {
+  return {
+    type: 'STORE_SUBSCRIBE_IN_ACTIVE_CLINIC',
+    user_id
+  }
+}
+
 const storeSubscribeInClinic = (user_id) => {
   return {
     type: 'STORE_SUBSCRIBE_IN_CLINIC',
@@ -22,6 +29,7 @@ export const postNewSubscribe = (newSubscribe) => {
     socket.on('subscription successful', (newSubscribe) => {
       dispatch(storeSubscribeInClinic(newSubscribe.user));
       dispatch(storeSubscribeInUser(newSubscribe.clinic));
+      dispatch(storeSubscribeInActiveClinic(newSubscribe.user));
     })
   }
 }

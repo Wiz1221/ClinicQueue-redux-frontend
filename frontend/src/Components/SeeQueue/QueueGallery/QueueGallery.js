@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 
 import QueueItem from './QueueItem';
 
 class QueueGallery extends Component {
-  // constructor(props) {
-  //   super(props);
-  //
-  // }
-
-  componentWillReceiveProps(nextProps){
-    console.log(this.props.clinic.queue)
-  }
 
   renderClinicAdminQueueItem = () => {
-    let queueArray = this.props.clinic.queue;
+    let queueArray = this.props.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
       return  (<div>No Queues yet</div>)
@@ -27,15 +18,14 @@ class QueueGallery extends Component {
         return (
           <QueueItem queue={queue}
                     key={queue._id}
-                    id={queue._id}
-                     />
+                    id={queue._id}/>
         )
       });
     }
   }
 
   renderUserQueueItem = () => {
-    let queueArray = this.props.clinic.queue;
+    let queueArray = this.props.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
       return  (<div>No Queues yet</div>)
@@ -47,16 +37,15 @@ class QueueGallery extends Component {
         return (
           <QueueItem queue={queue}
                     key={queue._id}
-                    id={queue._id}
-                     />
+                    id={queue._id}/>
         )
       });
     }
   }
 
   render() {
-    console.log(this.props.clinic.queue)
-    console.log("why is this not printing?")
+    // console.log(this.props.clinic.queue)
+    // console.log("why is this not printing?")
     return (
       <div >
         <div>From Clinic
@@ -71,19 +60,5 @@ class QueueGallery extends Component {
     );
   }
 }
-// {this.renderClinicAdminQueueItem()}
-//   {this.renderUserQueueItem()}
-
-// const mapStateToProps = (state) => {
-//   return {
-//     activeClinic: state.activeClinic
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
-//   }
-// }
 
 export default QueueGallery;
