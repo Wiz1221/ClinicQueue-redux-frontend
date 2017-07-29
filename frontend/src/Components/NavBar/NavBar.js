@@ -53,7 +53,7 @@ class NavBar extends Component {
 
   dropDownItemClicked = (clinic) => {
     this.props.nearestClinicOff()
-    this.props.activeClinic(clinic);
+    this.props.activeClinic({...clinic});
   }
 
   renderDropDown = () => {

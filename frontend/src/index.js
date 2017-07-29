@@ -23,7 +23,6 @@ export const store = initStore();
 
 store.subscribe( () => {
   const state = store.getState();
-  console.log(state.activeClinic)
   setActiveClinic(state.activeClinic);
 })
 

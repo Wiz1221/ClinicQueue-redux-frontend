@@ -114,8 +114,7 @@ class Map extends Component {
            {this.props.nearestClinicString==="true"? this.renderNearestClinic() : this.renderPolyClinicMapComponent()}
            {this.props.nearestClinicString==="true"? (
              <UserMarker lat={this.state.coordinates.lat}
-                         lng={this.state.coordinates.lng}
-                         />
+                         lng={this.state.coordinates.lng}/>
            ): (this.renderPrivateClinicMapComponent())}
          </GoogleMap>
        </div>
