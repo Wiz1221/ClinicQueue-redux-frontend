@@ -103,12 +103,12 @@ class NavBar extends Component {
 
     return (
       <div >
-        <nav className="Navbar navbar-fixed" >
+        <nav className="Navbar navbar-fixed-top" >
           <a className="home-logo" onClick={this.clickHome}><Link to ='/'>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </Link></a>
-          
+
           {this.props.minNavBar? null :
           (<a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>)}
           <a className="sideBarBtn">Side Bar</a>

@@ -14,10 +14,12 @@ import { Provider } from 'react-redux';
 import { initStore } from './Store/Store';
 
 // Actions
-import { getClinic } from './Actions/ClinicAction';
+import { getClinic, activeClinic } from './Actions/ClinicAction';
 import { getUser } from './Actions/UserAction';
+
 //API
-// import {setAdmin, getAdmin} from './API/generalAPI';
+import { getActiveClinic } from './API/activeClinicAPI';
+//import {setAdmin, getAdmin} from './API/generalAPI';
 
 export const store = initStore();
 
@@ -30,6 +32,9 @@ export const store = initStore();
 store.dispatch(getClinic());
 
 store.dispatch(getUser());
+
+// get latest activeClinic from localStorage for persistence
+store.dispatch(activeClinic(getActiveClinic()));
 
 ReactDOM.render(
   <Provider store={store}>

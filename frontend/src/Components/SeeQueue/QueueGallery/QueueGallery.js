@@ -48,15 +48,20 @@ class QueueList extends Component {
 
   render() {
     return (
-      <div >
-        <div>From Clinic
-        {this.renderClinicAdminQueueItem()}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div>From Clinic
+            {this.renderClinicAdminQueueItem()}
+            </div>
+          </div>
+          <div className="col-md-12">
+            <div>
+              From User
+              {this.renderUserQueueItem()}
+            </div>
+          </div>
         </div>
-        <div >
-        From User
-        {this.renderUserQueueItem()}
-        </div>
-
       </div>
     );
   }

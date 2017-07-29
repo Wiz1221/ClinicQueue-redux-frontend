@@ -19,17 +19,21 @@ class SeeQueue extends Component {
 
   render() {
     return (
-      <div className="Login container">
+      <div className="seequeue-container container">
         {this.props.minNavBarOn()}
         <div className="row">
           <NavBar/>
         </div>
         <div className="row">
-          <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-6">
-            <QueueGallery queue={this.props.activeClinic.queue}/>
+          <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
+              <header className="jumbotron queue-gallery-jumbotron">
+                <QueueGallery queue={this.props.activeClinic.queue}/>
+              </header>
           </div>
-          <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-6">
-            <SubmitQueue clinic={this.props.activeClinic}/>
+          <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <header className="jumbotron queue-gallery-jumbotron">
+              <SubmitQueue clinic={this.props.activeClinic}/>
+            </header>
           </div>
         </div>
       </div>

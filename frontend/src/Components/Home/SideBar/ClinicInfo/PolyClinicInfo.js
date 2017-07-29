@@ -14,6 +14,11 @@ import QueueList from '../Queue/QueueList';
 import { userNotification } from '../../../../Actions/UserAction';
 import { clearNotif } from '../../../../Actions/AppAction';
 
+// import { store } from '../../../../index.js';
+
+// import API to store activeClinic into  localStorage
+import { setActiveClinic } from '../../../../API/activeClinicAPI'
+
 
 import './PolyClinicInfo.css';
 
@@ -44,6 +49,10 @@ class PolyClinicInfo extends Component {
     this.setState({
       showWhichComponent: ""
     })
+  }
+
+  storeActiveClinic = () => {
+    setActiveClinic(this.props.activeClinic);
   }
 
   // return formatted time data
@@ -201,7 +210,7 @@ class PolyClinicInfo extends Component {
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info">See more queues or Submit a queue report</button></Link>
+              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info" onClick={this.storeActiveClinic}>See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )
