@@ -259,7 +259,7 @@ class PolyClinicInfo extends Component {
         </svg>
 
         {
-          this.state.showWhichComponent==="subscribeClinicButton" ?  (
+          this.state.showWhichComponent==="subscribeClinicButton" && this.props.user._id ?  (
             <Subscribe backToClinicInfo={this.backToClinicInfo} />
           ) : (
             <div>
