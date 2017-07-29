@@ -13,7 +13,7 @@ import QueueList from '../Queue/QueueList';
 
 import { userNotification } from '../../../../Actions/UserAction';
 import { clearNotif } from '../../../../Actions/AppAction';
-import { minNavBarOn } from '../../../../Actions/AppAction';
+
 
 import './PolyClinicInfo.css';
 
@@ -174,10 +174,6 @@ class PolyClinicInfo extends Component {
     return differenceQueue > 0 ? "positiveDifference" : "negativeDifference"
   }
 
-  activateMinNavBar = () => {
-    this.props.minNavBarOn();
-  }
-
   render() {
     const differenceQueue = parseFloat(this.props.activeClinic.properties.differenceQueue);
     const currentDate = new Date();
@@ -205,7 +201,7 @@ class PolyClinicInfo extends Component {
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info" onClick={this.activateMinNavBar}>See more queues or Submit a queue report</button></Link>
+              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info">See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )
@@ -239,8 +235,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userNotification: (message) => {dispatch(userNotification(message));},
-    clearNotif: () => {dispatch(clearNotif());},
-    minNavBarOn: () => {dispatch(minNavBarOn());}
+    clearNotif: () => {dispatch(clearNotif());}
   }
 }
 
