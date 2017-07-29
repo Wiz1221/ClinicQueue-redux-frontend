@@ -96,9 +96,9 @@ class SubmitQueue extends Component {
         <div className="adminMessage">{
           this.state.missing? (this.state.adminMessage) : (this.state.submitSuccessful? "Submited successfully" : null)
         }</div>
-        <h4>Submit Queue</h4>
+        <h4>Submit a Queue report for {this.props.activeClinic.properties.name_full}</h4>
           <div className="form-group">
-            <label>Upload the latest Queue</label>
+            <p>Upload a picture of the current queue situation: </p>
             <input id="pic"
                    type="file"
                    className="form-control-file"
@@ -128,6 +128,7 @@ class SubmitQueue extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    activeClinic: state.activeClinic,
   }
 }
 

@@ -16,7 +16,7 @@ import { clearNotif } from '../../../../Actions/AppAction';
 
 // import { store } from '../../../../index.js';
 
-// import API to store activeClinic into  localStorage
+// import API to store activeClinic into localStorage
 import { setActiveClinic } from '../../../../API/activeClinicAPI'
 
 

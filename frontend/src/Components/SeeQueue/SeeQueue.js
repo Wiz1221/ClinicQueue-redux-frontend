@@ -19,7 +19,7 @@ class SeeQueue extends Component {
 
   render() {
     return (
-      <div className="seequeue-container container">
+      <div className="seequeue-container container-fluid">
         {this.props.minNavBarOn()}
         <div className="row">
           <NavBar/>

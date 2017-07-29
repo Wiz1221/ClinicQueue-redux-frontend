@@ -6,6 +6,9 @@ import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
 import chasLogo from '../../../../chas-transparent-small.png'
 
+// import API to store activeClinic into localStorage
+import { setActiveClinic } from '../../../../API/activeClinicAPI'
+
 import './PrivateClinicInfo.css'
 
 class PrivateClinicInfo extends Component {
@@ -28,6 +31,10 @@ class PrivateClinicInfo extends Component {
     })
   }
 
+  storeActiveClinic = () => {
+    setActiveClinic(this.props.activeClinic);
+  }
+
   render() {
     const properties = this.props.activeClinic.properties
 
@@ -45,7 +52,7 @@ class PrivateClinicInfo extends Component {
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
+              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info" onClick={this.storeActiveClinic}>See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )

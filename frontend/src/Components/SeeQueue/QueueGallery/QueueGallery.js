@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import QueueItem from './QueueItem';
 
-class QueueList extends Component {
+class QueueGallery extends Component {
   // constructor(props) {
   //   super(props);
   //
@@ -51,13 +52,15 @@ class QueueList extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <div>From Clinic
+            <div>
+            <h4>{this.props.activeClinic.properties.name_full}</h4>
+            <h5>From ClinicAdmin </h5>
             {this.renderClinicAdminQueueItem()}
             </div>
           </div>
           <div className="col-md-12">
             <div>
-              From User
+              <h5>From random User</h5>
               {this.renderUserQueueItem()}
             </div>
           </div>
@@ -67,4 +70,17 @@ class QueueList extends Component {
   }
 }
 
-export default QueueList;
+const mapStateToProps = (state) => {
+  return {
+    activeClinic: state.activeClinic
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // minNavBarOn: () => {dispatch(minNavBarOn());}
+    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QueueGallery);
