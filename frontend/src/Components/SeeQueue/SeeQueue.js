@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import NavBar from '../NavBar/NavBar';
 import QueueGallery from './QueueGallery/QueueGallery';
 import SubmitQueue from './SubmitQueue/SubmitQueue';
 
@@ -16,6 +17,7 @@ class SeeQueue extends Component {
   render() {
     return (
       <div className="Login">
+        <NavBar/>
         <div className="queueGalleryContainer">
           <QueueGallery queue={this.props.activeClinic.queue}/>
         </div>

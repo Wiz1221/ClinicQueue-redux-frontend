@@ -15,3 +15,15 @@ export const nearestClinicOff = () => {
     type: 'NEAREST_CLINIC_OFF'
   }
 }
+
+export const minNavBarOn = () => {
+  return {
+    type: 'MINIMAL_NAVBAR_ON'
+  }
+}
+
+export const minNavBarOff = () => {
+  return {
+    type: 'MINIMAL_NAVBAR_OFF'
+  }
+}

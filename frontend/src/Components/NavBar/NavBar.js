@@ -52,7 +52,7 @@ class NavBar extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
-    this.props.nearestClinicOff()
+    this.props.nearestClinicOff();
     this.props.activeClinic(clinic);
   }
 
@@ -94,17 +94,23 @@ class NavBar extends Component {
     //window.location.href = "/";
   }
 
+  clickHome = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
+  }
+
   render() {
 
     return (
       <div >
         <nav className="Navbar navbar-fixed" >
-          <a href="/">
+          <a className="home-logo" onClick={this.clickHome}><Link to ='/'>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
-          </a>
-
-          <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
+          </Link></a>
+          
+          {this.props.minNavBar? null :
+          (<a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>)}
           <a className="sideBarBtn">Side Bar</a>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
@@ -138,7 +144,8 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
   return {
     clinic: state.clinic,
-    user: state.user
+    user: state.user,
+    minNavBar: state.minNavBar
   }
 }
 

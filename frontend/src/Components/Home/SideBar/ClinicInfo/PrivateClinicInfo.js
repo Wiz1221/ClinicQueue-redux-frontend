@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
+import chasLogo from '../../../../chas-transparent-small.png'
 
+import './PrivateClinicInfo.css'
 
 class PrivateClinicInfo extends Component {
   constructor(props) {
@@ -31,9 +33,12 @@ class PrivateClinicInfo extends Component {
 
     return (
       <div>
+        <div className="private-clinic-info">
         <h3>{this.props.activeClinic.properties.name_full}</h3>
-        <h5> Address: {properties.ADDRESSBLOCKHOUSENUMBER} {properties.ADDRESSSTREETNAME} {properties.ADDRESSBUILDINGNAME} #{properties.ADDRESSFLOORNUMBER}-{properties.ADDRESSUNITNUMBER} S{properties.ADDRESSPOSTALCODE}</h5>
+        <h5> Address: {properties.ADDRESSBLOCKHOUSENUMBER} {properties.ADDRESSSTREETNAME} {properties.ADDRESSBUILDINGNAME} {properties.ADDRESSFLOORNUMBER ? '#' + properties.ADDRESSFLOORNUMBER + '-' + properties.ADDRESSUNITNUMBER : null} S{properties.ADDRESSPOSTALCODE}</h5>
         <h5> Telephone: {properties.Telephone} </h5>
+        </div>
+        {properties.DESCRIPTION.includes("CHAS") ? (<div className="chas-logo"><img src={chasLogo} width={40} height={40}></img></div>) : null}
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>

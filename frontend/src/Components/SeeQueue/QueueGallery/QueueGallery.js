@@ -21,8 +21,7 @@ class QueueList extends Component {
         return (
           <QueueItem queue={queue}
                     key={queue._id}
-                    id={queue._id}
-                     />
+                    id={queue._id}/>
         )
       });
     }
@@ -41,8 +40,7 @@ class QueueList extends Component {
         return (
           <QueueItem queue={queue}
                     key={queue._id}
-                    id={queue._id}
-                     />
+                    id={queue._id}/>
         )
       });
     }
