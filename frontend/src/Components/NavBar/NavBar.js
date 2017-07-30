@@ -110,8 +110,8 @@ class NavBar extends Component {
           </Link></a>
 
           {this.props.minNavBar? null :
-          (<a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>)}
-          <a className="sideBarBtn">Side Bar</a>
+          (<a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinics</a>)}
+          <a className="sideBarBtn">My Account</a>
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
