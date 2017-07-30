@@ -13,9 +13,9 @@ const User = (state = {}, action) => {
       })
       break;
 
-    case 'USER_NOTIFICATION':
-      return action.notification || ""
-      break;
+    // case 'USER_NOTIFICATION':
+    //   return action.notification || ""
+    //   break;
 
     default:
       return state

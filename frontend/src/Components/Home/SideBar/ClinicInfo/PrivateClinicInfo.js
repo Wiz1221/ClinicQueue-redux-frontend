@@ -40,20 +40,36 @@ class PrivateClinicInfo extends Component {
 
     return (
       <div>
-        <div className="private-clinic-info">
+        <div className="private-clinic-info container">
         <h3>{this.props.activeClinic.properties.name_full}</h3>
         <h5> Address: {properties.ADDRESSBLOCKHOUSENUMBER} {properties.ADDRESSSTREETNAME} {properties.ADDRESSBUILDINGNAME} {properties.ADDRESSFLOORNUMBER ? '#' + properties.ADDRESSFLOORNUMBER + '-' + properties.ADDRESSUNITNUMBER : null} S{properties.ADDRESSPOSTALCODE}</h5>
         <h5> Telephone: {properties.Telephone} </h5>
+        {properties.DESCRIPTION.includes("CDMP") ? (<p> Chronic Disease Management Programme (CDMP) available </p>) : null}
         </div>
         {properties.DESCRIPTION.includes("CHAS") ? (<div className="chas-logo"><img src={chasLogo} width={40} height={40}></img></div>) : null}
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
           ) : (
-            <div>
+            <div className="private-clinic-info container">
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="button" className="btn btn-info" onClick={this.storeActiveClinic}>See more queues or Submit a queue report</button></Link>
-              <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
+              <div className="row-fluid row-clinicinfo-btn">
+                <Link to="/seeQueue"><button type="button" className="btn clinicinfo-btn" onClick={this.storeActiveClinic}>See more queues...</button></Link>
+              </div>
+              {this.props.user._id ?
+                this.props.user.role == "clinicAdmin" ? (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <Link to='/seeQueue'><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
+                </div>
+              ) : (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                </div>
+              ) : (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                </div>
+              )}
             </div>
           )
         }
@@ -64,7 +80,8 @@ class PrivateClinicInfo extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeClinic: state.activeClinic
+    activeClinic: state.activeClinic,
+    user: state.user
   }
 }
 

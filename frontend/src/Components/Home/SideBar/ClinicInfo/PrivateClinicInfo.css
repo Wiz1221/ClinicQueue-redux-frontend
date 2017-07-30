@@ -1,9 +1,47 @@
 .private-clinic-info {
-  width: 80%;
+  width: 90%;
+  margin: auto;
+}
+
+.private-clinic-info p {
+  font-weight: normal;
 }
 
 .chas-logo {
   position: absolute;
   right: 5%;
-  top: 6%;
+  top: 4%;
+}
+
+.row-clinicinfo-btn {
+  text-align: center;
+}
+
+.clinicinfo-btn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  /*display: inline-block;*/
+  /*text-transform: uppercase;*/
+  /*letter-spacing: 1px;*/
+  font-weight: normal;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 80%;
+  border: 2px solid #4776E6;
+  color: #4776E6;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-left:0;
+}
+
+.clinicinfo-btn:hover {
+	background: #4776E6;
+  color: #fff;
+  border-color: #fff;
 }

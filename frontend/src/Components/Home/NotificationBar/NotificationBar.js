@@ -7,32 +7,38 @@ class NotificationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: 'animated fadeInDownBig notificationBar'
+      class: 'animated fadeInDownBig notificationBar',
+      notification: ''
     }
   }
 
   notifDisappear = () => {
     setTimeout(()=>{
       this.setState({
-        class: 'fadeOutUp animated notificationBar'
+        class: 'fadeOutUp animated notificationBar',
       });
     },5000)
   }
 
-  renderNotificationMessage = () => {
-    switch (this.props.notification) {
-      case "Please Login to Subscribe":
-        return (<div className={this.state.class}><p>Please Login to Subscribe</p></div>)
+  renderNotificationMessage = (notification) => {
+    switch (notification) {
+      case "Welcome":
+          return (<div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>)
         break;
       default:
-        if(this.props.user._id){
-          return (
-            <div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>
-          )
-        }else{
-          return;
-        }
-        break;
+        return (<div className={this.state.class}><p>{notification}</p></div>)
+      // case "Please Login to Subscribe":
+      //   return (<div className={this.state.class}><p>Please Login to Subscribe</p></div>)
+      //   break;
+      // default:
+      //   if(this.props.user._id){
+      //     return (
+      //       <div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>
+      //     )
+      //   }else{
+      //     return;
+      //   }
+      //   break;
     }
   }
 
@@ -40,10 +46,18 @@ class NotificationBar extends React.Component {
     console.log(this.state.class);
   }
 
+  componentWillReceiveProps(nextProps) {
+      this.setState({
+        class: 'animated fadeInDownBig notificationBar',
+        notification: nextProps.notification
+      });
+
+  }
+
   render() {
     return (
       <div>
-        {this.renderNotificationMessage()}
+        {this.renderNotificationMessage(this.state.notification)}
         {this.notifDisappear()}
       </div>
     );
@@ -55,8 +69,8 @@ class NotificationBar extends React.Component {
 //   : <div></div> }
 // {this.notifDisappear()}
 
-NotificationBar.propTypes = {
-};
+// NotificationBar.propTypes = {
+// };
 
 const mapStateToProps = (state) => {
   return {

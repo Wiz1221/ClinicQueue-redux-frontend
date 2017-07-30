@@ -1,5 +1,7 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
 import UserReducer from '../Reducers/UserReducer';
 import ClinicReducer from '../Reducers/ClinicReducer';
@@ -18,13 +20,20 @@ export let initStore = () => {
     activeClinic: ActiveClinicReducer,
     notification: AppReducer,
     nearestClinicBoolean: NearestClinicReducer ,
-    minNavBar: MinNavBarReducer
+    minNavBar: MinNavBarReducer,
+    router: routerReducer
   });
 
+  // Create a history of your choosing (we're using a browser history in this case)
+  const history = createHistory();
+
+  // Build the middleware for intercepting and dispatching navigation actions
+  const historyWare = routerMiddleware(history);
+
   const store = createStore( reducer,
-    compose(applyMiddleware(thunk),
+    compose(applyMiddleware(thunk,historyWare),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ) )
 
-  return store;
+  return [store,history];
 }

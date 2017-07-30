@@ -21,7 +21,9 @@ import { getUser } from './Actions/UserAction';
 import { getActiveClinic } from './API/activeClinicAPI';
 //import {setAdmin, getAdmin} from './API/generalAPI';
 
-export const store = initStore();
+const storeAndHistory = initStore()
+export const store = storeAndHistory[0];
+export const history = storeAndHistory[1];
 
 // store.subscribe( () => {
 //   const state = store.getState();
