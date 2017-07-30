@@ -3,7 +3,7 @@ const initialActiveClinic = getActiveClinic();
 
 
 const ActiveClinic = (state = initialActiveClinic? initialActiveClinic: {}, action) => {
-  console.log(state)
+  // console.log(state)
   switch (action.type) {
     case 'ACTIVE_CLINIC':
       return action.clinic || initialActiveClinic ;

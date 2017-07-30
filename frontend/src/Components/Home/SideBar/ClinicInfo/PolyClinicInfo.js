@@ -27,16 +27,33 @@ class PolyClinicInfo extends Component {
   }
 
   onClick = (event) => {
-    if(!this.props.user._id){
+    let user = this.props.user
+    if(!user._id){
       this.props.userNotification("Please Login to Subscribe");
       setTimeout(() => {
         this.props.clearNotif();
       },2000);
       return;
     }
-    this.setState({
-      showWhichComponent: event.target.id
-    })
+
+    if(!user.subscribe){
+      this.setState({
+        showWhichComponent: event.target.id
+      })
+    }else{
+      if(user.subscribe.indexOf(this.props.activeClinic._id) > -1){
+        console.log("You have already subscribe to this clinic")
+        this.props.userNotification("You have already subscribe to this clinic");
+        setTimeout(() => {
+          this.props.clearNotif();
+        },2000);
+        return;
+      }else{
+        this.setState({
+          showWhichComponent: event.target.id
+        })
+      }
+    }
   }
 
   backToClinicInfo = () => {

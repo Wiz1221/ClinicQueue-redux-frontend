@@ -7,10 +7,11 @@ const storeSubscribeInActiveClinic = (user_id) => {
   }
 }
 
-const storeSubscribeInClinic = (user_id) => {
+const storeSubscribeInClinic = (user_id, clinic_id) => {
   return {
     type: 'STORE_SUBSCRIBE_IN_CLINIC',
-    user_id
+    user_id,
+    clinic_id
   }
 }
 
@@ -27,7 +28,7 @@ export const postNewSubscribe = (newSubscribe) => {
     console.log(newSubscribe)
     socket.emit('new subscribe to back end', newSubscribe);
     socket.on('subscription successful', (newSubscribe) => {
-      dispatch(storeSubscribeInClinic(newSubscribe.user));
+      dispatch(storeSubscribeInClinic(newSubscribe.user, newSubscribe.clinic));
       dispatch(storeSubscribeInUser(newSubscribe.clinic));
       dispatch(storeSubscribeInActiveClinic(newSubscribe.user));
     })
