@@ -10,6 +10,7 @@ import ActiveClinicReducer from '../Reducers/ActiveClinicReducer';
 import AppReducer from '../Reducers/AppReducer';
 import NearestClinicReducer from '../Reducers/NearestClinic';
 import MinNavBarReducer from '../Reducers/MinNavBarReducer';
+import TriggerNotifReducer from '../Reducers/TriggerNotifReducer';
 
 export let initStore = () => {
 
@@ -21,6 +22,7 @@ export let initStore = () => {
     notification: AppReducer,
     nearestClinicBoolean: NearestClinicReducer ,
     minNavBar: MinNavBarReducer,
+    trigger: TriggerNotifReducer,
     router: routerReducer
   });
 

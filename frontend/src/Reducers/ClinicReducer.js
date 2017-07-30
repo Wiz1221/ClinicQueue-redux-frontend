@@ -1,5 +1,5 @@
 
-const Clinic = (state = [], action) => {
+const ClinicReducer = (state = [], action) => {
   switch (action.type) {
     case 'STORE_CLINIC':
 
@@ -21,4 +21,4 @@ const Clinic = (state = [], action) => {
   }
 }
 
-export default Clinic;
+export default ClinicReducer;

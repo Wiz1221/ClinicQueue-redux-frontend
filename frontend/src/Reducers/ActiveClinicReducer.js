@@ -1,5 +1,5 @@
 
-const ActiveClinic = (state = {}, action) => {
+const ActiveClinicReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ACTIVE_CLINIC':
       return action.clinic || {}
@@ -12,4 +12,4 @@ const ActiveClinic = (state = {}, action) => {
   }
 }
 
-export default ActiveClinic;
+export default ActiveClinicReducer;

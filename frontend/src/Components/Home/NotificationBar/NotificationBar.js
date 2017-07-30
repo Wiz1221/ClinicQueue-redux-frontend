@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import { switchOffNotification } from '../../../Actions/AppAction';
 import './NotificationBar.css';
 
 class NotificationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: 'animated fadeInDownBig notificationBar',
+      class: '',
       notification: ''
     }
   }
@@ -17,7 +18,9 @@ class NotificationBar extends React.Component {
       this.setState({
         class: 'fadeOutUp animated notificationBar',
       });
-    },5000)
+      console.log("in setTimeout");
+      this.props.switchOffNotification();
+    },2000)
   }
 
   renderNotificationMessage = (notification) => {
@@ -47,21 +50,25 @@ class NotificationBar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(nextProps.trigger) {
+      console.log("receiving next props!");
       this.setState({
         class: 'animated fadeInDownBig notificationBar',
         notification: nextProps.notification
       });
+      this.notifDisappear();
+    }
 
   }
 
   render() {
     return (
       <div>
-        {this.renderNotificationMessage(this.state.notification)}
-        {this.notifDisappear()}
+      {this.renderNotificationMessage(this.state.notification)}
       </div>
     );
   }
+
 }
 
 // {this.props.user._id ?
@@ -75,7 +82,8 @@ class NotificationBar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    notification: state.notification
+    notification: state.notification,
+    trigger: state.trigger
     //clinic: state.clinic,
     //activeClinic: state.activeClinic
   }
@@ -83,6 +91,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    switchOffNotification: () => {dispatch(switchOffNotification());},
   }
 }
 

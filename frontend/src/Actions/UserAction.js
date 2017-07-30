@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from '../index';
 import { push } from 'react-router-redux';
+import { triggerNotification } from './AppAction';
 
 const storeUser = (user) => {
   return {
@@ -23,12 +24,13 @@ const loadingUserError = (error) => {
   }
 }
 
-export const getUser = (cb) => {
+export const getUser = (cb,cb2) => {
   return (dispatch) => {
     axios.get('/auth/user')
     .then( (response) => {
       dispatch(storeUser(response.data));
       cb();
+      cb2();
     })
     .catch((error) => {
       dispatch(loadingUserError(error));
@@ -52,7 +54,7 @@ export const localLogin = (credentials) => {
         //react-router-redux to dispatch routes from non-components
         store.dispatch(push('/'));
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
-        dispatch(getUser(dispatch(userNotification("Welcome"))));
+        dispatch(getUser(dispatch(triggerNotification()),dispatch(userNotification("Welcome"))));
         //window.location.href = "/";
       }
     })
@@ -75,7 +77,11 @@ export const localSignup = (credentials) => {
         dispatch(userNotification(data.message));
       }else {
         console.error("AJAX: Logged on @ '/auth/user'");
-        window.location.href = "/";
+        //react-router-redux to dispatch routes from non-components
+        store.dispatch(push('/'));
+        // get user credentials here; dispatch notification as callback after user has been authenticated by passport
+        dispatch(getUser(dispatch(triggerNotification()),dispatch(userNotification("Welcome"))));
+        //window.location.href = "/";
       }
     })
     .catch((error) => {
@@ -93,7 +99,7 @@ export const localLogout = () => {
         // this data is just the user object but may not be a credentialed user from passport
         const data = response.data;
         // this returns a credentialed user from passport
-        dispatch(getUser(dispatch(userNotification("You have successfully logged out"))));
+        dispatch(getUser(dispatch(triggerNotification()),dispatch(userNotification("You have successfully logged out"))));
         if(data.error){
           console.log(data.message)
         }else{

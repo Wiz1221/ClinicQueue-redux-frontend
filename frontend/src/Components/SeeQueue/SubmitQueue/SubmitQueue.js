@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import QueueStatus from './QueueStatus';
 
 import { submitQueue } from '../../../Actions/QueueAction';
+import { userNotification } from '../../../Actions/UserAction';
+import { triggerNotification } from '../../../Actions/AppAction';
 
 import './SubmitQueue.css';
 
@@ -45,6 +47,8 @@ class SubmitQueue extends Component {
     event.preventDefault();
     if(this.props.user._id){
       if(!this.state.pic){
+        this.props.triggerNotification();
+        this.props.userNotification("Please upload a picture of the current queue situation");
         this.setState({
           missing: true,
           adminMessage: "Please upload a picture of Queue"
@@ -54,7 +58,7 @@ class SubmitQueue extends Component {
         if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
           this.setState({
             missing: true,
-            adminMessage: "Please choose a clinic status"
+            adminMessage: "Please select a clinic status"
           })
           return;
         }
@@ -92,11 +96,13 @@ class SubmitQueue extends Component {
 
   render() {
     return (
-      <div id="submitQueue">
+      <div id="submitQueue container">
         <div className="adminMessage">{
           this.state.missing? (this.state.adminMessage) : (this.state.submitSuccessful? "Submited successfully" : null)
         }</div>
-        <h4>Submit a Queue report for {this.props.activeClinic.properties.name_full}</h4>
+        <h4>Submit a Queue report for</h4>
+        <h4>{this.props.activeClinic.properties.name_full}</h4>
+        <div className="row-fluid row-upload-file">
           <div className="form-group">
             <p>Upload a picture of the current queue situation: </p>
             <input id="pic"
@@ -106,10 +112,14 @@ class SubmitQueue extends Component {
                    onChange={this.onChange}
                    />
           </div>
-
-          <label>Please comment on Queue Status</label>
-          <QueueStatus onClick={this.statusButtonClicked}/>
-
+          </div>
+          {this.props.user._id ?
+            this.props.user.role == "clinicAdmin" ? (
+              <div className="well well-status">
+                <p>Clinic Admin: select a Queue Status</p>
+                  <QueueStatus onClick={this.statusButtonClicked}/>
+              </div>
+          ) : null : null}
           <div className="form-group">
             <label>Comments</label>
             <textarea id="comment"
@@ -119,7 +129,7 @@ class SubmitQueue extends Component {
                       onChange={this.onChange}
                       value={this.state.queue.comment? this.state.queue.comment: ""}/>
           </div>
-          <button type="submit" className="btn btn-primary queueButton" onClick={this.postQueue}>Submit</button>
+          <button type="button" className="btn btn-primary queueButton" onClick={this.postQueue}>Submit</button>
       </div>
     );
   }
@@ -134,7 +144,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitQueue: (pic, newQueue) => { dispatch(submitQueue(pic, newQueue))}
+    submitQueue: (pic, newQueue) => { dispatch(submitQueue(pic, newQueue))},
+    userNotification: (message) => {dispatch(userNotification(message));},
+    triggerNotification: () => {dispatch(triggerNotification());},
   }
 }
 

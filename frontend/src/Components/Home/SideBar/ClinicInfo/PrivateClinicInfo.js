@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 
 import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
-import chasLogo from '../../../../chas-transparent-small.png'
+import chasLogo from '../../../../chas-transparent-small.png';
+
+import { triggerNotification } from '../../../../Actions/AppAction';
+import { userNotification } from '../../../../Actions/UserAction';
 
 // import API to store activeClinic into localStorage
 import { setActiveClinic } from '../../../../API/activeClinicAPI'
@@ -20,9 +23,14 @@ class PrivateClinicInfo extends Component {
   }
 
   onClick = (event) => {
-    this.setState({
-      showWhichComponent: event.target.id
-    })
+    if(!this.props.user._id) {
+      this.props.triggerNotification();
+      this.props.userNotification("Please login or sign up to subscribe");
+    }else {
+      this.setState({
+        showWhichComponent: event.target.id
+      })
+    }
   }
 
   backToClinicInfo = () => {
@@ -87,6 +95,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    userNotification: (message) => {dispatch(userNotification(message));},
+    triggerNotification: () => {dispatch(triggerNotification());},
     // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
   }
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
 import QueueGallery from './QueueGallery/QueueGallery';
 import SubmitQueue from './SubmitQueue/SubmitQueue';
+import NotificationBar from '../Home/NotificationBar/NotificationBar';
 
 // Actions
 import { minNavBarOn } from '../../Actions/AppAction';
@@ -23,6 +24,7 @@ class SeeQueue extends Component {
         {this.props.minNavBarOn()}
         <div className="row">
           <NavBar/>
+          <NotificationBar/>
         </div>
         <div className="row">
           <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">

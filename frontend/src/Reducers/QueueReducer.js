@@ -1,5 +1,5 @@
 
-const Queue = (state = [], action) => {
+const QueueReducer = (state = [], action) => {
 
   switch (action.type) {
     case 'STORE_QUEUE':
@@ -16,4 +16,4 @@ const Queue = (state = [], action) => {
   }
 }
 
-export default Queue;
+export default QueueReducer;
