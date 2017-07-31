@@ -61,9 +61,9 @@ class SeeQueue extends Component {
       <div>
         {
           this.props.activeClinic._id ? (
-      <div className="seequeue-container container-fluid">
-        {this.props.minNavBarOn()}
-        <div className="row">
+            <div className="seequeue-container container-fluid">
+              {this.props.minNavBarOn()}
+              <div className="row">
           <NavBarWhite match={this.props.match}/>
           <NotificationBar/>
         </div>

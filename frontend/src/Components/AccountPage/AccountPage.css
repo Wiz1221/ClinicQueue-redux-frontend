@@ -19,7 +19,7 @@
   position: absolute;
   height: 80%;
   padding: 0;
-  margin-top: 110px;
+  margin-top: 100px;
   background-color: white;
   -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
@@ -48,6 +48,10 @@
   box-shadow: -1px 0px 3px -1px rgba(0,0,0,0.3);
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  overflow: scroll;
+}
+.userInfoFieldEnding {
+  margin-bottom: 30px;
 }
 
 .inputFieldTop {
@@ -147,6 +151,59 @@
 	transition: all 0.3s;
 }
 .updateBtn:active:before {
+	color: #fff;
+  outline: none;
+}
+
+.DeleteBtn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 18px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+  border: 3px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+}
+.DeleteBtn:after{
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.DeleteBtn:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.DeleteBtn:hover {
+	background: #7456e9;
+  color: #fff;
+}
+.DeleteBtn:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.DeleteBtn:active:before {
 	color: #fff;
   outline: none;
 }

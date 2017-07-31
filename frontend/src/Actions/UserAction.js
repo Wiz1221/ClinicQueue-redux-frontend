@@ -125,3 +125,65 @@ export const localLogout = () => {
       });
     }
 }
+
+export const updateProfile = (credentials) => {
+  return(dispatch) => {
+    axios.post('/auth/account/profile', credentials)
+    .then((response) => {
+      const data = response.data;
+      //dispatch(getUser());
+
+      if(data.error){
+        console.log(data.message);
+        dispatch(userNotification(data.message));
+      }else {
+        console.error("AJAX: Logged on @ '/auth//UPDATE/user'");
+        //react-router-redux to dispatch routes from non-components
+        store.dispatch(push('/MyAccount'));
+        // get user credentials here; dispatch notification as callback after user has been authenticated by passport
+        const cbArray = [
+          () => {dispatch(triggerNotification())},
+          () => {dispatch(userNotification("Updated!"))}
+        ];
+        dispatch(getUser(cbArray));
+        //window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.error("AJAX: Logged on @ '/auth/update/user'");
+      console.log('error: '+ error.message)
+      //window.location.href = '/';
+    });
+  }
+}
+
+export const updatePassword = (credentials) => {
+  return(dispatch) => {
+    axios.post('/auth/account/password', credentials)
+    .then((response) => {
+      const data = response.data;
+      //dispatch(getUser());
+
+      if(data.error){
+        console.log(data.message);
+        dispatch(userNotification(data.message));
+      }else {
+        console.error("AJAX: Logged on @ '/auth//UPDATE/userPassword'");
+        //react-router-redux to dispatch routes from non-components
+        store.dispatch(push('/MyAccount'));
+        // get user credentials here; dispatch notification as callback after user has been authenticated by passport
+        const cbArray = [
+          () => {dispatch(triggerNotification())},
+          () => {dispatch(userNotification("Updated!"))}
+        ];
+        dispatch(getUser(cbArray));
+        //window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.error("AJAX: Logged on @ '/auth/update/userPassword'");
+      console.log('error: '+ error.message)
+      //window.location.href = '/';
+    });
+  }
+}
