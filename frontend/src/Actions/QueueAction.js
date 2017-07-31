@@ -146,7 +146,7 @@ const deleteQueueInClinic = (queue_id, clinic_id) => {
 
 const deleteQueueInActiveClinic = (queue_id) => {
   return {
-    type: 'DELETE_QUEUE_IN_CLINIC',
+    type: 'DELETE_QUEUE_IN_ACTIVE_CLINIC',
     queue_id
   }
 }
@@ -165,6 +165,7 @@ export const deleteQueue = (queueToBeDeleted) => {
 }
 
 socket.on('delete queue done', (queueInfo) => {
+  console.log('delete queue done', queueInfo)
   const state = store.getState();
   if(state.user._id === queueInfo.user_id){
     store.dispatch(deleteQueueInUser(queueInfo.queue_id, queueInfo.user_id))
