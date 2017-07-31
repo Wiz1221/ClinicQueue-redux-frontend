@@ -3,14 +3,13 @@ nav {
   background: #4776E6;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top left, #4776E6, #8E54E9);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  box-shadow: 1px 1px 10px #888888;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: solid white 1.5px;
 }
 .navbar-fixed-top {
     top: 0;
     z-index: 10;
     width: 100%;
-    border: solid rgba(255,255,255,1) 1.5px;
-    border-radius: 0em 0em 0.5em 0.5em;
 }
 
 .logo {
@@ -19,7 +18,7 @@ nav {
 }
 .logoName {
   display: inline-block;
-  margin-top: 17px;
+  margin-top: 15px;
   margin-left: 1%;
   color: white;
   font-size: 25px;
