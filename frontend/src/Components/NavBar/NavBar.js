@@ -52,8 +52,10 @@ class NavBar extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
-    this.props.nearestClinicOff();
-    this.props.activeClinic(clinic);
+
+    this.props.nearestClinicOff()
+    this.props.activeClinic({...clinic});
+
   }
 
   renderDropDown = () => {
@@ -88,6 +90,11 @@ class NavBar extends Component {
     this.props.nearestClinic();
   }
 
+  removeActiveClinicAndNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
+  }
+
   execLogout = (e) => {
     console.log(this.props.user)
     //e.preventDefault();
@@ -95,20 +102,17 @@ class NavBar extends Component {
     //window.location.href = "/";
   }
 
-  clickHome = () => {
-    this.props.removeActiveClinic();
-    this.props.nearestClinicOff();
-  }
 
   render() {
 
     return (
       <div >
         <nav className="Navbar navbar-fixed-top" >
-          <a className="home-logo" onClick={this.clickHome}><Link to ='/'>
+        <Link to ='/'>
+          <a href="/" onClick={this.removeActiveClinicAndNearestClinic}>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
-          </Link></a>
+          </a></Link>
 
 
           {this.props.minNavBar? null :

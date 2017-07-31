@@ -22,6 +22,10 @@ class SubmitQueue extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log(this.props.clinic)
+  }
+
   statusButtonClicked = (status) => {
     let queue = this.state.queue
     queue.status = status
@@ -55,6 +59,7 @@ class SubmitQueue extends Component {
         })
       }else{
 
+
         // if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
         //   this.setState({
         //     missing: true,
@@ -64,8 +69,10 @@ class SubmitQueue extends Component {
         // }
 
         let newQueue = this.state.queue;
+
         newQueue.user_id = this.props.user._id;
         newQueue.clinic_id = this.props.clinic._id;
+        console.log(newQueue)
         /*
         how newQueue looks like
         {
@@ -95,6 +102,7 @@ class SubmitQueue extends Component {
   }
 
   render() {
+
     const activeClinic = this.props.activeClinic;
     return (
       <div id="submitQueue container">
@@ -113,14 +121,16 @@ class SubmitQueue extends Component {
                    onChange={this.onChange}
                    />
           </div>
+
           </div>
           {this.props.user._id ?
-            this.props.user.role == "clinicAdmin" ? (
+          (this.props.user.role === "clinicAdmin" || "appAdmin")&&(this.props.clinic._id===this.props.user.myClinic)  ? (
               <div className="well well-status">
                 <p>Clinic Admin: select a Queue Status</p>
                   <QueueStatus onClick={this.statusButtonClicked}/>
               </div>
           ) : null : null}
+
           <div className="form-group">
             <label>Comments</label>
             <textarea id="comment"

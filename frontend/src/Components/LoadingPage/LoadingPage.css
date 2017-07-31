@@ -1,0 +1,33 @@
+.loadingContent {
+    text-align: center;
+    color: black;
+    /*background: -webkit-linear-gradient(left, #9FD4E1 , #9FD4E1);
+    background: -o-linear-gradient(right, #9FD4E1, #9FD4E1);
+    background: -moz-linear-gradient(right, #9FD4E1, #9FD4E1);
+    background: linear-gradient(to right, #9FD4E1 , #9FD4E1);*/
+    height: 100vh;
+    width: 100vw;
+}
+
+.loadingText {
+  color: black;
+  margin: 0;
+  padding: 0;
+
+}
+
+.loadingImage {
+  text-align: center;
+  z-index: 100;
+}
+
+#squirrelLogol {
+  margin-top: 100px;
+  height: 50px;
+  width: 50px;
+}
+
+#loadingSpinner {
+  margin-top: 10px;
+  color: #43BEB6;
+}

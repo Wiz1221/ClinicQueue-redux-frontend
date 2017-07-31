@@ -28,8 +28,9 @@ class App extends Component {
             <Route exact path="/account"  component={AccountPage}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
-            <Route exact path="/seeQueue" component={SeeQueue}/>
+            <Route path="/seeQueue/:name" component={SeeQueue}/>
             <Route exact path="/myAccount" component={MyAccount}/>
+
             <Route component={Error}/>
           </Switch>
         </ConnectedRouter>
