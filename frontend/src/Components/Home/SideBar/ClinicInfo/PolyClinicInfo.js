@@ -119,8 +119,8 @@ class PolyClinicInfo extends Component {
 
     // Compute the minimum and maximum date, and the maximum queue.
     x.domain([hQ[0].date, hQ[hQ.length - 1].date]);
-    //y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
-    y.domain([0,220]);
+    y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
+    //y.domain([0,220]);
 
 
     const colors  = scaleOrdinal(schemeCategory10)

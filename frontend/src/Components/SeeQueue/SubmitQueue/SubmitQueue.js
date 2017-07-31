@@ -23,7 +23,7 @@ class SubmitQueue extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(this.props.clinic)
+    //console.log(this.props.clinic)
   }
 
   statusButtonClicked = (status) => {

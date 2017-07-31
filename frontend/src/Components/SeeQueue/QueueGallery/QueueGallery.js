@@ -5,6 +5,15 @@ import QueueItem from './QueueItem';
 
 class QueueGallery extends Component {
 
+  constructor(props) {
+    super(props);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("queue gallery went into nextProps!")
+  }
+
   renderClinicAdminQueueItem = (queueArray) => {
     // let queueArray = this.props.queue;
     console.log(queueArray)
@@ -12,7 +21,7 @@ class QueueGallery extends Component {
       return  (<div>No Queues yet</div>)
     } else {
       let queueFromAdmin = queueArray.filter((queue,index) => {
-        return queue.user.role == "clinicAdmin";
+        return queue.user._id ?  queue.user.role == "clinicAdmin" : null;
       })
       console.log("queueFromAdmin");
       console.log(queueFromAdmin)
@@ -34,7 +43,7 @@ class QueueGallery extends Component {
       return  (<div>No Queues yet</div>)
     } else {
       let queueFromUser = queueArray.filter((queue,index) => {
-        return queue.user.role === "regularUser" || ""
+        return queue.user._id ? queue.user.role === "regularUser" || "" : null
       })
       return queueFromUser.map((queue) => {
         return (
@@ -46,31 +55,36 @@ class QueueGallery extends Component {
     }
   }
 
+
+
   render() {
-    console.log("Queue gallery from activeClinic");
+    console.log("Repopulated queue array from activeClinic");
     console.log(this.props.queue);
-    const queues = this.props.queue;
-    const statequeues = this.props.statequeues;
-    // replace the activeClinic queues with actual queue objects
-    const newQueues = queues.map( (queue)=> {
-      return statequeues.filter( (statequeue) => {
-        return statequeue._id == queue._id;
-      })[0];
-    });
-    console.log("repopulated queues from statequeues");
-    console.log(newQueues);
-    // {this.renderClinicAdminQueueItem(newQueues)}
-    // {this.renderUserQueueItem(newQueues)}
-    // console.log(this.props.clinic.queue)
-    // console.log("why is this not printing?")
+    let subject = [];
+    if(typeof(this.props.queue[0])==="undefined") {
+      subject = [];
+    } else {
+      subject = this.props.queue;
+    }
+    console.log("subject");
+    console.log(subject);
+
+    const activeClinic = this.props.activeClinic;
+
     return (
-      <div >
-        <div>From Clinic
-
+      <div className="container">
+        <div className="row">
+          <h2>Queue Gallery</h2>
+            <h4>by {Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null} Admin</h4>
+            <div className="row" id="gallery">
+            {this.renderClinicAdminQueueItem(subject)}
+            </div>
         </div>
-        <div >
-        From User
-
+        <div className="row">
+          <h4>by Users</h4>
+          <div className="row" id="gallery">
+            {this.renderUserQueueItem(subject)}
+          </div>
         </div>
       </div>
     );
@@ -80,7 +94,7 @@ class QueueGallery extends Component {
 const mapStateToProps = (state) => {
   return {
     clinic: state.clinic,
-    statequeues: state.queue,
+    activeClinic: state.activeClinic,
   }
 }
 
