@@ -82,12 +82,20 @@ class Signup extends Component {
       console.log(this.props.notification);
       this.props.userNotification("Please enter your details.");
       e.preventDefault();
-    } else if (this.state.password == this.state.RePassword){
-      this.props.Signup(this.state.user);
+    } else if (this.state.contact.length !== 8) {
+        console.log(this.state.contact.length)
+        this.props.userNotification("Please enter a valid contact number.");
+    } else if (this.state.contact[0] == 9 || this.state.contact[0] == 8) {
+        console.log(this.state.contact[0])
+        if (this.state.password == this.state.RePassword){
+        this.props.Signup(this.state.user);
+      } else {
+        console.log(this.props.notification);
+        this.props.userNotification("Please enter matching passwords.");
+        e.preventDefault();
+      }
     } else {
-      console.log(this.props.notification);
-      this.props.userNotification("Please enter matching passwords.");
-      e.preventDefault();
+      this.props.userNotification("Please enter a valid contact number. Starting with wither 8 or 9");
     }
   }
 
@@ -97,12 +105,20 @@ class Signup extends Component {
         console.log(this.props.notification);
         this.props.userNotification("Please enter your details.");
         e.preventDefault();
-      } else if (this.state.password == this.state.RePassword){
-        this.props.Signup(this.state.user);
+      } else if (this.state.contact.length !== 8) {
+          console.log(this.state.contact.length)
+          this.props.userNotification("Please enter a valid contact number.");
+      } else if (this.state.contact[0] == 9 || this.state.contact[0] == 8) {
+          console.log(this.state.contact[0])
+          if (this.state.password == this.state.RePassword){
+          this.props.Signup(this.state.user);
+        } else {
+          console.log(this.props.notification);
+          this.props.userNotification("Please enter matching passwords.");
+          e.preventDefault();
+        }
       } else {
-        console.log(this.props.notification);
-        this.props.userNotification("Please enter matching passwords.");
-        e.preventDefault();
+        this.props.userNotification("Please enter a valid contact number. Starting with wither 8 or 9");
       }
     }
   }
