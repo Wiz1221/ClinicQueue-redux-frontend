@@ -5,11 +5,12 @@ nav {
   background: linear-gradient(to top left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   box-shadow: 1px 1px 10px #888888;
 }
-.navbar-fixed {
+.navbar-fixed-top {
     top: 0;
     z-index: 10;
-    position: fixed;
     width: 100%;
+    border: solid rgba(255,255,255,1) 1.5px;
+    border-radius: 0em 0em 0.5em 0.5em;
 }
 
 .logo {
@@ -22,7 +23,7 @@ nav {
   margin-left: 1%;
   color: white;
   font-size: 25px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: .02em;
 }
 
@@ -94,7 +95,7 @@ width: 200px;
 
 .navLogin {
   color: white;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 25px;
   margin-top: 17px;
   margin-right: 3%;
@@ -118,6 +119,7 @@ width: 200px;
   margin-left: 5%;
   color: white;
   font-size: 20px;
+  font-weight: 300;
 }
 .nearsetBtn:hover {
   cursor: pointer;
@@ -131,6 +133,7 @@ width: 200px;
   color: white;
   cursor: pointer;
   font-size: 20px;
+  font-weight: 300;
 }
 .sideBarBtn:hover {
   color: white;

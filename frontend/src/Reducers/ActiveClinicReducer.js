@@ -1,9 +1,9 @@
 import { getActiveClinic } from '../API/API';
 const initialActiveClinic = getActiveClinic();
 
-
 const ActiveClinic = (state = initialActiveClinic? initialActiveClinic: {}, action) => {
   // console.log(state)
+
   switch (action.type) {
     case 'ACTIVE_CLINIC':
       return action.clinic || initialActiveClinic ;
@@ -25,9 +25,13 @@ const ActiveClinic = (state = initialActiveClinic? initialActiveClinic: {}, acti
     case 'REMOVE_ACTIVE_CLINIC':
       return {}
       break;
+    case 'STORE_NEW_QUEUE_IN_ACTIVE_CLINIC':
+      let newQueueArray = [...state.queue];
+      newQueueArray.unshift(action.queue);
+      state.queue = newQueueArray;
     default:
       return state
   }
 }
 
-export default ActiveClinic;
+export default ActiveClinicReducer;

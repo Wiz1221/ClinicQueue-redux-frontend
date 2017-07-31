@@ -13,6 +13,8 @@ import injectStyle from '../Markers/injectStyle';
 // Actions
 import { activeClinic } from '../../../Actions/ClinicAction';
 
+import './Map.css'
+
 class Map extends Component {
   constructor(props){
     super(props);
@@ -71,7 +73,8 @@ class Map extends Component {
                         key={clinic._id}
                         name={clinic.name_full}
                         id={clinic._id}
-                        onClick={this.onClick}/>
+                        onClick={this.onClick} />
+
         )
       });
       //
@@ -102,7 +105,7 @@ class Map extends Component {
 
   render() {
     return (
-        <div style={{width: `100vw`, height: `100vh`}}>
+        <div className="map-container container">
           <GoogleMap
            center={this.props.activeClinicObject._id?
              { lat: this.props.activeClinicObject.geometry.coordinates[1], lng: this.props.activeClinicObject.geometry.coordinates[0] } :

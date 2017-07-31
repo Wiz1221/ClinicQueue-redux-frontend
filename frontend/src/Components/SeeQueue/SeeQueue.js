@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import NavBar from '../NavBar/NavBar';
 import QueueGallery from './QueueGallery/QueueGallery';
 import SubmitQueue from './SubmitQueue/SubmitQueue';
-import LoadingPage from '../LoadingPage/LoadingPage';
+import NotificationBar from '../Home/NotificationBar/NotificationBar';
 
+// Actions
+import { minNavBarOn } from '../../Actions/AppAction';
+
+import LoadingPage from '../LoadingPage/LoadingPage';
 import { activeClinic } from '../../Actions/ClinicAction';
+
 
 import './SeeQueue.css'
 
@@ -54,24 +60,30 @@ class SeeQueue extends Component {
     return (
       <div>
         {
-          this.props.activeClinic._id ?
-          (
-            <div>
-            <div className="queueGalleryContainer">
-              <QueueGallery queue={this.props.activeClinic.queue} />
-            </div>
-            <div className="submitQueueContainer">
+          this.props.activeClinic._id ? (
+      <div className="seequeue-container container-fluid">
+        {this.props.minNavBarOn()}
+        <div className="row">
+          <NavBar/>
+          <NotificationBar/>
+        </div>
+        <div className="row">
+          <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
+              <header className="jumbotron queue-gallery-jumbotron">
+                <QueueGallery queue={this.props.activeClinic.queue}/>
+              </header>
+          </div>
+          <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <header className="jumbotron queue-gallery-jumbotron">
               <SubmitQueue clinic={this.props.activeClinic}/>
-            </div>
-            <Link to='/'><button>back</button></Link>
-            </div>
-          ):
-          (
+            </header>
+          </div>
+        </div>) :
+                (
             <LoadingPage />
-          )
-        }
+          )}
+   </div>
 
-      </div>
     );
   }
 }
@@ -93,7 +105,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    activeClinicAction: (clinic) => {dispatch(activeClinic(clinic));},
+
+    minNavBarOn: () => {dispatch(minNavBarOn());}
+    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
   }
 }
 

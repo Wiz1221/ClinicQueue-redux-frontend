@@ -14,12 +14,16 @@ import { Provider } from 'react-redux';
 import { initStore } from './Store/Store';
 
 // Actions
-import { getClinic } from './Actions/ClinicAction';
+import { getClinic, activeClinic } from './Actions/ClinicAction';
 import { getUser } from './Actions/UserAction';
+
 //API
 import {setActiveClinic} from './API/API';
 
-export const store = initStore();
+
+const storeAndHistory = initStore()
+export const store = storeAndHistory[0];
+export const history = storeAndHistory[1];
 
 store.subscribe( () => {
   const state = store.getState();
@@ -30,6 +34,9 @@ store.subscribe( () => {
 store.dispatch(getClinic());
 
 store.dispatch(getUser());
+
+// get latest activeClinic from localStorage for persistence
+store.dispatch(activeClinic(getActiveClinic()));
 
 ReactDOM.render(
   <Provider store={store}>

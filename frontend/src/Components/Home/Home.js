@@ -10,6 +10,9 @@ import ErrorNotificationBar from './ErrorNotificationBar/ErrorNotificationBar';
 // Components
 import Map from './Map/Map';
 
+//Actions
+import { minNavBarOff } from '../../Actions/AppAction';
+
 
 // Css
 import './Home.css'
@@ -23,7 +26,7 @@ class Home extends Component {
 
     return (
       <div>
-
+        {this.props.minNavBarOff()}
         <NavBar/>
         <NotificationBar/>
         <ErrorNotificationBar/>
@@ -47,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    minNavBarOff: () => {dispatch(minNavBarOff());}
   }
 }
 

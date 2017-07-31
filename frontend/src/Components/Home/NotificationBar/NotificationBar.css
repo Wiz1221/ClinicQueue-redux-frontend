@@ -1,14 +1,22 @@
 .notificationBar {
-  background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
+  position: fixed;
   top: 60px;
   left: 30%;
-  height: 40px;
+  /*height: 40px;*/
   width: 40vw;
   z-index: 20;
-  border-radius: 2px;
+  border-radius: 3px;
   text-align: center;
   font-size: 25px;
+  border: solid #4776E6 1.5px;
+}
+
+.notificationBar p {
+    font-weight: normal;
+    line-height: 2em;
+    margin: 0;
+    color: #4776E6;
 }
 
 .animated {
