@@ -12,6 +12,7 @@ import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import SeeQueue from "../SeeQueue/SeeQueue";
 import Error from '../Error/Error';
+import MyAccount from '../AccountPage/AccountPage';
 
 import './App.css';
 
@@ -26,6 +27,8 @@ class App extends Component {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
             <Route path="/seeQueue/:name" component={SeeQueue}/>
+            <Route exact path="/myAccount" component={MyAccount}/>
+
             <Route component={Error}/>
           </Switch>
         </Router>

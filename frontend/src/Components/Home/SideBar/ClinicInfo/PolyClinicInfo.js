@@ -30,9 +30,9 @@ class PolyClinicInfo extends Component {
     let user = this.props.user
     if(!user._id){
       this.props.userNotification("Please Login to Subscribe");
-      setTimeout(() => {
+      setTimeout(()=>{
         this.props.clearNotif();
-      },2000);
+      },5000)
       return;
     }
 

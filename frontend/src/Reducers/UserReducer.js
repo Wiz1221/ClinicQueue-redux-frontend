@@ -12,6 +12,7 @@ const User = (state = {}, action) => {
         queue: queue
       })
       break;
+
     case 'STORE_SUBSCRIBE_IN_USER':
       let newSubscribeArray = state.subscribe;
       newSubscribeArray.push(action.clinic_id);
@@ -19,6 +20,7 @@ const User = (state = {}, action) => {
         subscribe: newSubscribeArray
       })
       break;
+
     default:
       return state
   }
