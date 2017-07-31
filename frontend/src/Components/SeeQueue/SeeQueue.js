@@ -30,33 +30,22 @@ class SeeQueue extends Component {
     //   clinic: null
     // }
   }
-//
-  // componentWillReceiveProps(nextProps){
-  //       console.log(nextProps.clinic)
-  //       let testClinic = nextProps.clinic.filter((elem, index) => {
-  //         return elem.properties.name_full === this.props.match.params.name
-  //       })
-  //       console.log(testClinic)
-  //       // this.setState({
-  //       //   clinic:testClinic
-  //       // })
-  //
-  //       nextProps.activeClinicAction({...testClinic});
-  // }
 
-  // componentDidMount(){
-  //   console.log(this.props.clinic)
-  //           let testClinic = this.props.clinic.filter((elem, index) => {
-  //             return elem.properties.name_full === this.props.match.params.name
-  //           })
-  //           console.log(testClinic)
-  //           // this.setState({
-  //           //   clinic:testClinic
-  //           // })
-  // }
+  componentWillReceiveProps(nextProps){
+    if(!nextProps.activeClinic._id){
+      let testClinic = nextProps.clinic.filter((elem, index) => {
+        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-') === this.props.match.params.name
+      })
+
+      this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);
+    }
+  }
+
+  dispatchingActiveClinicIntoStoreWhenCopyPasteURL = (clinic) => {
+      this.props.activeClinicAction({...clinic})
+  }
 
   render() {
-    // console.log(this.state.clinic)
     return (
       <div>
         {
@@ -108,8 +97,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    minNavBarOn: () => {dispatch(minNavBarOn());}
-    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    minNavBarOn: () => {dispatch(minNavBarOn());},
+    activeClinicAction: (clinic) => {dispatch(activeClinic(clinic));},
   }
 }
 
