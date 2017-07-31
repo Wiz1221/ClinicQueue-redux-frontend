@@ -13,7 +13,7 @@ import logo from '../../ClinicQueue_White.png';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff, triggerNotification } from '../../Actions/AppAction';
+import { nearestClinic, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -101,6 +101,9 @@ class NavBar extends Component {
     this.props.Logout();
     //window.location.href = "/";
   }
+  clearNotifi = () => {
+    this.props.clearNotif();
+  }
 
 
   render() {
@@ -109,7 +112,7 @@ class NavBar extends Component {
       <div >
         <nav className="Navbar navbar-fixed-top" >
         <Link to ='/'>
-          <a href="/" onClick={this.removeActiveClinicAndNearestClinic}>
+          <a onClick={this.removeActiveClinicAndNearestClinic}>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a></Link>
@@ -121,7 +124,7 @@ class NavBar extends Component {
 
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
-          <Link to='/login' className="navLogin pull-right">Login</Link>}
+          <Link to='/login' className="navLogin pull-right"><div onClick={this.clearNotifi}>Login</div></Link>}
 
           <div className="box pull-right">
             <div className="container-2">
@@ -164,6 +167,7 @@ const mapDispatchToProps = (dispatch) => {
     nearestClinic: () => {dispatch(nearestClinic())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
     triggerNotification: () => {dispatch(triggerNotification())},
+    clearNotif: () => {dispatch(clearNotif())}
   }
 }
 

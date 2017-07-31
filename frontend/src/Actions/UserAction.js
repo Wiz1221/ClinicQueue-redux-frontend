@@ -187,3 +187,34 @@ export const updatePassword = (credentials) => {
     });
   }
 }
+
+export const deleteAccount = (id) => {
+  return(dispatch) => {
+    axios.delete('/auth/'+id)
+    .then((response) => {
+      const data = response.data;
+      //dispatch(getUser());
+
+      if(data.error){
+        console.log(data.message);
+        dispatch(userNotification(data.message));
+      }else {
+        console.error("AJAX: Logged on @ '/auth//UPDATE/userPassword'");
+        //react-router-redux to dispatch routes from non-components
+        store.dispatch(push('/'));
+        // get user credentials here; dispatch notification as callback after user has been authenticated by passport
+        const cbArray = [
+          () => {dispatch(triggerNotification())},
+          () => {dispatch(userNotification(data.message))}
+        ];
+        dispatch(getUser(cbArray));
+        //window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.error("AJAX: Logged on @ '/auth/update/userPassword'");
+      console.log('error: '+ error.message)
+      //window.location.href = '/';
+    });
+  }
+}

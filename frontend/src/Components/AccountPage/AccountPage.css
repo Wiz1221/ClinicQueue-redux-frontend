@@ -80,7 +80,21 @@
   transition: box-shadow 0.3s, border 0.3s;
   border-radius: 2px;
 }
-
+.inputFieldRole {
+  display: block;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  box-shadow: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+  width: 100%;
+  color: #7456e9;
+  outline: none;
+}
 .userContent {
   background-color: white;
   height: 90%;
