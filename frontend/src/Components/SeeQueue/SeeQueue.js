@@ -78,15 +78,17 @@ class SeeQueue extends Component {
               <SubmitQueue clinic={this.props.activeClinic}/>
             </header>
           </div>
-        </div>) :
+        </div>
+      </div>) :
                 (
             <LoadingPage />
-          )}
+          )
+        }
    </div>
+ )}
 
-    );
-  }
-}
+ }
+
 
 // <div className="queueGalleryContainer">
 //   <QueueGallery queue={this.props.activeClinic.queue} />
