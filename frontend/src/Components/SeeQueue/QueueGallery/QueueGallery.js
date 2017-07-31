@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import QueueItem from './QueueItem';
 
 class QueueGallery extends Component {
-
+  
   renderClinicAdminQueueItem = () => {
     let queueArray = this.props.queue;
     console.log(queueArray)
@@ -11,7 +12,7 @@ class QueueGallery extends Component {
       return  (<div>No Queues yet</div>)
     } else {
       let queueFromAdmin = queueArray.filter((queue,index) => {
-        return queue.user.role !== "regularUser"
+        return queue.user.role == "clinicAdmin";
       })
       console.log(queueFromAdmin)
       return queueFromAdmin.map((queue) => {
@@ -25,6 +26,7 @@ class QueueGallery extends Component {
   }
 
   renderUserQueueItem = () => {
+
     let queueArray = this.props.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
@@ -55,10 +57,10 @@ class QueueGallery extends Component {
         From User
           {this.renderUserQueueItem()}
         </div>
-
       </div>
     );
   }
 }
+
 
 export default QueueGallery;

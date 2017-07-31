@@ -1,5 +1,5 @@
 
-const NearestClinic = (state = "", action) => {
+const NearestClinicReducer = (state = "", action) => {
   switch (action.type) {
     case 'NEAREST_CLINIC_ON':
       return "true"
@@ -12,4 +12,4 @@ const NearestClinic = (state = "", action) => {
   }
 }
 
-export default NearestClinic;
+export default NearestClinicReducer;
