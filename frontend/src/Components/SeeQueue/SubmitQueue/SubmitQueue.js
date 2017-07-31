@@ -55,13 +55,13 @@ class SubmitQueue extends Component {
         })
       }else{
 
-        if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
-          this.setState({
-            missing: true,
-            adminMessage: "Please select a clinic status"
-          })
-          return;
-        }
+        // if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
+        //   this.setState({
+        //     missing: true,
+        //     adminMessage: "Please select a clinic status"
+        //   })
+        //   return;
+        // }
 
         let newQueue = this.state.queue;
         newQueue.user_id = this.props.user._id;
@@ -95,13 +95,14 @@ class SubmitQueue extends Component {
   }
 
   render() {
+    const activeClinic = this.props.activeClinic;
     return (
       <div id="submitQueue container">
         <div className="adminMessage">{
           this.state.missing? (this.state.adminMessage) : (this.state.submitSuccessful? "Submited successfully" : null)
         }</div>
         <h4>Submit a Queue report for</h4>
-        <h4>{this.props.activeClinic.properties.name_full}</h4>
+        <h4>{Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null}</h4>
         <div className="row-fluid row-upload-file">
           <div className="form-group">
             <p>Upload a picture of the current queue situation: </p>

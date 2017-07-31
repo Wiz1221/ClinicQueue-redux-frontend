@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { postNewSubscribe } from "../../../../Actions/SubscribeAction";
 import { userNotification } from '../../../../Actions/UserAction';
-import { clearNotif } from '../../../../Actions/AppAction';
+import { clearNotif, triggerNotification } from '../../../../Actions/AppAction';
 
 import './Subscribe.css'
 
@@ -30,13 +30,14 @@ class Subscribe extends Component {
   confirmSubscribe = () => {
     if(this.state.phoneNumberCorrect && this.props.user.contact){
       if(this.props.notification==="Please confirm phone number is correct"){
-        this.props.clearNotif();
+        //this.props.clearNotif();
       }
       let newSubscribe = {}
       newSubscribe.user = this.props.user;
       newSubscribe.clinic = this.props.clinic;
       this.props.postNewSubscribe(newSubscribe)
     }else{
+      this.props.triggerNotification();
       this.props.userNotification("Please confirm phone number is correct");
     }
   }
@@ -85,6 +86,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userNotification: (message) => {dispatch(userNotification(message));},
+    triggerNotification: () => {dispatch(triggerNotification());},
     clearNotif: () => {dispatch(clearNotif());},
     postNewSubscribe: (newSubscribe) => {dispatch(postNewSubscribe(newSubscribe));}
   }

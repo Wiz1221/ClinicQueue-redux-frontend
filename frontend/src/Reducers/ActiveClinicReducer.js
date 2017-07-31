@@ -7,6 +7,10 @@ const ActiveClinicReducer = (state = {}, action) => {
     case 'REMOVE_ACTIVE_CLINIC':
       return {}
       break;
+    case 'STORE_NEW_QUEUE_IN_ACTIVE_CLINIC':
+      let newQueueArray = [...state.queue];
+      newQueueArray.unshift(action.queue);
+      state.queue = newQueueArray;
     default:
       return state
   }

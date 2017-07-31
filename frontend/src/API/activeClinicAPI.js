@@ -21,5 +21,5 @@ export const getActiveClinic = () => {
   catch(e){
     console.log("Error: Cound not decode activeClinic from localStorage");
   }
-  return Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic : {};
+  return activeClinic ? activeClinic : {};
 }

@@ -1,11 +1,20 @@
 import axios from 'axios';
 import { store } from '../index.js';
 import { socket } from './ClinicAction';
+import { triggerNotification } from './AppAction';
+import { userNotification } from './UserAction';
 
 const loadingQueueError = (error) => {
   return{
     type: "Load_Queue_Error",
     error
+  }
+}
+
+const storeQueueInActiveClinic = (queue) => {
+  return {
+    type: "STORE_NEW_QUEUE_IN_ACTIVE_CLINIC",
+    queue
   }
 }
 
@@ -30,6 +39,21 @@ const storeQueue = (queue) => {
   }
 }
 
+export const getQueue = (id, cbArray) => {
+  return (dispatch) => {
+    axios.get('/queue/'+ id)
+    .then( (response) => {
+      console.log("returned from getQueue")
+      console.log(response.data);
+      cbArray.forEach( (cb) => {
+        cb(response.data);
+      });
+    }).catch((error) =>{
+      dispatch(loadingQueueError(error));
+    });
+  }
+}
+
 export const submitQueue = (pic, queue) => {
   return (dispatch) => {
     console.log(queue)
@@ -45,11 +69,25 @@ export const submitQueue = (pic, queue) => {
     axios.post('/queue/', picQueueToBackend)
     .then( (response) => {
       console.log('response', response.data)
+      const queue = response.data
+      const cbArray = [
+        (data) => {dispatch(storeQueue(data))},
+        (data) => {dispatch(storeQueueInClinic(data))},
+        (data) => {dispatch(storeQueueInActiveClinic(data))},
+        (data) => {dispatch(storeQueueInUser(data))},
+        () => {dispatch(triggerNotification())},
+        () => {dispatch(userNotification("Successfully uploaded queue!"))},
+        (data) => {socket.emit('latestQueueForAllUser', data)}
+      ];
+      dispatch(getQueue(queue._id, cbArray));
       //here pic is a url from cloudinary
-      dispatch(storeQueue(response.data));
-      dispatch(storeQueueInClinic(response.data));
-      dispatch(storeQueueInUser(response.data));
-      socket.emit('latestQueueForAllUser', response.data)
+      // dispatch(storeQueue(response.data));
+      // dispatch(storeQueueInClinic(response.data));
+      // dispatch(storeQueueInActiveClinic(response.data))
+      // dispatch(storeQueueInUser(response.data));
+      // dispatch(triggerNotification());
+      // dispatch(userNotification("Successfully uploaded queue!"));
+      // socket.emit('latestQueueForAllUser', response.data)
     }).catch( (error) =>{
       dispatch(loadingQueueError(error));
     })
