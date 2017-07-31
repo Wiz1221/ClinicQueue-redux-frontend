@@ -105,8 +105,8 @@ class NavBar extends Component {
             <p className='logoName'>ClinicQueueSG</p>
           </a>
 
-          <a className="nearsetBtn" onClick={this.clickNearestClinic}>Nearest Clinic</a>
-          <a className="sideBarBtn">Side Bar</a>
+          <a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinic</a>
+          {this.props.user._id ? <Link to='/MyAccount' className="sideBarBtn">My account</Link> : null}
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
@@ -119,7 +119,7 @@ class NavBar extends Component {
                        name="search"
                        id="search"
                        value={this.state.searchTerm ? this.state.searchTerm:""}
-                       placeholder="Search..."
+                       placeholder="Search Clinic"
                        onChange={this.onChange}
                        onFocus={this.onFocus}
                        onBlur={this.onBlur}
