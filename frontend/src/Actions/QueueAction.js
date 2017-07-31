@@ -4,6 +4,23 @@ import { socket } from './ClinicAction';
 import { triggerNotification } from './AppAction';
 import { userNotification } from './UserAction';
 
+const storeAllQueueWhenAppInitialise = (queueArray) => {
+  return {
+    type: "STORE_QUEUE",
+    queueArray
+  }
+}
+
+export const getAllQueue = () => {
+  return (dispatch) => {
+    socket.emit('get all queue on app initialise')
+    socket.on('get all queue from backend', (queueArray) => {
+      dispatch(storeAllQueueWhenAppInitialise(queueArray))
+    })
+  }
+}
+
+
 const loadingQueueError = (error) => {
   return{
     type: "Load_Queue_Error",
