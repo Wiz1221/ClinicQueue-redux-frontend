@@ -50,7 +50,7 @@ class Subscribe extends Component {
     return (
       <div>
       {
-        this.state.subscribeSuccessful?
+        this.state.subscribeSuccessful ?
         <SubscribeSuccessful backToClinicInfo={this.backToClinicInfo} clinic={this.props.activeClinic} user={this.props.user}/> : (
           <div className="private-clinic-info container">
             <div className="row-fluid">
@@ -76,12 +76,13 @@ class Subscribe extends Component {
                 <button type="submit" className="btn clinic-back-btn queueButton" onClick={this.backToClinicInfo}>Back</button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
         )
       }
-      </div>
     </div>
-  </div>
-    );
+    )
   }
 }
 
