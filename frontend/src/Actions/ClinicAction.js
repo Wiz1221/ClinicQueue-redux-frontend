@@ -59,6 +59,6 @@ export const activeClinic = (clinic) => {
 
 export const removeActiveClinic = () => {
   return {
-    type: 'ACTIVE_CLINIC'
+    type: 'REMOVE_ACTIVE_CLINIC'
   }
 }

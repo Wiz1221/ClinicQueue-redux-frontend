@@ -41,7 +41,7 @@ class Map extends Component {
   }
 
   onClick = (clinic) => {
-    this.props.activeClinic(clinic);
+    this.props.activeClinic({...clinic});
   }
 
   renderPrivateClinicMapComponent = () => {
@@ -71,11 +71,10 @@ class Map extends Component {
                         key={clinic._id}
                         name={clinic.name_full}
                         id={clinic._id}
-                        onClick={this.onClick}
-                        
-                             />
+                        onClick={this.onClick}/>
         )
       });
+      //
     }
   }
 
@@ -92,11 +91,11 @@ class Map extends Component {
                               key={clinic._id}
                               name={clinic.name_full}
                               id={clinic._id}
-                              onClick={this.onClick}
-                               />
+                              onClick={this.onClick}/>
           )
       })
       // console.log(displayArray)
+      // onClick={this.onClick}
       return displayArray
     }
   }
@@ -115,8 +114,7 @@ class Map extends Component {
            {this.props.nearestClinicString==="true"? this.renderNearestClinic() : this.renderPolyClinicMapComponent()}
            {this.props.nearestClinicString==="true"? (
              <UserMarker lat={this.state.coordinates.lat}
-                         lng={this.state.coordinates.lng}
-                         />
+                         lng={this.state.coordinates.lng}/>
            ): (this.renderPrivateClinicMapComponent())}
          </GoogleMap>
        </div>

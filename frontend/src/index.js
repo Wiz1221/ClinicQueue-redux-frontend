@@ -17,14 +17,14 @@ import { initStore } from './Store/Store';
 import { getClinic } from './Actions/ClinicAction';
 import { getUser } from './Actions/UserAction';
 //API
-// import {setAdmin, getAdmin} from './API/generalAPI';
+import {setActiveClinic} from './API/API';
 
 export const store = initStore();
 
-// store.subscribe( () => {
-//   const state = store.getState();
-//   setAdmin(state.admin);
-// })
+store.subscribe( () => {
+  const state = store.getState();
+  setActiveClinic(state.activeClinic);
+})
 
 
 store.dispatch(getClinic());

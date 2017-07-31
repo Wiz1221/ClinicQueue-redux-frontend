@@ -27,16 +27,33 @@ class PolyClinicInfo extends Component {
   }
 
   onClick = (event) => {
-    if(!this.props.user._id){
+    let user = this.props.user
+    if(!user._id){
       this.props.userNotification("Please Login to Subscribe");
       setTimeout(()=>{
         this.props.clearNotif();
       },5000)
       return;
     }
-    this.setState({
-      showWhichComponent: event.target.id
-    })
+
+    if(!user.subscribe){
+      this.setState({
+        showWhichComponent: event.target.id
+      })
+    }else{
+      if(user.subscribe.indexOf(this.props.activeClinic._id) > -1){
+        console.log("You have already subscribe to this clinic")
+        this.props.userNotification("You have already subscribe to this clinic");
+        setTimeout(() => {
+          this.props.clearNotif();
+        },2000);
+        return;
+      }else{
+        this.setState({
+          showWhichComponent: event.target.id
+        })
+      }
+    }
   }
 
   backToClinicInfo = () => {
@@ -259,12 +276,12 @@ class PolyClinicInfo extends Component {
         </svg>
 
         {
-          this.state.showWhichComponent==="subscribeClinicButton" ?  (
+          this.state.showWhichComponent==="subscribeClinicButton" && this.props.user._id ?  (
             <Subscribe backToClinicInfo={this.backToClinicInfo} />
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
+              <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full}><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )

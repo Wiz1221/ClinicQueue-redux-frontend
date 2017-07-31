@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import SubscribeSuccessful from './SubscribeSuccessful';
+
 import { postNewSubscribe } from "../../../../Actions/SubscribeAction";
 import { userNotification } from '../../../../Actions/UserAction';
 import { clearNotif } from '../../../../Actions/AppAction';
@@ -10,7 +12,8 @@ class Subscribe extends Component {
   constructor(props){
     super(props);
     this.state = {
-      phoneNumberCorrect: false
+      phoneNumberCorrect: false,
+      subscribeSuccessful: false,
     }
   }
 
@@ -32,8 +35,9 @@ class Subscribe extends Component {
       }
       let newSubscribe = {}
       newSubscribe.user = this.props.user;
-      newSubscribe.clinic = this.props.clinic;
+      newSubscribe.clinic = this.props.activeClinic;
       this.props.postNewSubscribe(newSubscribe)
+      this.setState({ subscribeSuccessful: true });
     }else{
       this.props.userNotification("Please confirm phone number is correct");
     }
@@ -41,20 +45,28 @@ class Subscribe extends Component {
 
   render() {
     return (
-      <div className="subscribeForm">
-        <div>We will be sending you SMS with regards to the latest queue situation posted by the Clinic staff</div>
-        <div>Please confirm that your phone number is correct</div>
-        <div>{this.props.user.contact ? this.props.user.contact : "you have not entered any contact info"}</div>
-        <div className="checkbox" >
-          <label><input type="checkbox" value="" onClick={this.phoneNumberCheckBox}/> this is correct</label>
-        </div>
-        <Link to="/account"><button type="submit" className="btn btn-primary">Update My Phone Number</button></Link>
-        {
-          this.props.user.contact ?
-          <button type="submit" className="btn btn-primary queueButton" onClick={this.confirmSubscribe}>Confirm Subscription</button>
-          : null
-        }
-        <button type="submit" className="btn btn-danger queueButton" onClick={this.backToClinicInfo}>back</button>
+      <div>
+      {
+        this.state.subscribeSuccessful?
+        <SubscribeSuccessful backToClinicInfo={this.backToClinicInfo} clinic={this.props.activeClinic} user={this.props.user}/> : (
+
+          <div className="subscribeForm">
+            <div>We will be sending you SMS with regards to the latest queue situation posted by the Clinic staff</div>
+            <div>Please confirm that your phone number is correct</div>
+            <div>{this.props.user.contact ? this.props.user.contact : "you have not entered any contact info"}</div>
+            <div className="checkbox" >
+              <label><input type="checkbox" value="" onClick={this.phoneNumberCheckBox}/> this is correct</label>
+            </div>
+            <Link to="/account"><button type="submit" className="btn btn-primary">Update My Phone Number</button></Link>
+            {
+              this.props.user.contact ?
+              <button type="submit" className="btn btn-primary queueButton" onClick={this.confirmSubscribe}>Confirm Subscription</button>
+              : null
+            }
+            <button type="submit" className="btn btn-danger queueButton" onClick={this.backToClinicInfo}>back</button>
+          </div>
+        )
+      }
       </div>
     );
   }
