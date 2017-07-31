@@ -16,6 +16,7 @@ import { initStore } from './Store/Store';
 // Actions
 import { getClinic, activeClinic } from './Actions/ClinicAction';
 import { getUser } from './Actions/UserAction';
+import { getAllQueue } from './Actions/QueueAction';
 
 //API
 import {setActiveClinic} from './API/API';
@@ -32,7 +33,7 @@ store.subscribe( () => {
 
 
 store.dispatch(getClinic());
-
+store.dispatch(getAllQueue());
 store.dispatch(getUser());
 
 // get latest activeClinic from localStorage for persistence
