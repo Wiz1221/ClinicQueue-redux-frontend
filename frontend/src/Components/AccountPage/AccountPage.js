@@ -18,6 +18,7 @@ class AccountPage extends Component {
       username: this.props.user.username,
       email: this.props.user.email,
       password: this.props.user.password,
+      rePassword: '',
       contact: this.props.user.contact,
       role: this.props.user.role,
       myClinic: this.props.user.myClinic,
@@ -30,6 +31,7 @@ componentWillReceiveProps(nextProps) {
     username: nextProps.user.username,
     email: nextProps.user.email,
     password: nextProps.user.password,
+    rePassword: "",
     contact: nextProps.user.contact,
     role: nextProps.user.role,
     myClinic: nextProps.user.myClinic,
@@ -66,8 +68,12 @@ onClickContact = (e) => {
 }
 
 onUpdatePasswordClick = () => {
-
-  this.props.UpdatePassword(this.state);
+  if (this.state.password !== this.props.user.password && this.state.rePassword == this.state.password) {
+    this.props.UpdatePassword(this.state);
+  }else {
+    this.props.triggerNotification();
+    this.props.userNotification("Everything is up to date, nothing to update.");
+  }
 }
 
 onDeleteAccountClick = () => {
@@ -101,7 +107,7 @@ onDeleteAccountClick = () => {
                     <input type="password" name="password" className='inputFieldTop' placeholder="***" onChange={this.onChange}/>
                   </div>
                   <div className="userInfoRow">
-                    <input type="password" name="rePassword" className='inputField' placeholder="Re-enter New Password"/>
+                    <input type="password" name="rePassword" className='inputField' placeholder="Re-enter New Password" onChange={this.onChange}/>
                     <button className="updateBtn" onClick={this.onUpdatePasswordClick}>update</button>
                   </div>
                 </div>

@@ -143,7 +143,7 @@ export const updateProfile = (credentials) => {
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
         const cbArray = [
           () => {dispatch(triggerNotification())},
-          () => {dispatch(userNotification("Updated!"))}
+          () => {dispatch(userNotification("Profile Updated!"))}
         ];
         dispatch(getUser(cbArray));
         //window.location.href = "/";
@@ -174,7 +174,7 @@ export const updatePassword = (credentials) => {
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
         const cbArray = [
           () => {dispatch(triggerNotification())},
-          () => {dispatch(userNotification("Updated!"))}
+          () => {dispatch(userNotification("Password Updated!"))}
         ];
         dispatch(getUser(cbArray));
         //window.location.href = "/";
