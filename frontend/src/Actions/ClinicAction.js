@@ -12,12 +12,12 @@ const storeClinic = (clinic) => {
   }
 }
 
-const storeQueueInfoInReducer = (queue) => {
-  return {
-    type: 'STORE_QUEUE',
-    queue
-  }
-}
+// const storeQueueInfoInReducer = (queue) => {
+//   return {
+//     type: 'STORE_QUEUE',
+//     queue
+//   }
+// }
 
 const loadingClinicError = (error) => {
   return{
@@ -35,15 +35,15 @@ export const getClinic = () => {
     socket.on('allClinic', (clinic) => {
       // store clinic info in store
       dispatch(storeClinic(clinic));
-      let allQueue = [];
-      clinic.forEach( (elem,index,arr) => {
-        elem.queue.forEach((queue,index) => {
-          allQueue.push(queue);
-        })
-      })
+      // let allQueue = [];
+      // clinic.forEach( (elem,index,arr) => {
+      //   elem.queue.forEach((queue,index) => {
+      //     allQueue.push(queue);
+      //   })
+      // })
       // console.log(allQueue);
       // store queue info in store (queue have its own reducer)
-      dispatch(storeQueueInfoInReducer(allQueue));
+      // dispatch(storeQueueInfoInReducer(allQueue));
     })
 
   }

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
+import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
+
 import "./AccountPage.css";
 
 class AccountPage extends Component {
@@ -13,7 +16,8 @@ class AccountPage extends Component {
       <div className="BG">
         <div className="boxContent">
           <div className="accLeftSide">
-            queue display
+            <UserQueueGallery />
+            <UserSubscribeGallery />
           </div>
           <div className="accRightSide">
             <div className="userContent">
@@ -41,6 +45,9 @@ class AccountPage extends Component {
     );
   }
 }
+
+// <UserQueueGallery queue={this.props.user.queue ? this.props.user.queue : []} />
+// <UserSubscribeGallery subscribe={this.props.user.subscribe ? this.props.user.subscribe : []} />
 
 const mapStateToProps = (state) => {
 

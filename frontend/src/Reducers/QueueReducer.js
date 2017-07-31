@@ -3,7 +3,7 @@ const QueueReducer = (state = [], action) => {
 
   switch (action.type) {
     case 'STORE_QUEUE':
-      return action.queue || []
+      return action.queueArray || []
       break;
     case 'STORE_NEW_QUEUE':
       return [
