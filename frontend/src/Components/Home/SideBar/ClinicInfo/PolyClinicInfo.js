@@ -14,6 +14,12 @@ import QueueList from '../Queue/QueueList';
 import { userNotification } from '../../../../Actions/UserAction';
 import { clearNotif } from '../../../../Actions/AppAction';
 
+// import { store } from '../../../../index.js';
+
+// import API to store activeClinic into localStorage
+import { setActiveClinic } from '../../../../API/activeClinicAPI'
+
+
 import './PolyClinicInfo.css';
 
 const d3 = require("d3");
@@ -27,22 +33,43 @@ class PolyClinicInfo extends Component {
   }
 
   onClick = (event) => {
-    if(!this.props.user._id){
+    let user = this.props.user
+    if(!user._id){
       this.props.userNotification("Please Login to Subscribe");
       setTimeout(()=>{
         this.props.clearNotif();
       },5000)
       return;
     }
-    this.setState({
-      showWhichComponent: event.target.id
-    })
+
+    if(!user.subscribe){
+      this.setState({
+        showWhichComponent: event.target.id
+      })
+    }else{
+      if(user.subscribe.indexOf(this.props.activeClinic._id) > -1){
+        console.log("You have already subscribe to this clinic")
+        this.props.userNotification("You have already subscribe to this clinic");
+        setTimeout(() => {
+          this.props.clearNotif();
+        },2000);
+        return;
+      }else{
+        this.setState({
+          showWhichComponent: event.target.id
+        })
+      }
+    }
   }
 
   backToClinicInfo = () => {
     this.setState({
       showWhichComponent: ""
     })
+  }
+
+  storeActiveClinic = () => {
+    setActiveClinic(this.props.activeClinic);
   }
 
   // return formatted time data
@@ -160,49 +187,6 @@ class PolyClinicInfo extends Component {
     }
 
 }
-
-    // // UPDATE chart
-    // updateTimeSeries = (historicalQueue,currentQueue) => {
-    //   const node = this.node;
-    //   const qLine = select(node);
-    //   console.log(qLine);
-    //
-    //   const hQ = this.dateArrayParser(historicalQueue, false)
-    //   const cQ = this.dateArrayParser(currentQueue, true);
-    //   console.log(hQ)
-    //   console.log(cQ)
-    //   const margin = {top: 10, right: 10, bottom: 20, left: 10},
-    //         width = 960 - margin.left - margin.right,
-    //         height = 500 - margin.top - margin.bottom;
-    //
-    //   // Scales and axes. Note the inverted domain for the y-scale: bigger is up!
-    //   const x = scaleTime().range([0, width]),
-    //         y = scaleLinear().range([height, 0]),
-    //         xAxis = axisBottom(x).tickFormat(timeFormat('%H')),
-    //         yAxis = axisLeft(y)//.ticks(4).orient("left");
-    //
-    //   // Compute the minimum and maximum date, and the maximum queue.
-    //   x.domain([hQ[0].date, hQ[hQ.length - 1].date]);
-    //   y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
-    //
-    //   // A line generator, for the dark stroke.
-    //   const line = d3.line()
-    //                 .x(function(d) { return x(d.date); })
-    //                 .y(function(d) { return y(d.queueQty); })
-    //                 .curve(d3.curveStepAfter)
-    //
-    //   // Bind new data and transition
-    //   qLine.selectAll('.line')
-    //        .data([hQ,cQ])
-    //        .transition()
-    //        .delay(500)
-    //        .duration(2000)
-    //          .attr('class', 'line')
-    //          .attr('d', function(d) {
-    //            return line(d);
-    //          })
-    // }
-    //
     // DESTROY chart
     deleteTimeSeries = () => {
       const node = this.node;
@@ -211,60 +195,39 @@ class PolyClinicInfo extends Component {
             .exit()
             .remove()
     }
-    /* Add 'curtain' rectangle to hide entire graph */
-    // const curtain = qLine.append('rect')
-    //                       .attr('x', -1 * width)
-    //                       .attr('y', -1 * height)
-    //                       .attr('height', height)
-    //                       .attr('width', width)
-    //                       .attr('class', 'curtain')
-    //                       .attr('transform', 'rotate(180)')
-    //                       .style('fill', 'white')
-    //                       .style('opacity', 0)
 
-    /* Create a shared transition for anything we're animating */
-    // const t = qLine.transition()
-    //                 .delay(100)
-    //                 .duration(2000)
-    //                 .ease(d3.easeLinear)
-    //                 .on('end', function() {
-    //                   select('line.guide')
-    //                   .transition()
-    //                   .style('opacity', 0)
-    //                   .remove()
-    //                 });
-    //
-    // t.select('rect.curtain')
-    //   .attr('width', 0);
-    // t.select('line.guide')
-    //   .attr('transform', 'translate(' + width + ', 0)')
-
-// <div className="svgBox">
-// </div>
   classParser = (differenceQueue) => {
     return differenceQueue > 0 ? "positiveDifference" : "negativeDifference"
   }
 
   render() {
     const differenceQueue = parseFloat(this.props.activeClinic.properties.differenceQueue);
+    const currentDate = new Date();
+    const currentHours = currentDate.getHours();
+    const currentDayNum = currentDate.getDay();
+    const dayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const currentDay = dayArray[currentDayNum];
+    //console.log("currentHours " + currentHours);
     return (
       <div>
         <h3>{this.props.activeClinic.properties.name_full}</h3>
-        <h4>is now <span className={this.classParser(differenceQueue)}>
+        {currentHours < 16 && currentDayNum < 6 && currentDayNum != 0 || currentHours < 12 && currentDayNum == 6 ?
+        (<h4>is now <span className={this.classParser(differenceQueue)}>
         {differenceQueue > 0 ? (differenceQueue.toFixed(0) + "%more") :
-        (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than the average queue at this hour</h4>
+        (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than its average queue at this hour on {currentDay}</h4>) :
+        (<h5>has closed registrations for {currentDay}</h5>)}
 
         <svg ref={node => this.node = node}
               viewBox="0 0 960 500">
         </svg>
 
         {
-          this.state.showWhichComponent==="subscribeClinicButton" ?  (
+          this.state.showWhichComponent==="subscribeClinicButton" && this.props.user._id ?  (
             <Subscribe backToClinicInfo={this.backToClinicInfo} />
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to="/seeQueue"><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
+              <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full}><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
             </div>
           )

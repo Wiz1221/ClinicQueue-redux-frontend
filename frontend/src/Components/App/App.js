@@ -5,6 +5,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { history } from '../../index';
+import { ConnectedRouter } from 'react-router-redux';
 
 import Home from "../Home/Home";
 import AccountPage from "../AccountPage/AccountPage";
@@ -20,17 +22,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/account"  component={AccountPage}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
-            <Route exact path="/seeQueue" component={SeeQueue}/>
+            <Route path="/seeQueue/:name" component={SeeQueue}/>
             <Route exact path="/myAccount" component={MyAccount}/>
+
             <Route component={Error}/>
           </Switch>
-        </Router>
+        </ConnectedRouter>
       </div>
     );
   }

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import QueueStatus from './QueueStatus';
 
 import { submitQueue } from '../../../Actions/QueueAction';
+import { userNotification } from '../../../Actions/UserAction';
+import { triggerNotification } from '../../../Actions/AppAction';
 
 import './SubmitQueue.css';
 
@@ -18,6 +20,10 @@ class SubmitQueue extends Component {
       submitSuccessful: false,
       missing: false
     }
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(this.props.clinic)
   }
 
   statusButtonClicked = (status) => {
@@ -45,23 +51,28 @@ class SubmitQueue extends Component {
     event.preventDefault();
     if(this.props.user._id){
       if(!this.state.pic){
+        this.props.triggerNotification();
+        this.props.userNotification("Please upload a picture of the current queue situation");
         this.setState({
           missing: true,
           adminMessage: "Please upload a picture of Queue"
         })
       }else{
 
-        if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
-          this.setState({
-            missing: true,
-            adminMessage: "Please choose a clinic status"
-          })
-          return;
-        }
+
+        // if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
+        //   this.setState({
+        //     missing: true,
+        //     adminMessage: "Please select a clinic status"
+        //   })
+        //   return;
+        // }
 
         let newQueue = this.state.queue;
+
         newQueue.user_id = this.props.user._id;
         newQueue.clinic_id = this.props.clinic._id;
+        console.log(newQueue)
         /*
         how newQueue looks like
         {
@@ -91,14 +102,18 @@ class SubmitQueue extends Component {
   }
 
   render() {
+
+    const activeClinic = this.props.activeClinic;
     return (
-      <div id="submitQueue">
+      <div id="submitQueue container">
         <div className="adminMessage">{
           this.state.missing? (this.state.adminMessage) : (this.state.submitSuccessful? "Submited successfully" : null)
         }</div>
-        <h4>Submit Queue</h4>
+        <h4>Submit a Queue report for</h4>
+        <h4>{Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null}</h4>
+        <div className="row-fluid row-upload-file">
           <div className="form-group">
-            <label>Upload the latest Queue</label>
+            <p>Upload a picture of the current queue situation: </p>
             <input id="pic"
                    type="file"
                    className="form-control-file"
@@ -107,8 +122,14 @@ class SubmitQueue extends Component {
                    />
           </div>
 
-          <label>Please comment on Queue Status</label>
-          <QueueStatus onClick={this.statusButtonClicked}/>
+          </div>
+          {this.props.user._id ?
+          (this.props.user.role === "clinicAdmin" || "appAdmin")&&(this.props.clinic._id===this.props.user.myClinic)  ? (
+              <div className="well well-status">
+                <p>Clinic Admin: select a Queue Status</p>
+                  <QueueStatus onClick={this.statusButtonClicked}/>
+              </div>
+          ) : null : null}
 
           <div className="form-group">
             <label>Comments</label>
@@ -119,7 +140,7 @@ class SubmitQueue extends Component {
                       onChange={this.onChange}
                       value={this.state.queue.comment? this.state.queue.comment: ""}/>
           </div>
-          <button type="submit" className="btn btn-primary queueButton" onClick={this.postQueue}>Submit</button>
+          <button type="button" className="btn btn-primary queueButton" onClick={this.postQueue}>Submit</button>
       </div>
     );
   }
@@ -128,12 +149,15 @@ class SubmitQueue extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    activeClinic: state.activeClinic,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitQueue: (pic, newQueue) => { dispatch(submitQueue(pic, newQueue))}
+    submitQueue: (pic, newQueue) => { dispatch(submitQueue(pic, newQueue))},
+    userNotification: (message) => {dispatch(userNotification(message));},
+    triggerNotification: () => {dispatch(triggerNotification());},
   }
 }
 

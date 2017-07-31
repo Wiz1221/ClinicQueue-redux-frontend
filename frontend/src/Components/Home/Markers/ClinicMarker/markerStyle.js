@@ -11,9 +11,10 @@ export const markerStylePoly = (clinic) => {
     cursor: 'pointer',
     border: 'none',
     borderRadius: radius,
-    background: 'rgba(71, 118, 230, 0.6)',
+    background: 'rgba(255, 0, 0, 0.6)',
+    //background: 'rgba(71, 118, 230, 0.6)',
     textAlign: 'center',
-    boxShadow: '0 0 0 0 rgba(71, 118, 230, 0.5)',
+    boxShadow: '0 0 0 0 rgba(255, 0, 0, 0.5)',
     WebkitAnimation: 'pulse 2.5s infinite',
   }
 };

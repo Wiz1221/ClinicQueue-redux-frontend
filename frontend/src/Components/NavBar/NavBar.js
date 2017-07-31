@@ -13,7 +13,7 @@ import logo from '../../ClinicQueue_White.png';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff } from '../../Actions/AppAction';
+import { nearestClinic, nearestClinicOff, triggerNotification } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -52,8 +52,10 @@ class NavBar extends Component {
   }
 
   dropDownItemClicked = (clinic) => {
+
     this.props.nearestClinicOff()
-    this.props.activeClinic(clinic);
+    this.props.activeClinic({...clinic});
+
   }
 
   renderDropDown = () => {
@@ -88,6 +90,11 @@ class NavBar extends Component {
     this.props.nearestClinic();
   }
 
+  removeActiveClinicAndNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
+  }
+
   execLogout = (e) => {
     console.log(this.props.user)
     //e.preventDefault();
@@ -95,18 +102,23 @@ class NavBar extends Component {
     //window.location.href = "/";
   }
 
+
   render() {
 
     return (
       <div >
-        <nav className="Navbar navbar-fixed" >
-          <a href="/">
+        <nav className="Navbar navbar-fixed-top" >
+        <Link to ='/'>
+          <a href="/" onClick={this.removeActiveClinicAndNearestClinic}>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
-          </a>
+          </a></Link>
 
-          <a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinic</a>
+
+          {this.props.minNavBar? null :
+          (<a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinics</a>)}
           {this.props.user._id ? <Link to='/MyAccount' className="sideBarBtn">My account</Link> : null}
+
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
@@ -139,7 +151,8 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
   return {
     clinic: state.clinic,
-    user: state.user
+    user: state.user,
+    minNavBar: state.minNavBar
   }
 }
 
@@ -150,6 +163,7 @@ const mapDispatchToProps = (dispatch) => {
     Logout: () => {dispatch(localLogout());},
     nearestClinic: () => {dispatch(nearestClinic())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
+    triggerNotification: () => {dispatch(triggerNotification())},
   }
 }
 

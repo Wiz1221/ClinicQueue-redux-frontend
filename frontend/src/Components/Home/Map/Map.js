@@ -13,6 +13,8 @@ import injectStyle from '../Markers/injectStyle';
 // Actions
 import { activeClinic } from '../../../Actions/ClinicAction';
 
+import './Map.css'
+
 class Map extends Component {
   constructor(props){
     super(props);
@@ -41,7 +43,7 @@ class Map extends Component {
   }
 
   onClick = (clinic) => {
-    this.props.activeClinic(clinic);
+    this.props.activeClinic({...clinic});
   }
 
   renderPrivateClinicMapComponent = () => {
@@ -71,11 +73,11 @@ class Map extends Component {
                         key={clinic._id}
                         name={clinic.name_full}
                         id={clinic._id}
-                        onClick={this.onClick}
-                        
-                             />
+                        onClick={this.onClick} />
+
         )
       });
+      //
     }
   }
 
@@ -92,18 +94,18 @@ class Map extends Component {
                               key={clinic._id}
                               name={clinic.name_full}
                               id={clinic._id}
-                              onClick={this.onClick}
-                               />
+                              onClick={this.onClick}/>
           )
       })
       // console.log(displayArray)
+      // onClick={this.onClick}
       return displayArray
     }
   }
 
   render() {
     return (
-        <div style={{width: `100vw`, height: `100vh`}}>
+        <div className="map-container container">
           <GoogleMap
            center={this.props.activeClinicObject._id?
              { lat: this.props.activeClinicObject.geometry.coordinates[1], lng: this.props.activeClinicObject.geometry.coordinates[0] } :
@@ -115,8 +117,7 @@ class Map extends Component {
            {this.props.nearestClinicString==="true"? this.renderNearestClinic() : this.renderPolyClinicMapComponent()}
            {this.props.nearestClinicString==="true"? (
              <UserMarker lat={this.state.coordinates.lat}
-                         lng={this.state.coordinates.lng}
-                         />
+                         lng={this.state.coordinates.lng}/>
            ): (this.renderPrivateClinicMapComponent())}
          </GoogleMap>
        </div>

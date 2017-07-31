@@ -1,4 +1,4 @@
-const User = (state = {}, action) => {
+const UserReducer = (state = {}, action) => {
   switch (action.type) {
 
     case 'STORE_USER':
@@ -13,9 +13,17 @@ const User = (state = {}, action) => {
       })
       break;
 
+    case 'STORE_SUBSCRIBE_IN_USER':
+      let newSubscribeArray = state.subscribe;
+      newSubscribeArray.push(action.clinic_id);
+      return Object.assign({},state, {
+        subscribe: newSubscribeArray
+      })
+      break;
+
     default:
       return state
   }
 }
 
-export default User;
+export default UserReducer;

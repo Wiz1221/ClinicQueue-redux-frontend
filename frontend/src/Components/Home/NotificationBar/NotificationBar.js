@@ -1,39 +1,48 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import { switchOffNotification } from '../../../Actions/AppAction';
 import './NotificationBar.css';
 
 class NotificationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: 'animated fadeInDownBig notificationBar',
-      renderDiv: true
+      class: '',
+      notification: ''
     }
   }
 
   notifDisappear = () => {
     setTimeout(()=>{
       this.setState({
-        class: 'fadeOutUp animated notificationBar'
+        class: 'fadeOutUp animated notificationBar',
       });
-    },5000);
-    setTimeout(()=>{
-      this.setState({
-        renderDiv: false
-     });
-   },7000);
+
+      console.log("in setTimeout");
+      this.props.switchOffNotification();
+    },2000)
   }
 
-  renderNotificationMessage = () => {
-    if(this.props.user._id){
-      if (this.state.renderDiv){
-        return (
-          <div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>
-        )
-      }
-    }else{
-      return;
+  renderNotificationMessage = (notification) => {
+    switch (notification) {
+      case "Welcome":
+          return (<div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>)
+        break;
+      default:
+        return (<div className={this.state.class}><p>{notification}</p></div>)
+      // case "Please Login to Subscribe":
+      //   return (<div className={this.state.class}><p>Please Login to Subscribe</p></div>)
+      //   break;
+      // default:
+      //   if(this.props.user._id){
+      //     return (
+      //       <div className={this.state.class}><p>Welcome {this.props.user.username}!</p></div>
+      //     )
+      //   }else{
+      //     return;
+      //   }
+      //   break;
     }
   }
 
@@ -41,14 +50,26 @@ class NotificationBar extends React.Component {
     console.log(this.state.class);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.trigger) {
+      console.log("receiving next props!");
+      this.setState({
+        class: 'animated fadeInDownBig notificationBar',
+        notification: nextProps.notification
+      });
+      this.notifDisappear();
+    }
+
+  }
+
   render() {
     return (
       <div>
-        {this.renderNotificationMessage()}
-        {this.notifDisappear()}
+      {this.renderNotificationMessage(this.state.notification)}
       </div>
     );
   }
+
 }
 
 // {this.props.user._id ?
@@ -56,13 +77,14 @@ class NotificationBar extends React.Component {
 //   : <div></div> }
 // {this.notifDisappear()}
 
-NotificationBar.propTypes = {
-};
+// NotificationBar.propTypes = {
+// };
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    notification: state.notification
+    notification: state.notification,
+    trigger: state.trigger
     //clinic: state.clinic,
     //activeClinic: state.activeClinic
   }
@@ -70,6 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    switchOffNotification: () => {dispatch(switchOffNotification());},
   }
 }
 
