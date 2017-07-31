@@ -36,7 +36,7 @@ store.dispatch(getClinic());
 store.dispatch(getUser());
 
 // get latest activeClinic from localStorage for persistence
-store.dispatch(activeClinic(getActiveClinic()));
+//store.dispatch(activeClinic(getActiveClinic()));
 
 ReactDOM.render(
   <Provider store={store}>

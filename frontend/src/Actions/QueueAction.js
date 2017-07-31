@@ -11,13 +11,6 @@ const loadingQueueError = (error) => {
   }
 }
 
-const storeQueueInActiveClinic = (queue) => {
-  return {
-    type: "STORE_NEW_QUEUE_IN_ACTIVE_CLINIC",
-    queue
-  }
-}
-
 const storeQueueInClinic = (queue) => {
   return {
     type: "STORE_NEW_QUEUE_IN_CLINIC",
