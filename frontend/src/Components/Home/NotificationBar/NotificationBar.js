@@ -18,6 +18,7 @@ class NotificationBar extends React.Component {
       this.setState({
         class: 'fadeOutUp animated notificationBar',
       });
+
       console.log("in setTimeout");
       this.props.switchOffNotification();
     },2000)

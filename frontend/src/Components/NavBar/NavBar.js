@@ -89,6 +89,7 @@ class NavBar extends Component {
   }
 
   execLogout = (e) => {
+    console.log(this.props.user)
     //e.preventDefault();
     this.props.Logout();
     //window.location.href = "/";
@@ -109,9 +110,11 @@ class NavBar extends Component {
             <p className='logoName'>ClinicQueueSG</p>
           </Link></a>
 
+
           {this.props.minNavBar? null :
           (<a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinics</a>)}
-          <a className="sideBarBtn">My Account</a>
+          {this.props.user._id ? <Link to='/MyAccount' className="sideBarBtn">My account</Link> : null}
+
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLogin pull-right">Login</Link>}
@@ -124,7 +127,7 @@ class NavBar extends Component {
                        name="search"
                        id="search"
                        value={this.state.searchTerm ? this.state.searchTerm:""}
-                       placeholder="Search..."
+                       placeholder="Search Clinic"
                        onChange={this.onChange}
                        onFocus={this.onFocus}
                        onBlur={this.onBlur}

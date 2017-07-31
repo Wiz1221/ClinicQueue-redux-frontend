@@ -5,6 +5,7 @@ import NavBar from '../NavBar/NavBar';
 import SideBar from './SideBar/SideBar';
 import About from '../About/About';
 import NotificationBar from './NotificationBar/NotificationBar';
+import ErrorNotificationBar from './ErrorNotificationBar/ErrorNotificationBar';
 
 // Components
 import Map from './Map/Map';
@@ -28,6 +29,7 @@ class Home extends Component {
         {this.props.minNavBarOff()}
         <NavBar/>
         <NotificationBar/>
+        <ErrorNotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
 
         <About />

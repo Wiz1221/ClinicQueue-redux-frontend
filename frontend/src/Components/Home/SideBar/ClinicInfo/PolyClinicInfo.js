@@ -35,9 +35,9 @@ class PolyClinicInfo extends Component {
   onClick = (event) => {
     if(!this.props.user._id){
       this.props.userNotification("Please Login to Subscribe");
-      setTimeout(() => {
+      setTimeout(()=>{
         this.props.clearNotif();
-      },2000);
+      },5000)
       return;
     }
     this.setState({
