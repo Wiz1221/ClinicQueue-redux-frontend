@@ -106,6 +106,8 @@ class NavBar extends Component {
     console.log(this.props.user)
     //e.preventDefault();
     this.props.Logout();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
     //window.location.href = "/";
   }
   clearNotifi = () => {
@@ -166,8 +168,8 @@ class NavBar extends Component {
         {this.state.width < 767 ? (
           <div className="smallScreenNav">
             <nav>
-              <Link to ='/'>
-                <a onClick={this.removeActiveClinicAndNearestClinic}>
+              <Link to ='/' onClick={this.removeActiveClinicAndNearestClinic}>
+                <a>
                   <img src={logo} width={50} height={50} className="logo"/>
                 </a>
               </Link>

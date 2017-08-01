@@ -1,3 +1,26 @@
+.queueItemContainer{
+  background: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  float: left;
+  height: 500px;
+  margin: 20px;
+  position: relative;
+  width: 200px;
+
+}
+
+[class*='close-'] {
+  color: #777;
+  font: 14px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 5px;
+}
+
+
 #gallery {
       -moz-column-count: 3;
       -webkit-column-count: 3;
@@ -53,7 +76,7 @@
 }
 
 p.queue-comments, p.queue-timestamp {
-  margin-top: 1px;
+  /*margin-top: 1px;*/
 }
 
 .queue-status {

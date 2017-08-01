@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../../index';
@@ -19,18 +20,26 @@ import MyAccount from '../AccountPage/AccountPage';
 import './App.css';
 
 class App extends Component {
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.user._id){
+      fakeAuth.isAuthenticated = true
+    }else{
+      fakeAuth.isAuthenticated = false
+    }
+  }
+
   render() {
     return (
       <div>
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/account"  component={AccountPage}/>
+            <Route exact path="/account"  component={AccountPage} />
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
             <Route path="/seeQueue/:name" component={SeeQueue}/>
-            <Route exact path="/myAccount" component={MyAccount}/>
-
+            <PrivateRoute exact path="/myAccount" component={MyAccount}/>
             <Route component={Error}/>
           </Switch>
         </ConnectedRouter>
@@ -39,4 +48,30 @@ class App extends Component {
   }
 }
 
-export default App;
+const fakeAuth = {
+    isAuthenticated: false
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={
+    props => (
+    fakeAuth.isAuthenticated ?
+    (
+      <Component {...props}/>
+    )
+    : (
+      <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+
+export default connect(mapStateToProps)(App);

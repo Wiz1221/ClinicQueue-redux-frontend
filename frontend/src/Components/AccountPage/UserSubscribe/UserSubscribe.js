@@ -131,7 +131,6 @@ class UserSubscribe extends Component{
       <div className="userInfoField userInfoFieldEnding">
         <h5>My Subscription:</h5>
         <div className="userInfoRow">
-          <input type="text" name="contact" className='inputField' placeholder={this.props.user.subscribe} onChange={this.onChange}/>
           <input className="searching"
                  type="search"
                  name="search"
