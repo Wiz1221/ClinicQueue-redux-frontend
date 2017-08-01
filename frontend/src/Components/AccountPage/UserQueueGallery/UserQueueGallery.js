@@ -31,7 +31,7 @@ class UserQueueGallery extends Component {
   render() {
     let queue = this.renderQueue()
     return (
-      <div>
+      <div className="BG">
         {queue}
       </div>
     );

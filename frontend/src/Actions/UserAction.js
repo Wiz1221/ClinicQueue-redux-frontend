@@ -49,6 +49,7 @@ export const localLogin = (credentials) => {
 
       if(data.error){
         console.log(data.message);
+        dispatch(triggerNotification());
         dispatch(userNotification(data.message));
       }else {
         console.error("AJAX: Logged on @ '/auth/user'");
@@ -79,6 +80,7 @@ export const localSignup = (credentials) => {
 
       if(data.error){
         console.log(data.message);
+        dispatch(triggerNotification());
         dispatch(userNotification(data.message));
       }else {
         console.error("AJAX: Logged on @ '/auth/user'");
