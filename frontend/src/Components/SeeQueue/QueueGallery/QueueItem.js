@@ -65,7 +65,7 @@ class QueueItem extends Component {
           <img src={queue.pic} />
       </div>
       <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-      <p className="queue-comments">{queue.comment}</p>
+      <p className="queue-comments">"{queue.comment}"</p>
       <div className= {"queue-status " + this.queueClassParse(queue.status)}>{queue.status}</div>
       </div>) :
       (<div className="queueItem container">

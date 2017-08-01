@@ -15,7 +15,8 @@
   border: 3px solid rgb(191,191,191);
   border-radius: 0.5em;
   padding: 10px;
-  width: 100%;
+  width: 220px;
+  height: 250px;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
   page-break-inside: avoid;
@@ -40,7 +41,9 @@
 .queue-image img {
   position: relative;
   width: 95%;
-  height: auto;
+  height: 100px;
+  object-fit: cover;
+
   /*box-shadow: 0px 0px 30px rgba(94,96,94,1);*/
 }
 
@@ -49,8 +52,12 @@
   font-weight: normal;
 }
 
+p.queue-comments, p.queue-timestamp {
+  margin-top: 1px;
+}
+
 .queue-status {
-  height: 100%;
+  height: auto;
   display: block;
   border-radius: 10px;
   padding: 1rem;

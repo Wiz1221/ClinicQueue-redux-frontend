@@ -76,7 +76,7 @@ class QueueGallery extends Component {
         <div className="row">
           <h2>Queue Gallery</h2>
             <h4>by {Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null} Admin</h4>
-            <div className="row" id="gallery">
+            <div className="row">
             {this.renderClinicAdminQueueItem(subject)}
             </div>
         </div>
