@@ -1,6 +1,8 @@
 .NavbarWhite {
   height: 70px;
   background: rgba(255, 255, 255, 1);  /* fallback for old browsers */
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   border: 0;
   border-bottom: 2px solid #7456e9;

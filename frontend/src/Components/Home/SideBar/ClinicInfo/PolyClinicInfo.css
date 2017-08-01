@@ -18,3 +18,30 @@ path.line {
   color: rgba(40,89,223,1);
   font-size: 2em;
 }
+
+.polyClinicinfo-btn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  font-weight: normal;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 80%;
+  left: 10%;
+  border: 2px solid #7456e9;
+  color: #7456e9;
+  background-color: #fff;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left:0;
+}
+
+.polyClinicinfo-btn:hover {
+	background: #7456e9;
+  color: #fff;
+}

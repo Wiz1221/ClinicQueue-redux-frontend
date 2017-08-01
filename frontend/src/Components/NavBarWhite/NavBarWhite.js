@@ -91,7 +91,7 @@ class NavBar extends Component {
 
               <div className='menusWhite' style={this.toggleMenu()}>
                 <div className='menuItemWhite'>
-                  <Link to='/' className="smallMenuBtnWhite">Home</Link>
+                  <Link to='/' className="smallMenuBtnWhite">Back</Link>
                 </div>
                 <div className='menuItemWhite'>
                   {this.props.user._id ? <Link to='/MyAccount' className="smallMenuBtnWhite">My account</Link> : null}
@@ -113,7 +113,7 @@ class NavBar extends Component {
             <p className='logoNameColor'>ClinicQueueSG</p>
           </a></Link>
 
-        <Link to='/' className="homeBtnWhite">Home</Link>
+        <Link to='/' className="homeBtnWhite">Back</Link>
         {this.props.user._id ? <Link to='/MyAccount' className="homeBtnWhite">My Account</Link> : null}
           {this.props.user._id ? <Link to='/' className="navLoginWhite pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLoginWhite pull-right">Login</Link>}

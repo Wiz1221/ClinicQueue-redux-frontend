@@ -223,8 +223,8 @@ class PolyClinicInfo extends Component {
           ) : (
             <div>
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
-              <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
+              <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button id="subscribeClinicButton" type="submit" className="polyClinicinfo-btn">See more queues or Submit a queue report</button></Link>
+              <button id="subscribeClinicButton" type="submit" className="polyClinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
 
             </div>
           )

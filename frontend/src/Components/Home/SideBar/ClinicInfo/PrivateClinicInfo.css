@@ -3,6 +3,11 @@
   margin: auto;
 }
 
+.ClinicName {
+  width: 90%;
+  margin-left: 0;
+}
+
 .private-clinic-info p {
   font-weight: normal;
 }
@@ -17,14 +22,15 @@
   text-align: center;
 }
 
+.queueDisplay {
+  margin-left: 0px;
+}
+
 .clinicinfo-btn {
   font-family: inherit;
   background: none;
   cursor: pointer;
   padding: 6px;
-  /*display: inline-block;*/
-  /*text-transform: uppercase;*/
-  /*letter-spacing: 1px;*/
   font-weight: normal;
   font-size: 15px;
   outline: none;
@@ -33,15 +39,19 @@
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   width: 80%;
-  border: 2px solid #4776E6;
-  color: #4776E6;
+  border: 2px solid #7456e9;
+  color: #7456e9;
+  background-color: #fff;
   overflow: hidden;
   margin-top: 10px;
   margin-left:0;
 }
 
 .clinicinfo-btn:hover {
-	background: #4776E6;
+	background: #7456e9;
   color: #fff;
-  border-color: #fff;
+}
+
+.private-clinic-info-btn {
+  margin-top: 30px;
 }
