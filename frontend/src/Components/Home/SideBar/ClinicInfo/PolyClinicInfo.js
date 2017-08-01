@@ -11,13 +11,14 @@ import { Link } from 'react-router-dom';
 import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
 
+import { triggerNotification } from '../../../../Actions/AppAction';
 import { userNotification } from '../../../../Actions/UserAction';
-import { clearNotif } from '../../../../Actions/AppAction';
+//import { clearNotif } from '../../../../Actions/AppAction';
 
 // import { store } from '../../../../index.js';
 
 // import API to store activeClinic into localStorage
-import { setActiveClinic } from '../../../../API/activeClinicAPI'
+//import { setActiveClinic } from '../../../../API/activeClinicAPI'
 
 
 import './PolyClinicInfo.css';
@@ -35,11 +36,8 @@ class PolyClinicInfo extends Component {
   onClick = (event) => {
     let user = this.props.user
     if(!user._id){
+      this.props.triggerNotification();
       this.props.userNotification("Please Login to Subscribe");
-      setTimeout(()=>{
-        this.props.clearNotif();
-      },5000)
-      return;
     }
 
     if(!user.subscribe){
@@ -48,11 +46,9 @@ class PolyClinicInfo extends Component {
       })
     }else{
       if(user.subscribe.indexOf(this.props.activeClinic._id) > -1){
-        console.log("You have already subscribe to this clinic")
-        this.props.userNotification("You have already subscribe to this clinic");
-        setTimeout(() => {
-          this.props.clearNotif();
-        },2000);
+        console.log("You have already subscribed to this clinic");
+        this.props.triggerNotification();
+        this.props.userNotification("You have already subscribed to this clinic");
         return;
       }else{
         this.setState({
@@ -68,9 +64,9 @@ class PolyClinicInfo extends Component {
     })
   }
 
-  storeActiveClinic = () => {
-    setActiveClinic(this.props.activeClinic);
-  }
+  // storeActiveClinic = () => {
+  //   setActiveClinic(this.props.activeClinic);
+  // }
 
   // return formatted time data
   dateArrayParser = (queueArray, strip) => {
@@ -123,8 +119,8 @@ class PolyClinicInfo extends Component {
 
     // Compute the minimum and maximum date, and the maximum queue.
     x.domain([hQ[0].date, hQ[hQ.length - 1].date]);
-    //y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
-    y.domain([0,220]);
+    y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
+    //y.domain([0,220]);
 
 
     const colors  = scaleOrdinal(schemeCategory10)
@@ -229,6 +225,7 @@ class PolyClinicInfo extends Component {
               <QueueList queue= {this.props.activeClinic.queue}/>
               <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button id="subscribeClinicButton" type="submit" className="btn btn-info">See more queues or Submit a queue report</button></Link>
               <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
+
             </div>
           )
         }
@@ -260,8 +257,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    triggerNotification: () => {dispatch(triggerNotification())},
     userNotification: (message) => {dispatch(userNotification(message));},
-    clearNotif: () => {dispatch(clearNotif());}
+    //clearNotif: () => {dispatch(clearNotif());}
   }
 }
 

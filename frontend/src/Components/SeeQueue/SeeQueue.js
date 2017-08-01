@@ -30,6 +30,49 @@ class SeeQueue extends Component {
     //   clinic: null
     // }
   }
+//
+  // componentWillReceiveProps(nextProps){
+  //       console.log(nextProps.clinic)
+  //       let testClinic = nextProps.clinic.filter((elem, index) => {
+  //         return elem.properties.name_full === this.props.match.params.name
+  //       })
+  //       console.log(testClinic)
+  //       // this.setState({
+  //       //   clinic:testClinic
+  //       // })
+  //
+  //       nextProps.activeClinicAction({...testClinic});
+  // }
+
+  // componentDidMount(){
+  //   console.log(this.props.clinic)
+  //           let testClinic = this.props.clinic.filter((elem, index) => {
+  //             return elem.properties.name_full === this.props.match.params.name
+  //           })
+  //           console.log(testClinic)
+  //           // this.setState({
+  //           //   clinic:testClinic
+  //           // })
+  // }
+  populateQueues = (queue) => {
+    let queues = queue;
+    // console.log("activeClinic.queue");
+    // console.log(queue);
+    let statequeues = this.props.statequeues;
+    // console.log("statequeues");
+    // console.log(statequeues)
+    // replace the activeClinic queues with actual queue objects
+    const initQueues = queues.map( (queue)=> {
+      return statequeues.filter( (statequeue) => {
+        // console.log("statequeue " + statequeue._id);
+        // console.log("queue " + queue._id);
+        return statequeue._id == queue._id;
+      })[0];
+    });
+    console.log("initQueues");
+    console.log(initQueues);
+    return initQueues;
+
 
   componentWillReceiveProps(nextProps){
     if(!nextProps.activeClinic._id){
@@ -59,7 +102,7 @@ class SeeQueue extends Component {
         <div className="row">
           <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
               <header className="jumbotron queue-gallery-jumbotron">
-                <QueueGallery queue={this.props.activeClinic.queue}/>
+                <QueueGallery queue={this.populateQueues(this.props.activeClinic.queue)}/>
               </header>
           </div>
           <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -90,7 +133,8 @@ class SeeQueue extends Component {
 const mapStateToProps = (state) => {
   return {
     activeClinic: state.activeClinic,
-    clinic: state.clinic
+    clinic: state.clinic,
+    statequeues: state.queue,
   }
 }
 
