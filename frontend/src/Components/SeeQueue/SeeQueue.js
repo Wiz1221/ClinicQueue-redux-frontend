@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import NavBar from '../NavBar/NavBar';
+import NavBarWhite from '../NavBarWhite/NavBarWhite';
 import QueueGallery from './QueueGallery/QueueGallery';
 import SubmitQueue from './SubmitQueue/SubmitQueue';
 import NotificationBar from '../Home/NotificationBar/NotificationBar';
@@ -74,16 +74,29 @@ class SeeQueue extends Component {
     return initQueues;
   }
 
+  componentWillReceiveProps(nextProps){
+    if(!nextProps.activeClinic._id){
+      let testClinic = nextProps.clinic.filter((elem, index) => {
+        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-') === this.props.match.params.name
+      })
+
+      this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);
+    }
+  }
+
+  dispatchingActiveClinicIntoStoreWhenCopyPasteURL = (clinic) => {
+      this.props.activeClinicAction({...clinic})
+  }
+
   render() {
-    // console.log(this.state.clinic)
     return (
       <div>
         {
           this.props.activeClinic._id ? (
-      <div className="seequeue-container container-fluid">
-        {this.props.minNavBarOn()}
-        <div className="row">
-          <NavBar/>
+            <div className="seequeue-container container-fluid">
+              {this.props.minNavBarOn()}
+              <div className="row">
+          <NavBarWhite match={this.props.match}/>
           <NotificationBar/>
         </div>
         <div className="row">
@@ -128,8 +141,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    minNavBarOn: () => {dispatch(minNavBarOn());}
-    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    minNavBarOn: () => {dispatch(minNavBarOn());},
+    activeClinicAction: (clinic) => {dispatch(activeClinic(clinic));},
   }
 }
 
