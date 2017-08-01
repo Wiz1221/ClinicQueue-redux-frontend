@@ -72,7 +72,7 @@ class SeeQueue extends Component {
     console.log("initQueues");
     console.log(initQueues);
     return initQueues;
-
+  }
 
   componentWillReceiveProps(nextProps){
     if(!nextProps.activeClinic._id){
