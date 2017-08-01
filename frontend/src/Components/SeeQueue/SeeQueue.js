@@ -72,10 +72,23 @@ class SeeQueue extends Component {
     console.log("initQueues");
     console.log(initQueues);
     return initQueues;
+
+
+  componentWillReceiveProps(nextProps){
+    if(!nextProps.activeClinic._id){
+      let testClinic = nextProps.clinic.filter((elem, index) => {
+        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-') === this.props.match.params.name
+      })
+
+      this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);
+    }
+  }
+
+  dispatchingActiveClinicIntoStoreWhenCopyPasteURL = (clinic) => {
+      this.props.activeClinicAction({...clinic})
   }
 
   render() {
-    // console.log(this.state.clinic)
     return (
       <div>
         {
@@ -128,8 +141,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    minNavBarOn: () => {dispatch(minNavBarOn());}
-    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    minNavBarOn: () => {dispatch(minNavBarOn());},
+    activeClinicAction: (clinic) => {dispatch(activeClinic(clinic));},
   }
 }
 

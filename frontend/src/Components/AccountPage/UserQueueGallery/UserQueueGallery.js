@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import QueueItemInAccount from './QueueItemInAccount';
+import { deleteQueue } from '../../../Actions/QueueAction';
+import { triggerNotification } from '../../../Actions/AppAction';
+import { userNotification } from '../../../Actions/UserAction';
 
 
 class UserQueueGallery extends Component {
@@ -8,30 +12,37 @@ class UserQueueGallery extends Component {
     super(props);
   }
 
-  deleteQueue = () => {
-
+  deleteQueueButton = (queue) => {
+    this.props.deleteQueue({
+      queue_id: queue._id,
+      queuePicPublicId: queue.picPublicId,
+      clinic_id: queue.clinic._id,
+      user_id: queue.user._id
+    });
+    this.props.triggerNotification()
+    this.props.userNotification("Successfully deleted queue!")
   }
 
-  renderQueue = () => {
-    // if(this.props.user.queue){
-    //   let queueFromUserArray = [...this.props.queue].filter((queue,index) => {
-    //     return queue.user === this.props.user._id;
-    //   })
-    //   return queueFromUserArray.map((queue,index) => {
-    //     return (
-    //       //<QueueItemInAccount queue={queue} deleteQueue={this.deleteQueue}/>
-    //     )
-    //   })
-    // }else{
-    //   return (<div>you have not posted any queue</div>);
-    // }
+  renderQueueGallery = () => {
+    let queueFromUserArray = [...this.props.queue].filter((queue,index) => {
+      return queue.user._id === this.props.user._id;
+    })
 
+    if(queueFromUserArray.length===0){
+      return (<div>you have not posted any queue</div>);
+    }else{
+      return queueFromUserArray.map((queue,index) => {
+        return (
+          <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton}/>
+        )
+      })
+    }
   }
 
   render() {
-    let queue = this.renderQueue()
+    let queue = this.renderQueueGallery();
     return (
-      <div className="BG">
+      <div>
         {queue}
       </div>
     );
@@ -48,7 +59,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
+    deleteQueue: (queue) => {dispatch(deleteQueue(queue));},
+    triggerNotification: () => {dispatch(triggerNotification());},
+    userNotification: (message) => {dispatch(userNotification(message));}
   }
 }
 

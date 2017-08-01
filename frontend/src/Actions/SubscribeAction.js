@@ -1,25 +1,24 @@
 import { socket } from './ClinicAction';
 import { store } from '../index.js';
 
-const storeSubscribeInActiveClinic = (user_id) => {
+const storeSubscribeInActiveClinic = (newSubscribe) => {
   return {
     type: 'STORE_SUBSCRIBE_IN_ACTIVE_CLINIC',
-    user_id
+    newSubscribe
   }
 }
 
-const storeSubscribeInClinic = (user_id, clinic_id) => {
+const storeSubscribeInClinic = (newSubscribe) => {
   return {
     type: 'STORE_SUBSCRIBE_IN_CLINIC',
-    user_id,
-    clinic_id
+    newSubscribe
   }
 }
 
-const storeSubscribeInUser = (clinic_id) => {
+const storeSubscribeInUser = (newSubscribe) => {
   return {
     type: 'STORE_SUBSCRIBE_IN_USER',
-    clinic_id
+    newSubscribe
   }
 }
 
@@ -39,11 +38,32 @@ export const postNewSubscribe = (newSubscribe) => {
 socket.on('subscription successful', (newSubscribe) => {
   const state = store.getState();
   if(state.user._id === newSubscribe.user){
-    store.dispatch(storeSubscribeInUser(newSubscribe.clinic));
+    store.dispatch(storeSubscribeInUser(newSubscribe));
   }
-  store.dispatch(storeSubscribeInClinic(newSubscribe.user, newSubscribe.clinic));
-  store.dispatch(storeSubscribeInActiveClinic(newSubscribe.user));
+  store.dispatch(storeSubscribeInClinic(newSubscribe));
+  store.dispatch(storeSubscribeInActiveClinic(newSubscribe));
 })
+
+const deleteSubscribeInActiveClinic = (subscribeInfo) => {
+  return {
+    type: 'DELETE_SUBSCRIBE_IN_ACTIVE_CLINIC',
+    subscribeInfo
+  }
+}
+
+const deleteSubscribeInClinic = (subscribeInfo) => {
+  return {
+    type: 'DELETE_SUBSCRIBE_IN_CLINIC',
+    subscribeInfo
+  }
+}
+
+const deleteSubscribeInUser = (subscribeInfo) => {
+  return {
+    type: 'DELETE_SUBSCRIBE_IN_USER',
+    subscribeInfo
+  }
+}
 
 /*
 possible suggestion of subscribeInfo
@@ -59,3 +79,13 @@ export const deleteSubscribe = (subscribeInfo) => {
     socket.emit('delete subscribe to back end', subscribeInfo)
   }
 }
+
+socket.on('delete subscribe done', (subscribeComeBack) => {
+  console.log(subscribeComeBack)
+  const state = store.getState();
+  if(state.user._id === subscribeComeBack.user_id){
+    store.dispatch(deleteSubscribeInUser(subscribeComeBack));
+  }
+  store.dispatch(deleteSubscribeInClinic(subscribeComeBack));
+  store.dispatch(deleteSubscribeInActiveClinic(subscribeComeBack));
+})

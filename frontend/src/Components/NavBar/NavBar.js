@@ -93,6 +93,11 @@ class NavBar extends Component {
   removeActiveClinicAndNearestClinic = () => {
     this.props.removeActiveClinic();
     this.props.nearestClinicOff();
+    this.props.clinic.sort((a,b) => {
+      const aLower = a.properties.name_full.toLowerCase();
+      const bLower = b.properties.name_full.toLowerCase();
+      return aLower < bLower ? -1 : 1
+    })
   }
 
   execLogout = (e) => {
