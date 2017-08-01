@@ -9,10 +9,6 @@ import { userNotification } from '../../Actions/UserAction';
 import { triggerNotification } from '../../Actions/AppAction';
 
 import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
-import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
-
-import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
-import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
 
 import "./AccountPage.css";
 
