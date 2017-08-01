@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import NavBar from '../NavBar/NavBar';
+import NavBarWhite from '../NavBarWhite/NavBarWhite';
 import QueueGallery from './QueueGallery/QueueGallery';
 import SubmitQueue from './SubmitQueue/SubmitQueue';
 import NotificationBar from '../Home/NotificationBar/NotificationBar';
@@ -93,10 +93,10 @@ class SeeQueue extends Component {
       <div>
         {
           this.props.activeClinic._id ? (
-      <div className="seequeue-container container-fluid">
-        {this.props.minNavBarOn()}
-        <div className="row">
-          <NavBar/>
+            <div className="seequeue-container container-fluid">
+              {this.props.minNavBarOn()}
+              <div className="row">
+          <NavBarWhite match={this.props.match}/>
           <NotificationBar/>
         </div>
         <div className="row">

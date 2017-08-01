@@ -1,0 +1,12 @@
+.dropDownItem {
+  /*border-radius: 5px;*/
+  padding: 8px;
+  /*padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;*/
+}
+
+.dropDownItem:hover {
+  cursor: pointer;
+  background-color: rgb(0, 204, 204);
+}

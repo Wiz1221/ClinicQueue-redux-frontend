@@ -1,5 +1,5 @@
 .notificationBar {
-  background-color: rgba(255, 255, 255, 1);
+  background: #fff;
   position: fixed;
   top: 60px;
   left: 30%;
@@ -9,14 +9,14 @@
   border-radius: 3px;
   text-align: center;
   font-size: 25px;
-  border: solid #4776E6 1.5px;
+  border: solid #8E54E9 1.5px;
 }
 
 .notificationBar p {
     font-weight: normal;
     line-height: 2em;
     margin: 0;
-    color: #4776E6;
+    color: #8E54E9;
 }
 
 .animated {
