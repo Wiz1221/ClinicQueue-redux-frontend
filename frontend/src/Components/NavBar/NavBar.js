@@ -13,7 +13,7 @@ import logo from '../../ClinicQueue_White.png';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff, triggerNotification } from '../../Actions/AppAction';
+import { nearestClinic, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -24,6 +24,8 @@ class NavBar extends Component {
       searchTerm: "",
       clinicDropDownList: [],
       searching: false,
+      width: null,
+      menuTop: false
     }
   }
 
@@ -106,15 +108,109 @@ class NavBar extends Component {
     this.props.Logout();
     //window.location.href = "/";
   }
+  clearNotifi = () => {
+    this.props.clearNotif();
+  }
+
+  getWidth = () => {
+    let myWidth = window.innerWidth;
+    console.log(myWidth);
+    this.setState({
+      width: myWidth
+    });
+  }
+  componentWillMount() {
+    this.setState({
+      width: window.innerWidth
+    })
+  }
+  componentDidMount() {
+    window.addEventListener("resize", this.getWidth.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.getWidth.bind(this));
+  }
+
+  showMenu = () => {
+    console.log("burger Menu!!")
+    if(this.state.menuTop) {
+      this.setState({
+        menuTop: false
+      });
+    }else {
+      this.setState({
+        menuTop: true
+      });
+      return{
+        top: -200
+      }
+    }
+  }
+  toggleMenu = () => {
+    if (this.state.menuTop) {
+      return{
+        top: 70
+      }
+    }else {
+      return{
+        top: -200
+      }
+    }
+  }
 
 
   render() {
 
     return (
       <div >
+        {this.state.width < 767 ? (
+          <div className="smallScreenNav">
+            <nav>
+              <Link to ='/'>
+                <a onClick={this.removeActiveClinicAndNearestClinic}>
+                  <img src={logo} width={50} height={50} className="logo"/>
+                </a>
+              </Link>
+              <div className="burgerMenuArea" onClick={this.showMenu}></div>
+              <div className="burgerMenu pull-right"></div>
+
+              <div className="box pull-right smallBox">
+                <div className="container-2">
+                    <span className="icon"><i className="fa fa-lg fa-search"></i></span>
+                    <input className="searchList"
+                           type="search"
+                           name="search"
+                           id="search"
+                           value={this.state.searchTerm ? this.state.searchTerm:""}
+                           placeholder="Search Clinic"
+                           onChange={this.onChange}
+                           onFocus={this.onFocus}
+                           onBlur={this.onBlur} />
+                </div>
+              </div>
+              {this.state.searching?(<div className="dropDownList" >{this.renderDropDown()}</div>): null}
+
+              </nav>
+
+              <div className='menus' style={this.toggleMenu()}>
+                <div className='menuItem'>
+                  {this.props.minNavBar? null :
+                  (<a className="smallMenuBtn" onClick={this.clickNearestClinic}><div>My Nearest Clinics</div></a>)}
+                </div>
+
+                  {this.props.user._id ? <div className='menuItem'><Link to='/MyAccount' className="smallMenuBtn"><div>My account</div></Link></div> : null}
+
+                <div className='menuItem'>
+                  {this.props.user._id ? <Link to='/' className="smallMenuBtn" onClick={this.execLogout}>Logout</Link> :
+                  <Link to='/login' className="smallMenuBtn"><div onClick={this.clearNotifi}>Login</div></Link>}
+                </div>
+              </div>
+
+          </div>
+        ) : (
         <nav className="Navbar navbar-fixed-top" >
         <Link to ='/'>
-          <a href="/" onClick={this.removeActiveClinicAndNearestClinic}>
+          <a onClick={this.removeActiveClinicAndNearestClinic}>
             <img src={logo} width={50} height={50} className="logo"/>
             <p className='logoName'>ClinicQueueSG</p>
           </a></Link>
@@ -126,7 +222,7 @@ class NavBar extends Component {
 
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
-          <Link to='/login' className="navLogin pull-right">Login</Link>}
+          <Link to='/login' className="navLogin pull-right"><div onClick={this.clearNotifi}>Login</div></Link>}
 
           <div className="box pull-right">
             <div className="container-2">
@@ -139,15 +235,11 @@ class NavBar extends Component {
                        placeholder="Search Clinic"
                        onChange={this.onChange}
                        onFocus={this.onFocus}
-                       onBlur={this.onBlur}
-                       />
-
+                       onBlur={this.onBlur} />
             </div>
           </div>
           {this.state.searching?(<div className="dropDownList" >{this.renderDropDown()}</div>): null}
-
-        </nav>
-
+        </nav>)}
       </div>
     );
   }
@@ -169,6 +261,7 @@ const mapDispatchToProps = (dispatch) => {
     nearestClinic: () => {dispatch(nearestClinic())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
     triggerNotification: () => {dispatch(triggerNotification())},
+    clearNotif: () => {dispatch(clearNotif())}
   }
 }
 
