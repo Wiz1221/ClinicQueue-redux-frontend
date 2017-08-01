@@ -1,4 +1,4 @@
-nav {
+.Navbar {
   height: 70px;
   background: #4776E6;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top left, #4776E6, #8E54E9);  /* Chrome 10-25, Safari 5.1-6 */
@@ -106,7 +106,7 @@ width: 200px;
 .navLogin:hover {
   cursor: pointer;
   background-color: #fff;
-  color: #4776E6;
+  color: #7456e9;
 }
 .navLogin:focus {
   color: white;
@@ -114,7 +114,8 @@ width: 200px;
 }
 .navLogin:focus:hover {
   color: white;
-  text-decoration: underline;
+  color: #7456e9;
+  cursor: pointer;
 }
 
 .nearsetBtn {
@@ -267,23 +268,23 @@ and (max-width : 767px) {
     margin-bottom: -2px;
     padding: 5px;
     background-color: #fff;
-    border: 2px solid #4776E6;
+    border: 2px solid #7456e9;
     transition: all 0.3s;
   }
   .menuItem:hover {
-    background-color: #4776E6;
+    background-color: #7456e9;
     color: #fff;
-
+    cursor: pointer;
   }
   .smallMenuBtn {
     text-align: center;
-    color: #4776E6;
+    color: #7456e9;
     font-size: 16px;
     font-weight: 300;
   }
-  .smallMenuBtn:hover {
+  .menuItem:hover > .smallMenuBtn{
     color: #fff;
-    font-size: 16px;
+    cursor: pointer;
   }
 
 }

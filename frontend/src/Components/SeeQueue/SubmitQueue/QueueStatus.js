@@ -7,40 +7,30 @@ class QueueStatus extends Component {
 
   onClick = (event) => {
     this.props.onClick(event.target.innerHTML);
+
   }
 
   render() {
     return (
       <div className="container">
-        <section>
+        <form>
         <div className="row-fluid">
           <input type="radio" id="control_01" name="select" value="1" />
-          <label htmlFor="control_01">
-
-            <p id="statusSelection1" className="statusSelection" onClick={this.onClick}>Light</p>
-          </label>
+          <label htmlFor="control_01" id="statusSelection1" className="statusSelection" onClick={this.onClick}>Light</label>
         </div>
         <div className="row-fluid">
           <input type="radio" id="control_02" name="select" value="2" />
-          <label htmlFor="control_02">
-
-            <p id="statusSelection2" className="statusSelection" onClick={this.onClick}>Normal</p>
-          </label>
+          <label htmlFor="control_02" id="statusSelection2" className="statusSelection" onClick={this.onClick}>Normal</label>
         </div>
         <div className="row-fluid">
           <input type="radio" id="control_03" name="select" value="3" />
-          <label htmlFor="control_03">
-
-            <p id="statusSelection3" className="statusSelection" onClick={this.onClick}>Busy</p>
-          </label>
+          <label htmlFor="control_03" id="statusSelection3" className="statusSelection" onClick={this.onClick}>Busy</label>
         </div>
         <div className="row-fluid">
-          <input type="radio" id="control_04" name="select" value="4" disabled/>
-          <label htmlFor="control_04">
-            <p id="statusSelection4" className="statusSelection" onClick={this.onClick}>Very Busy</p>
-          </label>
+          <input type="radio" id="control_04" name="select" value="4"/>
+          <label htmlFor="control_04" id="statusSelection4" className="statusSelection" onClick={this.onClick}>Very Busy</label>
         </div>
-        </section>
+      </form>
       </div>
     );
   }
