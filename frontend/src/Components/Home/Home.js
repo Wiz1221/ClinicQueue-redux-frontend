@@ -29,7 +29,6 @@ class Home extends Component {
         {this.props.minNavBarOff()}
         <NavBar/>
         <NotificationBar/>
-        <ErrorNotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
 
         <About />

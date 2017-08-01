@@ -23,7 +23,7 @@ class SubmitQueue extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(this.props.clinic)
+    //console.log(this.props.clinic)
   }
 
   statusButtonClicked = (status) => {
@@ -90,6 +90,8 @@ class SubmitQueue extends Component {
         })
       }
     }else{
+      this.props.triggerNotification();
+      this.props.userNotification("Please login to submit Queue report");
       this.setState({
         missing: true,
         adminMessage: "Please login to submit Queue report"

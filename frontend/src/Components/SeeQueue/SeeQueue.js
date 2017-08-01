@@ -54,6 +54,25 @@ class SeeQueue extends Component {
   //           //   clinic:testClinic
   //           // })
   // }
+  populateQueues = (queue) => {
+    let queues = queue;
+    // console.log("activeClinic.queue");
+    // console.log(queue);
+    let statequeues = this.props.statequeues;
+    // console.log("statequeues");
+    // console.log(statequeues)
+    // replace the activeClinic queues with actual queue objects
+    const initQueues = queues.map( (queue)=> {
+      return statequeues.filter( (statequeue) => {
+        // console.log("statequeue " + statequeue._id);
+        // console.log("queue " + queue._id);
+        return statequeue._id == queue._id;
+      })[0];
+    });
+    console.log("initQueues");
+    console.log(initQueues);
+    return initQueues;
+  }
 
   render() {
     // console.log(this.state.clinic)
@@ -70,7 +89,7 @@ class SeeQueue extends Component {
         <div className="row">
           <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
               <header className="jumbotron queue-gallery-jumbotron">
-                <QueueGallery queue={this.props.activeClinic.queue}/>
+                <QueueGallery queue={this.populateQueues(this.props.activeClinic.queue)}/>
               </header>
           </div>
           <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -101,7 +120,8 @@ class SeeQueue extends Component {
 const mapStateToProps = (state) => {
   return {
     activeClinic: state.activeClinic,
-    clinic: state.clinic
+    clinic: state.clinic,
+    statequeues: state.queue,
   }
 }
 

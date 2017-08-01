@@ -10,7 +10,7 @@ import { triggerNotification } from '../../../../Actions/AppAction';
 import { userNotification } from '../../../../Actions/UserAction';
 
 // import API to store activeClinic into localStorage
-import { setActiveClinic } from '../../../../API/activeClinicAPI'
+//import { setActiveClinic } from '../../../../API/activeClinicAPI'
 
 import './PrivateClinicInfo.css'
 
@@ -39,9 +39,9 @@ class PrivateClinicInfo extends Component {
     })
   }
 
-  storeActiveClinic = () => {
-    setActiveClinic(this.props.activeClinic);
-  }
+  // storeActiveClinic = () => {
+  //   setActiveClinic(this.props.activeClinic);
+  // }
 
   render() {
     const properties = this.props.activeClinic.properties
@@ -62,12 +62,12 @@ class PrivateClinicInfo extends Component {
             <div className="private-clinic-info container">
               <QueueList queue= {this.props.activeClinic.queue}/>
               <div className="row-fluid row-clinicinfo-btn">
-                <Link to="/seeQueue"><button type="button" className="btn clinicinfo-btn" onClick={this.storeActiveClinic}>See more queues...</button></Link>
+                <Link to={'/seeQueue/'+this.props.activeClinic.properties.name_full}><button type="button" className="btn clinicinfo-btn">See more queues...</button></Link>
               </div>
               {this.props.user._id ?
-                this.props.user.role == "clinicAdmin" ? (
+                this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (
                 <div className="row-fluid row-clinicinfo-btn">
-                  <Link to='/seeQueue'><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
+                  <Link to={'/seeQueue/'+this.props.activeClinic.properties.name_full}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
                 </div>
               ) : (
                 <div className="row-fluid row-clinicinfo-btn">
