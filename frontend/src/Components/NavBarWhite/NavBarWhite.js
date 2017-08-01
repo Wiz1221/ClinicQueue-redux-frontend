@@ -12,7 +12,7 @@ import logo from '../../ClinicQueue_Color.png';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff, triggerNotification } from '../../Actions/AppAction';
+import { nearestClinicUser, nearestClinicOff, triggerNotification } from '../../Actions/AppAction';
 
 import './NavBarWhite.css';
 
@@ -34,7 +34,7 @@ class NavBar extends Component {
       <div >
         <nav className="NavbarWhite navbar-fixed-top" >
         <Link to ='/'>
-          <a onClick={this.removeActiveClinicAndNearestClinic}>
+          <a>
             <img src={logo} width={50} height={50} className="logoColor"/>
             <p className='logoNameColor'>ClinicQueueSG</p>
           </a></Link>
@@ -50,6 +50,8 @@ class NavBar extends Component {
   }
 }
 
+// onClick={this.removeActiveClinicAndNearestClinic}
+
 const mapStateToProps = (state) => {
   return {
     clinic: state.clinic,
@@ -63,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
     removeActiveClinic: () => {dispatch(removeActiveClinic())},
     Logout: () => {dispatch(localLogout());},
-    nearestClinic: () => {dispatch(nearestClinic())},
+    nearestClinicUser: () => {dispatch(nearestClinicUser())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
     triggerNotification: () => {dispatch(triggerNotification())},
   }

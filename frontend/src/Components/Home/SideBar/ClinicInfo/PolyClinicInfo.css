@@ -1,7 +1,20 @@
+.poly-clinic-info {
+  width: 90%;
+  margin: auto;
+}
+
 path.line {
   fill: none;
   stroke: #666;
   stroke-width: 5px;
+}
+
+.axis text {
+   font-size: 3em;
+}
+
+text.x-axis-label {
+  font-size: 3em;
 }
 
 .svgBox {

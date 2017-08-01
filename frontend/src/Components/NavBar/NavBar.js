@@ -13,7 +13,7 @@ import logo from '../../ClinicQueue_White.png';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
+import { nearestClinicUser, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -89,7 +89,7 @@ class NavBar extends Component {
 
   clickNearestClinic = () => {
     this.props.removeActiveClinic();
-    this.props.nearestClinic();
+    this.props.nearestClinicUser();
   }
 
   removeActiveClinicAndNearestClinic = () => {
@@ -258,7 +258,7 @@ const mapDispatchToProps = (dispatch) => {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
     removeActiveClinic: () => {dispatch(removeActiveClinic())},
     Logout: () => {dispatch(localLogout());},
-    nearestClinic: () => {dispatch(nearestClinic())},
+    nearestClinicUser: () => {dispatch(nearestClinicUser())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
     triggerNotification: () => {dispatch(triggerNotification())},
     clearNotif: () => {dispatch(clearNotif())}

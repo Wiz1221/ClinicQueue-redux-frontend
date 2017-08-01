@@ -53,7 +53,7 @@
 }
 
 p.queue-comments, p.queue-timestamp {
-  margin-top: 1px;
+  /*margin-top: 1px;*/
 }
 
 .queue-status {
