@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import NavBarWhite from '../NavBarWhite/NavBarWhite';
+
+// import NavBarWhite from '../NavBarWhite/NavBarWhite';
 import NotifBar from '../Home/NotificationBar/NotificationBar';
+import UserSubscribe from './UserSubscribe/UserSubscribe';
+import NavBarWhite from '../NavBarWhite/NavBarWhite';
+import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
 
-import { updateProfile, updatePassword, userNotification, deleteAccount } from '../../Actions/UserAction';
+// import { updateProfile, updatePassword, userNotification } from '../../Actions/UserAction';
 import { triggerNotification } from '../../Actions/AppAction';
-
-import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
-import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
-
-import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
-import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
+import { updateProfile, updatePassword, userNotification, deleteAccount } from '../../Actions/UserAction';
 
 import "./AccountPage.css";
 
@@ -143,16 +142,7 @@ onDeleteAccountClick = () => {
                   </div>
                 </div>) : null}
 
-
-
-
-                <div className="userInfoField userInfoFieldEnding">
-                  <h5>My Subscription:</h5>
-                  <div className="userInfoRow">
-                    <input type="text" name="contact" className='inputField' placeholder={this.props.user.subscribe} onChange={this.onChange}/>
-                    <button className="updateBtn" onClick={this.onClick}>update</button>
-                  </div>
-                </div>
+                <UserSubscribe />
 
 
 
@@ -181,7 +171,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
     Update: (credentials) => {dispatch(updateProfile(credentials));},
     UpdatePassword: (credentials) => {dispatch(updatePassword(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},

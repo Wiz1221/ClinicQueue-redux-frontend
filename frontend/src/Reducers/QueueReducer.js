@@ -11,6 +11,10 @@ const QueueReducer = (state = [], action) => {
         action.queue
       ]
       break;
+    case 'DELETE_QUEUE':
+      return state.filter((queue,index) => {
+        return queue._id !== action.queue_id
+      })
     default:
       return state
   }
