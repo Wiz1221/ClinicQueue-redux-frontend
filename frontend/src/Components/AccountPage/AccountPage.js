@@ -11,6 +11,9 @@ import { triggerNotification } from '../../Actions/AppAction';
 import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
 import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
 
+import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
+import UserSubscribeGallery from './UserSubscribeGallery/UserSubscribeGallery';
+
 import "./AccountPage.css";
 
 class AccountPage extends Component {
@@ -82,8 +85,9 @@ onUpdatePasswordClick = () => {
 
   render() {
     return (
-      <div className="BG container">
 
+      <div className="BG container">
+        <NavBarWhite/>
         <div className="row">
           <div className="boxContent col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1">
             <div className="accLeftSide">
@@ -163,7 +167,6 @@ onUpdatePasswordClick = () => {
 
 // <UserQueueGallery queue={this.props.user.queue ? this.props.user.queue : []} />
 // <UserSubscribeGallery subscribe={this.props.user.subscribe ? this.props.user.subscribe : []} />
-//  <NavBarWhite/>
 
 const mapStateToProps = (state) => {
 

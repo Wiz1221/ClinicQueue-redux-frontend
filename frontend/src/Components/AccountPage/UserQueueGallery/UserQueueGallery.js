@@ -6,6 +6,7 @@ import { deleteQueue } from '../../../Actions/QueueAction';
 import { triggerNotification } from '../../../Actions/AppAction';
 import { userNotification } from '../../../Actions/UserAction';
 
+
 class UserQueueGallery extends Component {
   constructor(props) {
     super(props);
