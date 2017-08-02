@@ -96,6 +96,7 @@
 .queue-comments {
   font-size: 14px;
   height: 30px;
+  margin-bottom: -8px;
 }
 .queue-status {
   /*line-height: 2em;*/

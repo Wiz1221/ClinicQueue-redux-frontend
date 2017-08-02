@@ -56,10 +56,14 @@ a.boxclose:hover {
 
 .queueItem-account-regular {
   width: 230px;
-  height: 200px;
+  height: 300px;
 }
 
 .queueItem-account-clinicAdmin {
   width: 230px;
-  height: 280px;
+  height: 300px;
+}
+
+.queue-account-clinicName {
+  height: 40px;
 }

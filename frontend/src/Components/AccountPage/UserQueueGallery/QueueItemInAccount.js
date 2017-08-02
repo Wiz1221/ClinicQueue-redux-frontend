@@ -10,7 +10,9 @@ class QueueItemInAccount extends Component{
   }
 
   checkUserRole = (queue) => {
-    if(this.props.user.role==='clinicAdmin'){
+    console.log(this.props.user)
+    console.log(queue)
+    if(this.props.user.myClinic === queue.clinic._id){
       return {
         border: queueBorderParse(queue.status),
         containerType: 'queueItem-account-clinicAdmin'
@@ -32,7 +34,7 @@ class QueueItemInAccount extends Component{
       <a className="boxclose" onClick={this.onClick}></a>
         <img src={queue.pic} className="queue-sidebar-image queue-image-for-account" />
         <div className="queue-info-for-account">
-        <div>For {queue.clinic.properties.name_full}</div>
+        <div className="queue-account-clinicName">For {queue.clinic.properties.name_full}</div>
         <p className="queue-timestamp queue-for-account">Submitted at {dateParse(queue.createdAt,8)}</p>
         <p className="queue-sidebar-comments queue-for-account">"{commentShort}"</p>
         {
