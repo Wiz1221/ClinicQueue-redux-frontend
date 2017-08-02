@@ -26,7 +26,7 @@ export default class About extends React.Component {
       <div className="AboutButton container">
         <div className="row">
           <div className="col-md-12">
-            <p>ClinicQueueSG is a site meant to help retards find their brains.</p>
+            <p></p>
           </div>
         </div>
       </div>
@@ -47,8 +47,11 @@ export default class About extends React.Component {
           <div className="container">
               <div className="row">
                 <div className="col-md-12">
-                  <p>Welcome to <span className="inline-brandname">ClinicQueueSG</span>! This site is a one-stop portal to help you find out the queue situation of over 900 primary care clinics in Singapore.</p>
-                  <p>Firstly, we have centralised the <a href="https://polyclinic.singhealth.com.sg/QUEUEWATCH/Pages/home.aspx" target="_blank">QueueWatch</a> and <a href="https://www.nhgp.com.sg/smile_list.aspx" target="_blank">See Me In Line (S.M.I.L.E) </a> crowd information services by Singhealth and National Healthcare Group so that you can inspect the crowd situation in all Singapore polyclinics in one place. The size of the circles denote the total number of people reported to be currently waiting in each polyclinic.</p>
+                  <p>Welcome to <span className="inline-brandname">ClinicQueueSG</span>! This site is a one-stop portal to help you find out the queue situation of over 900 primary care clinics in Singapore, to help you manage your time for clinic visits.</p>
+                  <p>We have centralised the <a href="https://polyclinic.singhealth.com.sg/QUEUEWATCH/Pages/home.aspx" target="_blank">QueueWatch</a> and <a href="https://www.nhgp.com.sg/smile_list.aspx" target="_blank">See Me In Line (S.M.I.L.E) </a> crowd information services by Singhealth and National Healthcare Group so that you can inspect the crowd situation at all Singapore polyclinics. The pulsing markers denote the total number of people reported to be currently waiting in each polyclinic.</p>
+                  <p>You can also find queue reports for our partner private clinics. Administrators for partner clinics will post images of the queue situation at relevant times. You can subscribe to clinics to receive SMS alerts whenever a new queue report is posted.</p>
+                  <br/>
+                  <p>&#169; Isaac-Geokyan-Hanif GA WDI-10 2017</p>
                 </div>
               </div>
             </div>) : (null)}

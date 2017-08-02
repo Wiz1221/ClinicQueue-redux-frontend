@@ -17,6 +17,10 @@ text.x-axis-label {
   font-size: 3em;
 }
 
+text.text-label {
+  font-size: 2.8em
+}
+
 .svgBox {
   margin: 10px;
   background-color: white;
