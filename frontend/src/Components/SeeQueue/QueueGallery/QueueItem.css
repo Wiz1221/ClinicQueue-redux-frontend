@@ -1,6 +1,10 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+.NoQueue {
+  margin-left: 15px;
+}
+
 .carousel-Container {
   height: 500px;
   width: 100%;
