@@ -297,7 +297,6 @@ class PolyClinicInfo extends Component {
               <QueueList queue= {this.props.activeClinic.queue}/>
               <div className="row-fluid row-clinicinfo-btn">
                 <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="button" className="btn clinicinfo-btn">See more queues...</button></Link>
-
               </div>
               {this.props.user._id ?
                 this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (

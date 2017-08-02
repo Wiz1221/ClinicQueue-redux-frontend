@@ -37,9 +37,11 @@ class QueueList extends Component {
       const latestQueue = queueArray[0];
       const populated = this.populateQueue(latestQueue);
       if (populated.length > 0) {
-        return (<QueueItem queue={populated[0]}
+        return (<div className="queueDisplay">
+              <QueueItem queue={populated[0]}
                           key={populated[0]._id}
-                          id={populated[0]._id}/>)
+                          id={populated[0]._id}/>
+                        </div>)
       }
       else {
         return  (<div className="no-queue-reports">No queue reports yet</div>)
