@@ -1,3 +1,4 @@
+
 #gallery {
       -moz-column-count: 3;
       -webkit-column-count: 3;
@@ -53,7 +54,7 @@
 }
 
 p.queue-comments, p.queue-timestamp {
-  margin-top: 1px;
+  /*margin-top: 1px;*/
 }
 
 .queue-status {

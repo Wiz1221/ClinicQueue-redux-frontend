@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
+import { removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogin, userNotification } from '../../Actions/UserAction';
-import { clearNotif } from '../../Actions/AppAction';
+import { clearNotif, nearestClinicOff } from '../../Actions/AppAction';
 
 // import css
 import './Login.css';
@@ -33,6 +34,8 @@ class Login extends Component {
     this.setState(state);
 
     this.props.clearNotif();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
   }
 
   localLogin = (e) => {
@@ -100,7 +103,9 @@ const mapDispatchToProps = (dispatch) => {
     // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
     Login: (credentials) => {dispatch(localLogin(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},
-    clearNotif: () => {dispatch(clearNotif());}
+    clearNotif: () => {dispatch(clearNotif());},
+    removeActiveClinic: () => {dispatch(removeActiveClinic())},
+    nearestClinicOff: () => {dispatch(nearestClinicOff())}
   }
 }
 

@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom';
 // import NavBarWhite from '../NavBarWhite/NavBarWhite';
 import NotifBar from '../Home/NotificationBar/NotificationBar';
 import UserSubscribe from './UserSubscribe/UserSubscribe';
 import NavBarWhite from '../NavBarWhite/NavBarWhite';
-import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
 
 // import { updateProfile, updatePassword, userNotification } from '../../Actions/UserAction';
+import { userNotification } from '../../Actions/UserAction';
 import { triggerNotification } from '../../Actions/AppAction';
-import { updateProfile, updatePassword, userNotification, deleteAccount } from '../../Actions/UserAction';
+
+import UserQueueGallery from './UserQueueGallery/UserQueueGallery';
 
 import "./AccountPage.css";
 
 class AccountPage extends Component {
   constructor(props) {
     super(props);
+    // this.props.user._id ? ()=>{}: window.location.href = "/"
     this.state = {
       username: this.props.user.username,
       email: this.props.user.email,
       password: this.props.user.password,
-      rePassword: '',
       contact: this.props.user.contact,
       role: this.props.user.role,
       myClinic: this.props.user.myClinic,
@@ -33,7 +34,6 @@ componentWillReceiveProps(nextProps) {
     username: nextProps.user.username,
     email: nextProps.user.email,
     password: nextProps.user.password,
-    rePassword: "",
     contact: nextProps.user.contact,
     role: nextProps.user.role,
     myClinic: nextProps.user.myClinic,
@@ -54,7 +54,15 @@ onChange = (event) => {
 
 onClickEmail = (e) => {
   if (this.state.email !== this.props.user.email ) {
-    this.props.Update(this.state);
+    // this.props.Update(this.state);
+  }else {
+    this.props.triggerNotification();
+    this.props.userNotification("Everything is up to date, nothing to update.");
+  }
+}
+onClickRole = (e) => {
+  if (this.state.role !== this.props.user.role ) {
+    // this.props.Update(this.state);
   }else {
     this.props.triggerNotification();
     this.props.userNotification("Everything is up to date, nothing to update.");
@@ -62,7 +70,7 @@ onClickEmail = (e) => {
 }
 onClickContact = (e) => {
   if (this.state.contact !== this.props.user.contact ) {
-    this.props.Update(this.state);
+    // this.props.Update(this.state);
   }else {
     this.props.triggerNotification();
     this.props.userNotification("Everything is up to date, nothing to update.");
@@ -70,20 +78,13 @@ onClickContact = (e) => {
 }
 
 onUpdatePasswordClick = () => {
-  if (this.state.password !== this.props.user.password && this.state.rePassword == this.state.password) {
-    this.props.UpdatePassword(this.state);
-  }else {
-    this.props.triggerNotification();
-    this.props.userNotification("Everything is up to date, nothing to update.");
-  }
-}
 
-onDeleteAccountClick = () => {
-  this.props.DeleteAccount(this.state.id);
+  // this.props.UpdatePassword(this.state);
 }
 
   render() {
     return (
+
       <div className="BG container">
         <NavBarWhite/>
         <div className="row">
@@ -109,7 +110,7 @@ onDeleteAccountClick = () => {
                     <input type="password" name="password" className='inputFieldTop' placeholder="***" onChange={this.onChange}/>
                   </div>
                   <div className="userInfoRow">
-                    <input type="password" name="rePassword" className='inputField' placeholder="Re-enter New Password" onChange={this.onChange}/>
+                    <input type="password" name="rePassword" className='inputField' placeholder="Re-enter New Password"/>
                     <button className="updateBtn" onClick={this.onUpdatePasswordClick}>update</button>
                   </div>
                 </div>
@@ -123,31 +124,35 @@ onDeleteAccountClick = () => {
                 <div className="userInfoField">
                   <h5>My role:</h5>
                   <div className="userInfoRow">
-                    {this.state.role == "regularUser" ? (
-                      <select name="role" className='inputFieldRole' onChange={this.onChange}>
+                      {this.state.role == "regularUser" ? (
+                        <select name="role" className='inputField' onChange={this.onChange}>
                         <option value="regularUser" selected='selected' onChange={this.onChange}>Regular User</option>
+                        <option value="clinicAdmin" onChange={this.onChange}>Clinic Admin</option>
                       </select>) : (
-                      <select name="role" className='inputFieldRole' onChange={this.onChange}>
+                      <select name="role" className='inputField' onChange={this.onChange}>
+                        <option value="regularUser" onChange={this.onChange}>Regular User</option>
                         <option value="clinicAdmin" selected='selected' onChange={this.onChange}>Clinic Admin</option>
                       </select>)}
+                    <button className="updateBtn" onClick={this.onClickRole}>update</button>
                   </div>
                 </div>
-                {this.state.role == "clinicAdmin" ? (
-                  <div className="userInfoField">
-                  <h5>My clinic :</h5>
+                <div className="userInfoField">
+                  <h5>To which clinic :</h5>
                   <div className="userInfoRow">
-                    <select name="myClinic" className='inputField' onChange={this.onChange}>
-                      <option value={this.state.myClinic} selected='selected' onChange={this.onChange}>{this.state.myClinic}</option>
-                    </select>
+                    <input type="text" name="contact" className='inputField' placeholder={this.props.user.myClinic} onChange={this.onChange}/>
+                    <button className="updateBtn" onClick={this.onClick}>update</button>
                   </div>
-                </div>) : null}
+                </div>
 
                 <UserSubscribe />
 
 
 
+
+
+
                 <div className="userInfoRow">
-                  <button className="DeleteBtn userInfoFieldEnding" onClick={this.onDeleteAccountClick}>Delete Account</button>
+                  <button className="DeleteBtn userInfoFieldEnding">Delete Account</button>
                 </div>
               </div>
             </div>
@@ -171,11 +176,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    Update: (credentials) => {dispatch(updateProfile(credentials));},
-    UpdatePassword: (credentials) => {dispatch(updatePassword(credentials));},
+    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
+    // Update: (credentials) => {dispatch(updateProfile(credentials));},
+    // UpdatePassword: (credentials) => {dispatch(updatePassword(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},
-    triggerNotification: () => {dispatch(triggerNotification());},
-    DeleteAccount: (id) => {dispatch(deleteAccount(id));}
+    triggerNotification: () => {dispatch(triggerNotification());}
   }
 }
 
