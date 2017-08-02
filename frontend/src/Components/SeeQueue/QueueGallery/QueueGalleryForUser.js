@@ -18,7 +18,7 @@ class QueueGalleryForUser extends Component {
     // let queueArray = this.props.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
-      return  (<div>No Queues yet</div>)
+      return  (<div className="NoQueue">No Queues yet</div>)
     } else {
       let queueFromUser = queueArray.filter((queue,index) => {
         return queue.user._id ? queue.user.role === "regularUser" || "" : null

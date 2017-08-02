@@ -51,7 +51,8 @@ class Map extends Component {
       if(this.props.activeClinicObject.properties.type==="Private"){
         return (<ClinicMarker lat={this.props.activeClinicObject.geometry.coordinates[1]}
                                      lng={this.props.activeClinicObject.geometry.coordinates[0]}
-                                     clinic={this.props.activeClinicObject}/>
+                                     clinic={this.props.activeClinicObject}
+                                     onClick={this.onClick}/>
         )
       }
     }
