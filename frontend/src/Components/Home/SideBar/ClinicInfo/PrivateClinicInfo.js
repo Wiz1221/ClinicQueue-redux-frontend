@@ -23,13 +23,33 @@ class PrivateClinicInfo extends Component {
   }
 
   onClick = (event) => {
-    if(!this.props.user._id) {
+    let user = this.props.user
+    if(!user._id) {
       this.props.triggerNotification();
       this.props.userNotification("Please login or sign up to subscribe");
-    }else {
+    }
+
+    if(!user.subscribe){
       this.setState({
         showWhichComponent: event.target.id
       })
+    }else{
+      let checker = false;
+      user.subscribe.forEach((elem,index) => {
+        if(elem.clinic === this.props.activeClinic._id){
+          checker = true
+        }
+      })
+      if(checker){
+        // console.log("You have already subscribed to this clinic");
+        this.props.triggerNotification();
+        this.props.userNotification("You have already subscribed to this clinic");
+        return;
+      }else{
+        this.setState({
+          showWhichComponent: event.target.id
+        })
+      }
     }
   }
 

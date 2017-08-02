@@ -39,13 +39,15 @@ export const postNewSubscribe = (newSubscribe) => {
 
 socket.on('subscription successful', (newSubscribe) => {
   const state = store.getState();
+  store.dispatch(storeSubscribeInClinic(newSubscribe));
+  store.dispatch(triggerNotification());
+  store.dispatch(userNotification("Subscribed to clinic!"));
   if(state.user._id === newSubscribe.user){
     store.dispatch(storeSubscribeInUser(newSubscribe));
   }
-  store.dispatch(storeSubscribeInClinic(newSubscribe));
-  store.dispatch(storeSubscribeInActiveClinic(newSubscribe));
-  store.dispatch(triggerNotification());
-  store.dispatch(userNotification("Subscribed to clinic!"));
+  if(state.activeClinic._id){
+    store.dispatch(storeSubscribeInActiveClinic(newSubscribe));
+  }
 })
 
 const deleteSubscribeInActiveClinic = (subscribeInfo) => {
@@ -86,10 +88,12 @@ export const deleteSubscribe = (subscribeInfo) => {
 
 socket.on('delete subscribe done', (subscribeComeBack) => {
   console.log(subscribeComeBack)
+  store.dispatch(deleteSubscribeInClinic(subscribeComeBack));
   const state = store.getState();
   if(state.user._id === subscribeComeBack.user_id){
     store.dispatch(deleteSubscribeInUser(subscribeComeBack));
   }
-  store.dispatch(deleteSubscribeInClinic(subscribeComeBack));
-  store.dispatch(deleteSubscribeInActiveClinic(subscribeComeBack));
+  if(state.activeClinic._id){
+    store.dispatch(deleteSubscribeInActiveClinic(subscribeComeBack));
+  }
 })

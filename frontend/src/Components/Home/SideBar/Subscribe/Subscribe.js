@@ -63,7 +63,7 @@ class Subscribe extends Component {
                   </div>
             <div className="subscribe-clinic-info container">
               <div className="row-fluid">
-                <Link to="/account"><button type="submit" className="btn clinicinfo-btn">Update My Number</button></Link>
+                <Link to="/myAccount"><button type="submit" className="btn clinicinfo-btn">Update My Number</button></Link>
               </div>
               <div className="row-fluid">
               {

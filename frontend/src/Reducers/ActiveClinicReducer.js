@@ -1,12 +1,13 @@
-import { getActiveClinic } from '../API/API';
-const initialActiveClinic = getActiveClinic();
+// import { getActiveClinic } from '../API/API';
+// const initialActiveClinic = getActiveClinic();
+// initialActiveClinic? initialActiveClinic: {}
 
-const ActiveClinicReducer = (state = initialActiveClinic? initialActiveClinic: {}, action) => {
+const ActiveClinicReducer = (state = {}, action) => {
   // console.log(state)
-
+// || initialActiveClinic
   switch (action.type) {
     case 'ACTIVE_CLINIC':
-      return action.clinic || initialActiveClinic ;
+      return action.clinic  ;
       break;
     case 'STORE_NEW_QUEUE_IN_ACTIVE_CLINIC':
       let newQueueArray = state.queue;

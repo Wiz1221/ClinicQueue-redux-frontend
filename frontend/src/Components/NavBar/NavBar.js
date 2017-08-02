@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import SearchBar from './SearchBar/SearchBar';
 import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
+import { sortingAlgorithm } from '../../API/API';
 
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
@@ -95,17 +96,15 @@ class NavBar extends Component {
   removeActiveClinicAndNearestClinic = () => {
     this.props.removeActiveClinic();
     this.props.nearestClinicOff();
-    this.props.clinic.sort((a,b) => {
-      const aLower = a.properties.name_full.toLowerCase();
-      const bLower = b.properties.name_full.toLowerCase();
-      return aLower < bLower ? -1 : 1
-    })
+    // sortingAlgorithm(this.props.clinic)
   }
 
   execLogout = (e) => {
     console.log(this.props.user)
     //e.preventDefault();
     this.props.Logout();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
     //window.location.href = "/";
   }
   clearNotifi = () => {
@@ -166,8 +165,8 @@ class NavBar extends Component {
         {this.state.width < 767 ? (
           <div className="smallScreenNav">
             <nav>
-              <Link to ='/'>
-                <a onClick={this.removeActiveClinicAndNearestClinic}>
+              <Link to ='/' onClick={this.removeActiveClinicAndNearestClinic}>
+                <a>
                   <img src={logo} width={50} height={50} className="logo"/>
                 </a>
               </Link>

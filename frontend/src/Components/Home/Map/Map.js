@@ -81,10 +81,9 @@ class Map extends Component {
     }
   }
 
-  renderNearestClinic = (coord) => {
-    console.log("in render nearest clinic!")
-    if(coord.lat){
-      let nearestClinicArray = calculateNearest(this.props.clinic,coord)
+  renderNearestClinic = () => {
+    if(this.state.coordinates.lat){
+      let nearestClinicArray = calculateNearest([...this.props.clinic],this.state.coordinates)
       // console.log(nearestClinicArray);
       let displayArray = []
       nearestClinicArray.forEach((clinic,index,arr) => {
@@ -110,7 +109,7 @@ class Map extends Component {
       case 'nearest_to_user':
         coord = this.state.coordinates;
         break;
-      case 'nearest_to_clinic':  
+      case 'nearest_to_clinic':
         coord = {
           lat: this.props.activeClinicObject.geometry.coordinates[1],
           lng: this.props.activeClinicObject.geometry.coordinates[0]

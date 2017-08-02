@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+// import Slider from 'react-slick';
+// @import "~slick-carousel/slick/slick.css";
+// @import "~slick-carousel/slick/slick-theme.css";
 
 import QueueItemInAccount from './QueueItemInAccount';
 import { deleteQueue } from '../../../Actions/QueueAction';
 import { triggerNotification } from '../../../Actions/AppAction';
 import { userNotification } from '../../../Actions/UserAction';
 
+import '../../SeeQueue/QueueGallery/QueueItem.css';
 
 class UserQueueGallery extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     settings: {
+  //         dots: true,
+  //         infinite: true,
+  //         speed: 500,
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1
+  //       }
+  //   }
+  // }
 
   deleteQueueButton = (queue) => {
     this.props.deleteQueue({
@@ -31,9 +44,9 @@ class UserQueueGallery extends Component {
     if(queueFromUserArray.length===0){
       return (<div>you have not posted any queue</div>);
     }else{
-      return queueFromUserArray.map((queue,index) => {
+      return queueFromUserArray.reverse().map((queue,index) => {
         return (
-          <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton}/>
+            <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton} key={queue._id}/>
         )
       })
     }
@@ -42,8 +55,8 @@ class UserQueueGallery extends Component {
   render() {
     let queue = this.renderQueueGallery();
     return (
-      <div>
-        {queue}
+      <div className="containerForQueueGallery">
+          {queue}
       </div>
     );
   }

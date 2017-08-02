@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
 import { localSignup, userNotification } from '../../Actions/UserAction';
-import { clearNotif } from '../../Actions/AppAction';
+import { clearNotif, nearestClinicOff } from '../../Actions/AppAction';
+import { removeActiveClinic } from '../../Actions/ClinicAction';
 
 import DropDownItem from '../NavBar/DropDownItem/DropDownItem';
 
@@ -42,6 +43,8 @@ class Signup extends Component {
     this.setState(userState);
     console.log(userState);
     this.props.clearNotif();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
   }
 
   onChangeS = (event) => {
@@ -255,11 +258,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
-    //Login: (credentials) => {dispatch(localLogin(credentials));}
     Signup: (credentials) => {dispatch(localSignup(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},
-    clearNotif: () => {dispatch(clearNotif());}
+    clearNotif: () => {dispatch(clearNotif());},
+    removeActiveClinic: () => {dispatch(removeActiveClinic())},
+    nearestClinicOff: () => {dispatch(nearestClinicOff())}
   }
 }
 
