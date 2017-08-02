@@ -4,9 +4,15 @@ export const clearNotif = () => {
   }
 }
 
-export const nearestClinic = () => {
+export const nearestClinicUser = () => {
   return {
-    type: 'NEAREST_CLINIC_ON'
+    type: 'NEAREST_CLINIC_USER'
+  }
+}
+
+export const nearestClinicToClinic = () => {
+  return {
+    type: 'NEAREST_CLINIC_CLINIC'
   }
 }
 

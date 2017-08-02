@@ -20,7 +20,7 @@ export let initStore = () => {
     queue: QueueReducer,
     activeClinic: ActiveClinicReducer,
     notification: AppReducer,
-    nearestClinicBoolean: NearestClinicReducer ,
+    nearestClinicState: NearestClinicReducer ,
     minNavBar: MinNavBarReducer,
     trigger: TriggerNotifReducer,
     router: routerReducer

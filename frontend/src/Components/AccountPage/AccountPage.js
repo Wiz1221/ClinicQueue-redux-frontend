@@ -136,13 +136,15 @@ onUpdatePasswordClick = () => {
                     <button className="updateBtn" onClick={this.onClickRole}>update</button>
                   </div>
                 </div>
-                <div className="userInfoField">
-                  <h5>To which clinic :</h5>
+
+                {this.state.role == "clinicAdmin" ? (
+                  <div className="userInfoField">
+                  <h5>My Administered Clinic:</h5>
                   <div className="userInfoRow">
                     <input type="text" name="contact" className='inputField' placeholder={this.props.user.myClinic} onChange={this.onChange}/>
                     <button className="updateBtn" onClick={this.onClick}>update</button>
                   </div>
-                </div>
+                </div>): null}
 
                 <UserSubscribe />
 
