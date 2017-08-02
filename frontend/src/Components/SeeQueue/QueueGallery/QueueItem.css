@@ -76,18 +76,22 @@
 
 .vbusy {
   background: rgb(212, 51, 59);
+  color: white;
 }
 
 .busy {
   background: rgb(247, 134, 78);
+  color: white;
 }
 
 .normal {
   background: rgb(235, 221, 40);
+  color: white;
 }
 
 .light {
   background: rgb(61, 224, 52);
+  color: white;
 }
 
 .queue-timestamp {
