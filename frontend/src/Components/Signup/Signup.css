@@ -1,3 +1,35 @@
+.dropDownList-signup {
+  position:absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 5px;
+  width: 80%;
+  right: 10%;
+  margin-top: -15px;
+  /*height: 50vh;*/
+  max-height: 270px;
+  overflow: scroll;
+  overflow-x: hidden;
+  z-index: 5;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen
+and (min-width : 928px)
+and (max-width : 1200px) {
+  .dropDownList-signup {
+    top: 574px;
+  }
+}
+@media only screen
+and (min-width : 768px)
+and (max-width : 927px) {
+  .dropDownList-signup {
+    top: 600px;
+  }
+}
+
 .SignupField {
   display: block;
   margin: 0;
