@@ -7,6 +7,8 @@ import { deleteSubscribe } from '../../../Actions/SubscribeAction';
 import { triggerNotification } from '../../../Actions/AppAction';
 import { userNotification } from '../../../Actions/UserAction';
 
+import './UserSubscribe.css'
+
 class UserSubscribe extends Component{
 
   constructor(props) {
@@ -147,13 +149,15 @@ class UserSubscribe extends Component{
                  onFocus={this.onFocus}
                  onBlur={this.onBlur}
                  />
-          {this.state.searching?(<div className="dropDownList" >{this.renderDropDown()}</div>): null}
+          {this.state.searching?(<div className="dropDownSubscribe">{this.renderDropDown()}</div>): null}
           <button className="updateBtn" onClick={this.unsubscribeButton}>Unsubscribe</button>
         </div>
       </div>
     )
   }
 }
+//height={this.state.clinicSubscribeByUser.length}
+//
 
 // <input type="text" name="contact" className='inputField' onChange={this.onChange}/>
 // placeholder={this.props.user.subscribe}

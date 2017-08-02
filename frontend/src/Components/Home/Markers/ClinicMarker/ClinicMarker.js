@@ -27,18 +27,19 @@ class ClinicMarker extends Component {
     this.props.onClick(this.props.clinic)
   }
 
-  renderAddress = () => {
-    return (
-      <div>
-        <p className="clinicAddress">Address: </p>
-        <p className="clinicAddress2">{this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME}</p>
-        <p className="clinicAddress">Unit Number: <span className="clinicAddress2">{this.props.clinic.properties.ADDRESSUNITNUMBER}</span></p>
-      </div>
-    )
-  }
+  // renderSub = (string) => {
+  //   return (
+  //     <div>
+  //       <p className="clinicAddress2">{string}</p>
+  //     </div>
+  //   )
+  // }
 
   render() {
     const styleType = this.props.clinic.properties.type ==="Public"? markerStylePoly : markerStylePrivate
+    // const subType = this.props.clinic.properties.type ==="Public" ?
+    // "No. of people waiting: " + this.props.clinic.properties.queueQty : this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER ?
+    // this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME + " S" + this.props.clinic.properties.ADDRESSPOSTALCODE : null
     // const clinic = this.props.clinic
     return (
       <div>
@@ -49,7 +50,10 @@ class ClinicMarker extends Component {
           <div>
           <div className="polyClinicHoverWindow">
           <p className="clinicName">{this.props.clinic.properties.name_full}</p>
-          {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER? (this.renderAddress()): null}
+          {this.props.clinic.properties.type ==="Public" ? (
+          <div>
+            <p className="clinicAddress2">No. of people waiting: <span>{this.props.clinic.properties.queueQty}</span></p>
+          </div>) : null}
           </div>
           <div className="triangleForHoverWindow"></div>
           </div>
@@ -60,7 +64,11 @@ class ClinicMarker extends Component {
         {this.state.hover? (
           <div className="clinicHoverWindow">
               <p className="clinicName">{this.props.clinic.properties.name_full}</p>
-              {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER? (this.renderAddress()): null}
+              {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER? (
+                <div>
+                  <p className="clinicAddress2">{this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME + " S" + this.props.clinic.properties.ADDRESSPOSTALCODE}</p>
+                </div>
+              ): null}
           </div>): null}
         </div>)}
       </div>

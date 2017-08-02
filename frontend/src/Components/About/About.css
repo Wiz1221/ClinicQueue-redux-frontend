@@ -41,14 +41,14 @@
   -webkit-transform: rotate(-135deg);
 }
 .AboutBar:hover {
-  height: 140px;
+  height: 210px;
 }
 
 @media only screen
 and (min-width : 768px)
 and (max-width : 1024px) {
  .AboutBar:hover {
-   height: 130px;
+   height: 205px;
  }
  .AboutBar p {
    font-size: 12px;
@@ -57,7 +57,7 @@ and (max-width : 1024px) {
 @media only screen
 and (max-width : 767px) {
   .AboutBar:hover {
-    height: 190px;
+    height: 290px;
   }
   .AboutBar p {
     font-size: 12px;
