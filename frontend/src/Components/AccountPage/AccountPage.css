@@ -1,0 +1,204 @@
+.BG {
+  background: #4776E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 1100px;
+  width: 100vw;
+}
+
+.boxContent {
+  position: absolute;
+  height: 900px;
+  padding: 0;
+  margin-top: 100px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  border: 2px solid #7456e9;
+  border-radius: 3px;
+}
+.accLeftSide {
+  position: absolute;
+  background-color: rgb(225, 225, 225);
+  height: 100%;
+  width: 65%;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.accRightSide {
+  right: 0;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 35%;
+  -webkit-box-shadow: -1px 0px 3px -1px rgba(0,0,0,0.3);
+  -moz-box-shadow: -1px 0px 3px -1px rgba(0,0,0,0.3);
+  box-shadow: -1px 0px 3px -1px rgba(0,0,0,0.3);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.userInfoFieldEnding {
+  margin-bottom: 30px;
+}
+
+.inputFieldTop {
+  display: block;
+  margin: 0;
+  width: 50%;
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  box-shadow: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+}
+.inputField {
+  margin: 0;
+  width: 50%;
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  box-shadow: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+}
+.inputFieldRole {
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  box-shadow: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+  width: 100%;
+  color: #7456e9;
+  outline: none;
+}
+.userContent {
+  background-color: white;
+  height: 90%;
+  width: 90%;
+  position: absolute;
+  left: 5%;
+}
+.userInfoName {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.userInfoRow {
+  display: inline;
+}
+
+.updateBtn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 12px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-left : 10px;
+  width: 120px;
+  border: 3px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+}
+.updateBtn:after{
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.updateBtn:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.updateBtn:hover {
+	background: #7456e9;
+  color: #fff;
+}
+.updateBtn:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.updateBtn:active:before {
+	color: #fff;
+  outline: none;
+}
+
+.DeleteBtn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 18px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 20px;
+  border: 3px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+}
+.DeleteBtn:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.DeleteBtn:hover {
+	background: #7456e9;
+  color: #fff;
+}
+
+.searching {
+  margin: 0;
+  width: 50%;
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  box-shadow: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+}

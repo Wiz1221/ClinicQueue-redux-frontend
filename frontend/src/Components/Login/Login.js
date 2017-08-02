@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../../ClinicQueue_White.png';
 
+import { removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogin, userNotification } from '../../Actions/UserAction';
-import { clearNotif } from '../../Actions/AppAction';
+import { clearNotif, nearestClinicOff } from '../../Actions/AppAction';
 
 // import css
 import './Login.css';
@@ -33,6 +34,8 @@ class Login extends Component {
     this.setState(state);
 
     this.props.clearNotif();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
   }
 
   localLogin = (e) => {
@@ -70,7 +73,7 @@ class Login extends Component {
       <div className="Login">
         <div className='LoginForm'>
           {this.props.notification ? <div className='notif'>{this.props.notification}</div> : ""}
-          <img src={logo} width={80} height={80} className="logo"/>
+          <img src={logo} width={80} height={80} className="logoLogin"/>
           <p className='logoName LogoNameLogin'>Log in</p>
           <hr/>
           <input type="email" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange} />
@@ -100,7 +103,9 @@ const mapDispatchToProps = (dispatch) => {
     // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
     Login: (credentials) => {dispatch(localLogin(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},
-    clearNotif: () => {dispatch(clearNotif());}
+    clearNotif: () => {dispatch(clearNotif());},
+    removeActiveClinic: () => {dispatch(removeActiveClinic())},
+    nearestClinicOff: () => {dispatch(nearestClinicOff())}
   }
 }
 

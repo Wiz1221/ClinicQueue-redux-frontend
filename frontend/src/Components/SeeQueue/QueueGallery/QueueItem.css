@@ -1,0 +1,118 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.carousel-Container {
+  height: 500px;
+  width: 100%;
+}
+
+.carousel-control.right {
+  background-color: none;
+  background-image: none;
+  height:425px;
+  margin-right: -4%
+}
+
+.carousel-control.left {
+background-color: none;
+background-image: none;
+  height:425px;
+  margin-left: -4%;
+}
+
+.carousel-inner {
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  margin: 0 auto;
+}
+
+#gallery {
+      margin: 0 auto;
+}
+.statusButton{
+
+}
+.queueItem {
+  margin-left:12%;
+  float: left;
+  text-align: center;
+  /*display: block;*/
+  background-color: rgba(255,255,255,1);
+  border: 3px solid rgb(191,191,191);
+  border-radius: 0.5em;
+  padding: 10px;
+  width: 76%;
+  height: 420px;
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
+  page-break-inside: avoid;
+  /*overflow: hidden;*/
+}
+
+.vbusy-border {
+  border: 3px solid rgb(212, 51, 59);
+}
+
+.busy-border {
+  border: 3px solid rgb(247, 134, 78);
+}
+
+.normal-border {
+  border: 3px solid rgb(235, 221, 40);
+}
+
+.light-border {
+  border: 3px solid rgb(61, 224, 52);
+}
+
+.queue-image {
+  position: relative;
+  margin-top: 10px;
+  width: 95%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.vbusy {
+  background: rgb(212, 51, 59);
+  color: white;
+}
+
+.busy {
+  background: rgb(247, 134, 78);
+  color: white;
+}
+
+.normal {
+  background: rgb(235, 221, 40);
+  color: white;
+}
+
+.light {
+  background: rgb(61, 224, 52);
+  color: white;
+}
+
+.queue-timestamp {
+  font-size: 10px;
+}
+.queue-comments {
+  font-size: 14px;
+  height: 40px;
+  margin-bottom: -8px;
+}
+.queue-status {
+  /*line-height: 2em;*/
+  margin-left: 2%;
+  width: 96%;
+  height: auto;
+  display: block;
+  margin-top: -5px;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+}

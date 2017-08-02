@@ -1,35 +1,54 @@
 .clinicHoverWindow {
   position:relative;
-  /*display: inline-block;*/
-  top:-30px;
-  left: -20px;
-  width: 130px;
+  top: -150px;
+  left: -30px;
+  width: 160px;
   text-align: left;
-  background-color:rgba(160, 239, 239,0.6);
+  background-color: rgba(255,255,255,0.9);
+  border: 1px solid #97e1ad;
   border-radius: 5px;
   transition: background-color 1.0s ease;
-  z-index:1
+  z-index:1;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.polyClinicHoverWindow {
+  position:relative;
+  top: -70px;
+  left: -30px;
+  width: 150px;
+  text-align: left;
+  background-color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255, 83, 83, 0.7);
+  border-radius: 5px;
+  transition: background-color 1.0s ease;
+  z-index:1;
+  padding: 5px;
+
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 }
 
-.triangleForHoverWindow {
-  position: relative;
-  top: -35px;
-
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 100% solid transparent;
-  border-top: 30px solid rgba(160, 239, 239,0.6);
-  /*background: linear-gradient(top, #f9d835, #f3961c);*/
+.clinicName {
+  font-size: 16px;
+  font-weight: 500;
 }
 
-/*.triangleForHoverWindow:after {
-  display: block;
-  position: absolute;
-  bottom: -15px;
-  left: 50px;
-  width: 0;
-  border-width: 15px 15px 0;
-  border-style: solid;
-  border-color: #f3961c transparent;
-}*/
+.clinicAddress {
+  font-weight: 400;
+  margin: 0;
+  font-size: 10px;
+}
+.clinicAddress2 {
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.clinicAddress2 span {
+  font-size: 25px;
+  font-weight: normal;
+}

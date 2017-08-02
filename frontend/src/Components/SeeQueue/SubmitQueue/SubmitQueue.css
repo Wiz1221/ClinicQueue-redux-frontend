@@ -1,0 +1,237 @@
+#submitQueue {
+  /*width: 200px;*/
+  /*height: 80vh;*/
+  /*position: relative;*/
+  /*float: right;*/
+  overflow-x: hidden;
+}
+
+.queueButton {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 12px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 45%;
+  border: 3px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+}
+.queueButton:after{
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.queueButton:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.queueButton:hover {
+	background: #7456e9;
+  color: #fff;
+}
+.queueButton:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.queueButton:active:before {
+	color: #fff;
+  outline: none;
+}
+
+.row-upload-file p {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.well-status {
+  background: rgba(255,255,255,1);
+}
+
+.well-status p {
+  font-size: 15px;
+  font-weight: normal;
+  color: #7456e9;
+}
+
+input[type="radio"] {
+  display: none;
+  &:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+  :disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+.statusSelection {
+  height: 100%;
+  background: white;
+  border-radius: 2px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  margin-left: 4px;
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  position: relative;
+}
+#statusSelection1 {
+  border: 2px solid rgb(61, 224, 52);
+  color: rgb(61, 224, 52);
+  transition: all 0.3s;
+  width: 50px;
+  font-size: 13px;
+}
+#statusSelection2 {
+  border: 2px solid rgb(235, 221, 40);
+  color: rgb(235, 221, 40);
+  transition: all 0.3s;
+  width: 65px;
+  font-size: 13px;
+}
+#statusSelection3 {
+  border: 2px solid rgb(247, 134, 78);
+  color: rgb(247, 134, 78);
+  transition: all 0.3s;
+  width: 50px;
+  font-size: 13px;
+}
+#statusSelection4 {
+  border: 2px solid rgb(212, 51, 59);
+  color: rgb(212, 51, 59);
+  transition: all 0.3s;
+  width: 80px;
+  font-size: 13px;
+}
+#statusSelection1:hover {
+  color: white;
+  background: rgb(61, 224, 52);
+  border-color: rgb(61, 224, 52);
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  cursor: pointer;
+}
+#statusSelection1:focus {
+  color: white;
+  background: rgb(61, 224, 52);
+  border-color: rgb(61, 224, 52);
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  cursor: pointer;
+  outline: none;
+}
+
+#statusSelection2:hover {
+  color: white;
+  background: rgb(235, 221, 40);
+  border-color: rgb(235, 221, 40);
+  cursor: pointer;
+}
+#statusSelection2:focus {
+  color: white;
+  background: rgb(235, 221, 40);
+  border-color: rgb(235, 221, 40);
+  cursor: pointer;
+  outline: none;
+}
+
+#statusSelection3:hover {
+  color: white;
+  background: rgb(247, 134, 78);
+  border-color: rgb(247, 134, 78);
+  cursor: pointer;
+}
+#statusSelection3:focus {
+  color: white;
+  background: rgb(247, 134, 78);
+  border-color: rgb(247, 134, 78);
+  cursor: pointer;
+  outline: none;
+}
+
+#statusSelection4:hover {
+  color: white;
+  background: rgb(212, 51, 59);
+  border-color: rgb(212, 51, 59);
+  cursor: pointer;
+}
+#statusSelection4:focus{
+  color: white;
+  background: rgb(212, 51, 59);
+  border-color: rgb(212, 51, 59);
+  cursor: pointer;
+  outline: none;
+}
+.well {
+  border: 3px solid #7456e9;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.selectedStatus1 {
+  color: white;
+  background: rgb(61, 224, 52);
+  border: 2px solid rgb(61, 224, 52);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus2 {
+  color: white;
+  background: rgb(235, 221, 40);
+  border: 2px solid rgb(235, 221, 40);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus3 {
+  color: white;
+  background: rgb(247, 134, 78);
+  border: 2px solid rgb(247, 134, 78);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus4 {
+  color: white;
+  background: rgb(212, 51, 59);
+  border: 2px solid rgb(212, 51, 59);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+}

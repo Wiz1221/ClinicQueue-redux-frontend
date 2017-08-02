@@ -1,0 +1,84 @@
+.subscribeForm p, .subscribeSuccessful p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.subscribeForm.well {
+  background-color: rgba(253,255,219,1);
+}
+
+.subscribe-clinic-info {
+  width: 95%;
+  margin: auto;
+  text-align: center;
+}
+
+.subscribe-successful-clinic-info.well{
+  width: 90%;
+  margin: auto;
+  background-color: rgba(253,255,219,1);
+}
+
+.clinic-confirm-btn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  /*display: inline-block;*/
+  /*text-transform: uppercase;*/
+  /*letter-spacing: 1px;*/
+  font-weight: normal;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 80%;
+  border: 2px solid rgb(61, 224, 52);
+  color: rgb(61, 224, 52);
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left:0;
+  background-color: white;
+}
+
+.clinic-confirm-btn:hover {
+	background: rgb(61, 224, 52);
+  color: #fff;
+}
+
+.clinic-back-btn {
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  /*display: inline-block;*/
+  /*text-transform: uppercase;*/
+  /*letter-spacing: 1px;*/
+  font-weight: normal;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 30%;
+  border: 2px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left:0;
+  background-color: white;
+  border-radius: 2px;
+  margin-left: 4px;
+}
+
+.clinic-back-btn:hover {
+	background: #7456e9;
+  color: #fff;
+}

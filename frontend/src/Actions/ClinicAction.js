@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { sortingAlgorithm } from '../API/API';
 
 
 // socket
@@ -12,12 +13,12 @@ const storeClinic = (clinic) => {
   }
 }
 
-const storeQueueInfoInReducer = (queue) => {
-  return {
-    type: 'STORE_QUEUE',
-    queue
-  }
-}
+// const storeQueueInfoInReducer = (queue) => {
+//   return {
+//     type: 'STORE_QUEUE',
+//     queue
+//   }
+// }
 
 const loadingClinicError = (error) => {
   return{
@@ -33,17 +34,20 @@ export const getClinic = () => {
     socket.emit('getAllClinic');
     // after receiving all clinic info from backend
     socket.on('allClinic', (clinic) => {
+
+      sortingAlgorithm(clinic)
+
       // store clinic info in store
       dispatch(storeClinic(clinic));
-      let allQueue = [];
-      clinic.forEach( (elem,index,arr) => {
-        elem.queue.forEach((queue,index) => {
-          allQueue.push(queue);
-        })
-      })
+      // let allQueue = [];
+      // clinic.forEach( (elem,index,arr) => {
+      //   elem.queue.forEach((queue,index) => {
+      //     allQueue.push(queue);
+      //   })
+      // })
       // console.log(allQueue);
       // store queue info in store (queue have its own reducer)
-      dispatch(storeQueueInfoInReducer(allQueue));
+      // dispatch(storeQueueInfoInReducer(allQueue));
     })
 
   }
@@ -59,6 +63,6 @@ export const activeClinic = (clinic) => {
 
 export const removeActiveClinic = () => {
   return {
-    type: 'ACTIVE_CLINIC'
+    type: 'REMOVE_ACTIVE_CLINIC'
   }
 }

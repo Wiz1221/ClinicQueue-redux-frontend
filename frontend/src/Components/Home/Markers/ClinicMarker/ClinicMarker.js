@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import { markerStylePoly, markerStylePrivate } from './markerStyle.js';
+import privateClinicMarker from '../../../../clinicMarkerGreen2.png';
+import polyClinicMarker from '../../../../clinicMarkerRed4.png';
+
 
 import './clinicHoverWindow.css';
 
@@ -24,26 +27,50 @@ class ClinicMarker extends Component {
     this.props.onClick(this.props.clinic)
   }
 
-  renderAddress = () => {
-    return (
-      <div>Address: {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME +" unit number: " + this.props.clinic.properties.ADDRESSUNITNUMBER}</div>
-    )
-  }
+  // renderSub = (string) => {
+  //   return (
+  //     <div>
+  //       <p className="clinicAddress2">{string}</p>
+  //     </div>
+  //   )
+  // }
 
   render() {
     const styleType = this.props.clinic.properties.type ==="Public"? markerStylePoly : markerStylePrivate
+    // const subType = this.props.clinic.properties.type ==="Public" ?
+    // "No. of people waiting: " + this.props.clinic.properties.queueQty : this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER ?
+    // this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME + " S" + this.props.clinic.properties.ADDRESSPOSTALCODE : null
     // const clinic = this.props.clinic
     return (
-      <div onClick={this.onClick} style={styleType(this.props.clinic)} onMouseEnter={this.hoverTrue} onMouseLeave={this.hoverFalse}>
+      <div>
+      {this.props.clinic.properties.type === "Public" ? (
+      <div onClick={this.onClick} onMouseEnter={this.hoverTrue} onMouseLeave={this.hoverFalse}>
+        <img src={polyClinicMarker} style={styleType(this.props.clinic)}/>
         {this.state.hover? (
           <div>
-          <div className="clinicHoverWindow">
-          {this.props.clinic.properties.name_full}
-          {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER? (this.renderAddress()): null}
+          <div className="polyClinicHoverWindow">
+          <p className="clinicName">{this.props.clinic.properties.name_full}</p>
+          {this.props.clinic.properties.type ==="Public" ? (
+          <div>
+            <p className="clinicAddress2">No. of people waiting: <span>{this.props.clinic.properties.queueQty}</span></p>
+          </div>) : null}
           </div>
           <div className="triangleForHoverWindow"></div>
           </div>
         ): null}
+      </div> ) : (
+        <div onClick={this.onClick} onMouseEnter={this.hoverTrue} onMouseLeave={this.hoverFalse}>
+          <img src={privateClinicMarker} style={styleType(this.props.clinic)} />
+        {this.state.hover? (
+          <div className="clinicHoverWindow">
+              <p className="clinicName">{this.props.clinic.properties.name_full}</p>
+              {this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER? (
+                <div>
+                  <p className="clinicAddress2">{this.props.clinic.properties.ADDRESSBLOCKHOUSENUMBER + " " + this.props.clinic.properties.ADDRESSSTREETNAME + " S" + this.props.clinic.properties.ADDRESSPOSTALCODE}</p>
+                </div>
+              ): null}
+          </div>): null}
+        </div>)}
       </div>
     );
   }

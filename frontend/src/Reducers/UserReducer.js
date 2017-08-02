@@ -1,4 +1,4 @@
-const User = (state = {}, action) => {
+const UserReducer = (state = {}, action) => {
   switch (action.type) {
 
     case 'STORE_USER':
@@ -13,13 +13,33 @@ const User = (state = {}, action) => {
       })
       break;
 
-    case 'USER_NOTIFICATION':
-      return action.notification || ""
+    case 'STORE_SUBSCRIBE_IN_USER':
+      let newSubscribeArray = state.subscribe;
+      newSubscribeArray.push(action.newSubscribe);
+      return Object.assign({},state, {
+        subscribe: newSubscribeArray
+      })
       break;
 
+    case 'DELETE_QUEUE_IN_USER':
+      let queueArrayAfterDelete = [...state.queue].filter((elem,index) => {
+        return elem._id !== action.queue_id;
+      })
+      return Object.assign({}, state, {
+        queue: queueArrayAfterDelete
+      })
+      break;
+    case 'DELETE_SUBSCRIBE_IN_USER':
+      let subscribeArrayAfterDelete = [...state.subscribe].filter((elem,index) => {
+        return elem._id !== action.subscribeInfo.subscribe_id;
+      })
+      return Object.assign({}, state, {
+        subscribe: subscribeArrayAfterDelete
+      })
+      break;
     default:
       return state
   }
 }
 
-export default User;
+export default UserReducer;

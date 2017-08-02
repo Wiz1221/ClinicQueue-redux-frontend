@@ -1,0 +1,13 @@
+.no-queue-reports {
+  font-style: italic;
+}
+
+#latest-queue-item {
+  -moz-column-count: 1;
+  -webkit-column-count: 1;
+  column-count: 1;
+  column-gap: 1em;
+  float: none;
+  margin: 0 auto;
+  width: 100%;
+}
