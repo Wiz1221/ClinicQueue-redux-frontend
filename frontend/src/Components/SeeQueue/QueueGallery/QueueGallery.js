@@ -25,7 +25,7 @@ class QueueGallery extends Component {
     // let queueArray = this.props.queue;
     console.log(queueArray)
     if (queueArray.length===0) {
-      return  (<div>No Queues yet</div>)
+      return  (<div className="NoQueue">No Queues yet</div>)
     } else {
       let queueFromAdmin = queueArray.filter((queue,index) => {
         return queue.user._id ?  queue.user.role == "clinicAdmin" : null;
@@ -33,28 +33,6 @@ class QueueGallery extends Component {
       console.log("queueFromAdmin");
       console.log(queueFromAdmin)
       return queueFromAdmin.map((queue) => {
-        return (
-          <Carousel.Item>
-          <QueueItem queue={queue}
-                    key={queue._id}
-                    id={queue._id}/>
-                    </Carousel.Item>
-        )
-      });
-    }
-  }
-
-  renderUserQueueItem = (queueArray) => {
-
-    // let queueArray = this.props.queue;
-    console.log(queueArray)
-    if (queueArray.length===0) {
-      return  (<div>No Queues yet</div>)
-    } else {
-      let queueFromUser = queueArray.filter((queue,index) => {
-        return queue.user._id ? queue.user.role === "regularUser" || "" : null
-      })
-      return queueFromUser.map((queue) => {
         return (
           <Carousel.Item>
           <QueueItem queue={queue}
