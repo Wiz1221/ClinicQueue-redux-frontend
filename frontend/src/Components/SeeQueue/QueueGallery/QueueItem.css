@@ -1,9 +1,37 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.carousel-Container {
+  height: 500px;
+  width: 100%;
+}
+
+.carousel-control.right {
+  background-color: none;
+  background-image: none;
+  margin-right: -4%
+}
+
+.carousel-control.left {
+  background-color: none;
+  background-image: none;
+  margin-left: -4%;
+}
+
+.carousel-inner {
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  margin: 0 auto;
+}
 
 #gallery {
       margin: 0 auto;
 }
 .queueItem {
-  margin: 5px;
+  margin-left:12%;
   float: left;
   text-align: center;
   /*display: block;*/
@@ -11,12 +39,12 @@
   border: 3px solid rgb(191,191,191);
   border-radius: 0.5em;
   padding: 10px;
-  width: 200px;
-  height: 230px;
+  width: 76%;
+  height: 420px;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
   page-break-inside: avoid;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .vbusy-border {
@@ -37,8 +65,9 @@
 
 .queue-image {
   position: relative;
+  margin-top: 10px;
   width: 95%;
-  height: 90px;
+  height: 270px;
   object-fit: cover;
 }
 
@@ -63,8 +92,12 @@
 }
 .queue-comments {
   font-size: 14px;
+  height: 30px;
 }
 .queue-status {
+  /*line-height: 2em;*/
+  margin-left: 2%;
+  width: 96%;
   height: auto;
   display: block;
   margin-top: -10px;

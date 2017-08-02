@@ -1,0 +1,29 @@
+
+.queueItem-sidebar {
+  margin-left: 14%;
+  float: left;
+  text-align: center;
+  /*display: block;*/
+  background-color: rgba(255,255,255,1);
+  border: 3px solid rgb(191,191,191);
+  border-radius: 0.5em;
+  padding: 10px;
+  width: 68%;
+  height: 240px;
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
+  page-break-inside: avoid;
+  /*overflow: hidden;*/
+}
+
+.queue-sidebar-image {
+  position: relative;
+  width: 95%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.queue-sidebar-comments {
+  font-size: 14px;
+  height:40px;
+}

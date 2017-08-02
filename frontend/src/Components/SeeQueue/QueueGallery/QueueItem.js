@@ -67,7 +67,7 @@ class QueueItem extends Component {
 
             <p>Queue status:</p>
             <div className={"queue-status "+ this.queueClassParse(queue.status)}>{queue.status}</div>
-          
+
         </div>) : (
         <div className="queueItem container">
           <img src={queue.pic} className="queue-image"/>

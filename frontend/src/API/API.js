@@ -30,3 +30,54 @@ export const sortingAlgorithm = (thingToSort) => {
     return aLower < bLower ? -1 : 1
   })
 }
+
+export const cuttingCommentShort = (comment) => {
+  return comment.split('').splice(0,30).join('') + '...'
+}
+
+export const dateParse = (date,offsethours) => {
+  const newDate = new Date(date)// + offsethours*60*60*1000
+  let mth = parseInt(newDate.getMonth()) + 1
+  const datev = newDate.getDate() + '-' + mth.toString() + '-' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' +newDate.getSeconds()
+  return datev;
+}
+
+export const queueBorderParse = (status) => {
+  switch(status) {
+    case 'Very Busy':
+      return "vbusy-border";
+      break;
+    case 'Busy':
+      return "busy-border";
+      break;
+    case 'Normal':
+      return "normal-border";
+      break;
+    case 'Light':
+      return "light-border";
+      break;
+    default:
+      return "normal-border";
+      break;
+  }
+}
+
+export const queueClassParse = (status) => {
+    switch(status) {
+      case 'Very Busy':
+        return "vbusy";
+        break;
+      case 'Busy':
+        return "busy";
+        break;
+      case 'Normal':
+        return "normal";
+        break;
+      case 'Light':
+        return "light";
+        break;
+      default:
+        return "normal";
+        break;
+    }
+  }

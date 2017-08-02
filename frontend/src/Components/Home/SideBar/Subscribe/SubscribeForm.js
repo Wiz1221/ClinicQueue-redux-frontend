@@ -11,7 +11,7 @@ class SubscribeForm extends Component {
         <div className="checkbox" >
           <label><input type="checkbox" value="" onClick={this.phoneNumberCheckBox}/> this is correct</label>
         </div>
-        <Link to="/account"><button type="submit" className="btn btn-primary">Update My Phone Number</button></Link>
+        <Link to="/myAccount"><button type="submit" className="btn btn-primary">Update My Phone Number</button></Link>
         {
           this.props.user.contact ?
           <button type="submit" className="btn btn-primary queueButton" onClick={this.confirmSubscribe}>Confirm Subscription</button>

@@ -141,7 +141,7 @@ export const updateProfile = (credentials) => {
       }else {
         console.error("AJAX: Logged on @ '/auth//UPDATE/user'");
         //react-router-redux to dispatch routes from non-components
-        store.dispatch(push('/MyAccount'));
+        store.dispatch(push('/myAccount'));
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
         const cbArray = [
           () => {dispatch(triggerNotification())},
@@ -172,7 +172,7 @@ export const updatePassword = (credentials) => {
       }else {
         console.error("AJAX: Logged on @ '/auth//UPDATE/userPassword'");
         //react-router-redux to dispatch routes from non-components
-        store.dispatch(push('/MyAccount'));
+        store.dispatch(push('/myAccount'));
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
         const cbArray = [
           () => {dispatch(triggerNotification())},

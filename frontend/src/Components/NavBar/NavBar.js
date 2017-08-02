@@ -194,7 +194,7 @@ class NavBar extends Component {
                   (<a onClick={this.clickNearestClinic} className='smallMenuBtn'>My Nearest Clinics</a>)}
                 </div>
 
-                  {this.props.user._id ? <div className='menuItem'><Link to='/MyAccount' className='smallMenuBtn'>My account</Link></div> : null}
+                  {this.props.user._id ? <div className='menuItem'><Link to='/myAccount' className='smallMenuBtn'>My account</Link></div> : null}
 
                 <div className='menuItem'>
                   {this.props.user._id ? <Link to='/' onClick={this.execLogout} className='smallMenuBtn'>Logout</Link> :
@@ -214,7 +214,7 @@ class NavBar extends Component {
 
           {this.props.minNavBar? null :
           (<a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinics</a>)}
-          {this.props.user._id ? <Link to='/MyAccount' className="sideBarBtn">My account</Link> : null}
+          {this.props.user._id ? <Link to='/myAccount' className="sideBarBtn">My account</Link> : null}
 
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :

@@ -1,75 +1,46 @@
 import React, {Component} from 'react';
+import {cuttingCommentShort, dateParse, queueBorderParse, queueClassParse} from '../../../API/API'
 
 import './QueueItemInAccount.css';
 
 class QueueItemInAccount extends Component{
 
-  dateParse = (date,offsethours) => {
-    const newDate = new Date(date)// + offsethours*60*60*1000
-    let mth = parseInt(newDate.getMonth()) + 1
-    const datev = newDate.getDate() + '-' + mth.toString() + '-' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' +newDate.getSeconds()
-    return datev;
-  }
-
-  queueBorderParse = (status) => {
-    switch(status) {
-      case 'Very Busy':
-        return "vbusy-border";
-        break;
-      case 'Busy':
-        return "busy-border";
-        break;
-      case 'Normal':
-        return "normal-border";
-        break;
-      case 'Light':
-        return "light-border";
-        break;
-      default:
-        return "normal-border";
-        break;
-    }
-  }
-
-  queueClassParse = (status) => {
-    switch(status) {
-      case 'Very Busy':
-        return "vbusy";
-        break;
-      case 'Busy':
-        return "busy";
-        break;
-      case 'Normal':
-        return "normal";
-        break;
-      case 'Light':
-        return "light";
-        break;
-      default:
-        return "normal";
-        break;
-    }
-  }
-
   onClick = () => {
     this.props.deleteQueueButton(this.props.queue);
   }
 
+  checkUserRole = (queue) => {
+    if(this.props.user.role==='clinicAdmin'){
+      return {
+        border: queueBorderParse(queue.status),
+        containerType: 'queueItem-account-clinicAdmin'
+      }
+    }else{
+      return {
+        border: '',
+        containerType: 'queueItem-account-regular'
+    }
+  }
+}
+
   render(){
     const queue = this.props.queue;
+    const commentShort = cuttingCommentShort(queue.comment)
+    const dynamicClassName = this.checkUserRole(queue)
     return(
-      <div className={"queueItem "+ this.queueBorderParse(queue.status) + " container"}>
+      <div className={"queueItem-account " + dynamicClassName.border +" "+ dynamicClassName.containerType + " container"}>
       <a className="boxclose" onClick={this.onClick}></a>
-        <div className="queue-image">
-          <img src={queue.pic} />
-        </div>
+        <img src={queue.pic} className="queue-sidebar-image queue-image-for-account" />
+        <div className="queue-info-for-account">
         <div>For {queue.clinic.properties.name_full}</div>
-        <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-        <p className="queue-comments">"{queue.comment}"</p>
+        <p className="queue-timestamp queue-for-account">Submitted at {dateParse(queue.createdAt,8)}</p>
+        <p className="queue-sidebar-comments queue-for-account">"{commentShort}"</p>
         {
           queue.status ?
-          <div className= {"queue-status " + this.queueClassParse(queue.status)}>{queue.status}</div> : null
+          (<div><p>Queue status:</p>
+          <div className= {"queue-status-sidebar " + queueClassParse(queue.status)}>{queue.status}</div></div>) : null
         }
+      </div>
       </div>
 
     )

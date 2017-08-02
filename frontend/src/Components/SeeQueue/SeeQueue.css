@@ -38,6 +38,7 @@
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   overflow: scroll;
+  overflow-x: hidden;
   padding: 20px;
 }
 
