@@ -84,7 +84,6 @@ onUpdatePasswordClick = () => {
 
   render() {
     return (
-
       <div className="BG container">
         <NavBarWhite/>
         <div className="row">
@@ -124,8 +123,8 @@ onUpdatePasswordClick = () => {
                 <div className="userInfoField">
                   <h5>My role:</h5>
                   <div className="userInfoRow">
-                      {this.state.role == "regularUser" ? (
-                        <select name="role" className='inputField' onChange={this.onChange}>
+                    {this.state.role == "regularUser" ? (
+                      <select name="role" className='inputField' onChange={this.onChange}>
                         <option value="regularUser" selected='selected' onChange={this.onChange}>Regular User</option>
                         <option value="clinicAdmin" onChange={this.onChange}>Clinic Admin</option>
                       </select>) : (

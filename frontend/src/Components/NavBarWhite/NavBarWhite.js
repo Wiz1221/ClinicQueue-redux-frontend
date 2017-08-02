@@ -99,7 +99,7 @@ class NavBar extends Component {
                   <Link to='/' className="smallMenuBtnWhite">Back</Link>
                 </div>
                 <div className='menuItemWhite'>
-                  {this.props.user._id ? <Link to='/MyAccount' className="smallMenuBtnWhite">My account</Link> : null}
+                  {this.props.user._id ? <Link to='/myAccount' className="smallMenuBtnWhite">My account</Link> : null}
                 </div>
 
                 <div className='menuItemWhite'>
@@ -119,7 +119,7 @@ class NavBar extends Component {
           </a></Link>
 
         <Link to='/' className="homeBtnWhite">Back</Link>
-        {this.props.user._id ? <Link to='/MyAccount' className="homeBtnWhite">My Account</Link> : null}
+        {this.props.user._id ? <Link to='/myAccount' className="homeBtnWhite">My Account</Link> : null}
           {this.props.user._id ? <Link to='/' className="navLoginWhite pull-right" onClick={this.execLogout}>Logout</Link> :
           <Link to='/login' className="navLoginWhite pull-right">Login</Link>}
 

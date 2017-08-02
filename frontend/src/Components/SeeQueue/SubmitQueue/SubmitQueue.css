@@ -3,6 +3,7 @@
   /*height: 80vh;*/
   /*position: relative;*/
   /*float: right;*/
+  overflow-x: hidden;
 }
 
 .queueButton {
@@ -88,11 +89,10 @@ input[type="radio"] {
 .statusSelection {
   height: 100%;
   background: white;
-  border: 2px solid #7456e9;
   border-radius: 2px;
-  padding: 1rem;
+  padding: 0.5rem;
   margin-bottom: 1rem;
-  margin-left: 10px;
+  margin-left: 4px;
   text-align: center;
   box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
   position: relative;
@@ -101,25 +101,29 @@ input[type="radio"] {
   border: 2px solid rgb(61, 224, 52);
   color: rgb(61, 224, 52);
   transition: all 0.3s;
-  width: 100px;
+  width: 50px;
+  font-size: 13px;
 }
 #statusSelection2 {
   border: 2px solid rgb(235, 221, 40);
   color: rgb(235, 221, 40);
   transition: all 0.3s;
-  width: 100px;
+  width: 65px;
+  font-size: 13px;
 }
 #statusSelection3 {
   border: 2px solid rgb(247, 134, 78);
   color: rgb(247, 134, 78);
   transition: all 0.3s;
-  width: 100px;
+  width: 50px;
+  font-size: 13px;
 }
 #statusSelection4 {
   border: 2px solid rgb(212, 51, 59);
   color: rgb(212, 51, 59);
   transition: all 0.3s;
-  width: 100px;
+  width: 80px;
+  font-size: 13px;
 }
 #statusSelection1:hover {
   color: white;
@@ -180,4 +184,54 @@ input[type="radio"] {
 }
 .well {
   border: 3px solid #7456e9;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.selectedStatus1 {
+  color: white;
+  background: rgb(61, 224, 52);
+  border: 2px solid rgb(61, 224, 52);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus2 {
+  color: white;
+  background: rgb(235, 221, 40);
+  border: 2px solid rgb(235, 221, 40);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus3 {
+  color: white;
+  background: rgb(247, 134, 78);
+  border: 2px solid rgb(247, 134, 78);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.selectedStatus4 {
+  color: white;
+  background: rgb(212, 51, 59);
+  border: 2px solid rgb(212, 51, 59);
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
 }
