@@ -159,12 +159,12 @@ class NavBar extends Component {
 
     return (
       <div >
-        {this.state.width < 767 ? (
+        {this.state.width < 910 ? (
           <div className="smallScreenNav">
             <nav className="Navbar">
               <Link to ='/'>
                 <a onClick={this.removeActiveClinicAndNearestClinic}>
-                  <img src={logo} width={50} height={50} className="logo"/>
+                  <img src={logo} width={60} height={60} className="logo"/>
                 </a>
               </Link>
               <div className="burgerMenuArea" onClick={this.showMenu}></div>

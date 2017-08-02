@@ -137,7 +137,7 @@ class UserSubscribe extends Component{
 
     return(
       <div className="userInfoField userInfoFieldEnding">
-        <h5>My Subscribed Clinics</h5>
+        <h5>My Subscribed Clinics:</h5>
         <div className="userInfoRow">
           <input className="searching"
                  type="search"
