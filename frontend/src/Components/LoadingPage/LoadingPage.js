@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import ReactLoading from 'react-loading';
+import logo from '../../ClinicQueue_Color.png';
 
 import './LoadingPage.css'
 
@@ -11,15 +12,15 @@ export default class LoadingPage extends React.Component {
   render() {
     return (
       <div className="loadingContent">
-      <img id="squirrelLogol" src="https://image.ibb.co/kWdnza/Squirrel_Logo.png" alt="Squirrel_Logo"></img>
-      <div className="loadingText">
-        <h3>Foraging berries...</h3>
+        <img id="CQLogol" src={logo} alt="CQ_Logo"></img>
+        <div className="loadingText">
+          <h3>Checking with nearby doctors...</h3>
         </div>
         <div className="row">
-        <div className="loadingImage col-md-offset-5 col-md-2">
-        <i className="fa fa-spin fa-3x fa-circle-o-notch" aria-hidden="true" id="loadingSpinner" />
+          <div className="loadingImage col-md-offset-5 col-md-2">
+            <i className="fa fa-spin fa-4x fa-spinner" aria-hidden="true" id="loadingSpinner" />
           </div>
-          </div>
+        </div>
       </div>
     );
   }

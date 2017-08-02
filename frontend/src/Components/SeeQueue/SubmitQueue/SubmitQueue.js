@@ -132,8 +132,13 @@ class SubmitQueue extends Component {
           {this.props.user._id ?
           (this.props.user.role === "clinicAdmin" || "appAdmin")&&(this.props.clinic._id===this.props.user.myClinic)  ? (
               <div className="well well-status">
-                <p>Clinic Admin: select a Queue Status </p>
-                  <QueueStatus onClick={this.statusButtonClicked} onFocus={this.btnFocus} onBlur={this.btnBlur}/>
+                <p>Please select a Queue Status:</p>
+                {this.state.queue.status == "Light" ? <div className="selectedStatus1">Light</div> : null }
+                {this.state.queue.status == "Normal" ? <div className="selectedStatus2">Normal</div> : null }
+                {this.state.queue.status == "Busy" ? <div className="selectedStatus3">Busy</div> : null }
+                {this.state.queue.status == "Very Busy" ? <div className="selectedStatus4">Very Busy</div> : null }
+              <hr/>
+                <QueueStatus onClick={this.statusButtonClicked} onFocus={this.btnFocus} onBlur={this.btnBlur}/>
               </div>
           ) : null : null}
 

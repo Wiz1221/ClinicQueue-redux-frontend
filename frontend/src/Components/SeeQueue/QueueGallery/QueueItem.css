@@ -2,6 +2,9 @@
 #gallery {
       margin: 0 auto;
 }
+.statusButton{
+
+}
 .queueItem {
   margin: 5px;
   float: left;
@@ -10,7 +13,7 @@
   background-color: rgba(255,255,255,1);
   border: 3px solid rgb(191,191,191);
   border-radius: 0.5em;
-  padding: 10px;
+  padding: 5px;
   width: 200px;
   height: 230px;
   -webkit-column-break-inside: avoid;
@@ -63,11 +66,12 @@
 }
 .queue-comments {
   font-size: 14px;
+  margin-bottom: 8px;
 }
 .queue-status {
   height: auto;
   display: block;
-  margin-top: -10px;
+  margin-top: -5px;
   margin-bottom: 1rem;
   text-align: center;
   color: white;
