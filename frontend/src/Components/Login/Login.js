@@ -73,7 +73,7 @@ class Login extends Component {
       <div className="Login">
         <div className='LoginForm'>
           {this.props.notification ? <div className='notif'>{this.props.notification}</div> : ""}
-          <img src={logo} width={80} height={80} className="logo"/>
+          <img src={logo} width={80} height={80} className="logoLogin"/>
           <p className='logoName LogoNameLogin'>Log in</p>
           <hr/>
           <input type="email" name="email" id="email" className='LoginField' placeholder="Email Address" onChange={this.onChange} />
