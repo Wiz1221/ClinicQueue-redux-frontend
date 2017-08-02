@@ -11,12 +11,11 @@ class QueueItemSideBar extends Component {
     const commentShort = cuttingCommentShort(queue.comment)
     return (
       <div >
-        {queue.user.role =="clinicAdmin" ?
+        {queue.user.role =="clinicAdmin" && queue.user.myClinic === queue.clinic._id ?
         (<div className={"queueItem-sidebar "+ queueBorderParse(queue.status) + " container"}>
           <img src={queue.pic} className="queue-sidebar-image"/>
           <p className="queue-timestamp">Submitted at {dateParse(queue.createdAt,8)}</p>
           <p className="queue-sidebar-comments">"{commentShort}"</p>
-
             <p>Queue status:</p>
             <div className={"queue-status "+ queueClassParse(queue.status)}>{queue.status}</div>
 

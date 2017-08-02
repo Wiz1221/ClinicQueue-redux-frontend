@@ -6,7 +6,7 @@
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-  border-bottom: solid white 1.5px;
+  border-bottom: solid white 1px;
 }
 .navbar-fixed-top {
     top: 0;
@@ -165,11 +165,13 @@ width: 200px;
 
 /* mid screen */
 @media only screen
-and (min-width : 768px)
+and (min-width : 910px)
 and (max-width : 1024px) {
   .logo {
     margin-top: -10px;
     margin-left: 2%;
+    width: -10px;
+    height: -10px;
   }
   .logoName {
     display: inline-block;
@@ -182,7 +184,7 @@ and (max-width : 1024px) {
   }
   .nearsetBtn {
     margin-top: -10px;
-    margin-left: 5%;
+    margin-left: 3%;
     color: white;
     font-size: 16px;
     font-weight: 300;
@@ -205,7 +207,7 @@ and (max-width : 1024px) {
 
 /* small screen */
 @media only screen
-and (max-width : 767px) {
+and (max-width : 910px) {
   .burgerMenu {
     position: relative;
     padding-right: 1.25em;
@@ -247,7 +249,7 @@ and (max-width : 767px) {
   }
 
   .logo {
-    margin-top: 8px;
+    margin-top: 4px;
     margin-left: 2%;
   }
   .logoName {

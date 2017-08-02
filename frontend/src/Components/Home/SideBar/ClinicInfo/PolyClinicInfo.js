@@ -329,7 +329,7 @@ class PolyClinicInfo extends Component {
               {this.props.user._id ?
                 this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (
                 <div className="row-fluid row-clinicinfo-btn">
-                  <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit report</button></Link>
+                  <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="submit" className="btn clinicinfo-btn">Clinic admin: submit report</button></Link>
                 </div>
               ) : this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ? (
                 <div className="row-fluid row-clinicinfo-btn">
