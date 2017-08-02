@@ -9,5 +9,5 @@ export const calculateNearest = (clinics, userCood) => {
   clinics.sort((a,b) => {
     return a.distance - b.distance;
   })
-  return clinics.slice(0,10)
+  return clinics.slice(0,15)
 }

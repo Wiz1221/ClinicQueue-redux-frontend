@@ -134,7 +134,7 @@ onDeleteAccountClick = () => {
                 </div>
                 {this.state.role == "clinicAdmin" ? (
                   <div className="userInfoField">
-                  <h5>My clinic :</h5>
+                  <h5>My Administered Clinic:</h5>
                   <div className="userInfoRow">
                     <select name="myClinic" className='inputField' onChange={this.onChange}>
                       <option value={this.state.myClinic} selected='selected' onChange={this.onChange}>{this.state.myClinic}</option>

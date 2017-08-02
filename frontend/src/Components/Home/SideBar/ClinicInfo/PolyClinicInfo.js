@@ -104,8 +104,10 @@ class PolyClinicInfo extends Component {
 
     const hQ = this.dateArrayParser(historicalQueue, false)
     const cQ = this.dateArrayParser(currentQueue, true);
-    console.log(hQ)
-    console.log(cQ)
+    // console.log("historicalQueue,hQ")
+    // console.log(historicalQueue)
+    // console.log(hQ);
+    //console.log(cQ)
     const margin = {top: 10, right: 10, bottom: 20, left: 10},
           width = 960 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom -100;
@@ -241,15 +243,22 @@ class PolyClinicInfo extends Component {
 }
     // DESTROY chart
     deleteTimeSeries = () => {
+      console.log("went into deleteTimeSeries!");
       const node = this.node;
       const qLine = select(node);
       qLine.selectAll('.line')
-            .exit()
             .remove()
     }
 
   classParser = (differenceQueue) => {
     return differenceQueue > 0 ? "positiveDifference" : "negativeDifference"
+  }
+
+  isUserSubscribedToActiveClinic = (subscribeArray) => {
+    let matchArray = subscribeArray.filter((subscribe) => {
+      return subscribe.clinic == this.props.activeClinic._id
+    });
+    return matchArray.length;
   }
 
   render() {
@@ -261,10 +270,10 @@ class PolyClinicInfo extends Component {
     const currentDay = dayArray[currentDayNum];
     //console.log("currentHours " + currentHours);
     return (
+      <div>
       <div className="poly-clinic-info container">
-
         <h3>{this.props.activeClinic.properties.name_full}</h3>
-        {currentHours < 16 && currentDayNum < 6 && currentDayNum != 0 || currentHours < 12 && currentDayNum == 6 ?
+        {currentHours < 16 && currentHours > 7 && currentDayNum < 6 && currentDayNum != 0 || currentHours < 12 && currentHours > 7 && currentDayNum == 6 ?
         (<h5>is now <span className={this.classParser(differenceQueue)}>
         {differenceQueue > 0 ? (differenceQueue.toFixed(0) + "%more") :
         (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than its average queue at this hour on {currentDay}</h5>) :
@@ -273,7 +282,7 @@ class PolyClinicInfo extends Component {
         <svg ref={node => this.node = node}
               viewBox="0 0 960 500">
         </svg>
-
+        </div>
         {
           this.state.showWhichComponent==="subscribeClinicButton" ?  (
             <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
@@ -289,15 +298,15 @@ class PolyClinicInfo extends Component {
                 <div className="row-fluid row-clinicinfo-btn">
                   <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
                 </div>
-              ) : (
+              ) : this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ? (
                 <div className="row-fluid row-clinicinfo-btn">
                   <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
                 </div>
               ) : (
                 <div className="row-fluid row-clinicinfo-btn">
-                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                  <button type="button" className="btn clinic-confirm-btn">You are subscribed to this Clinic</button>
                 </div>
-              )}
+              ): null}
               <div className="row-fluid row-clinicinfo-btn">
                 <button id="showNearbyClinicsButton" type="submit" className="btn clinicinfo-btn" onClick={this.showNearbyClinics}>Show nearby clinics</button>
               </div>
@@ -309,33 +318,16 @@ class PolyClinicInfo extends Component {
     );
   }
 
-  // {
-  //   this.state.showWhichComponent==="subscribeClinicButton" && this.props.user._id ?  (
-  //     <Subscribe backToClinicInfo={this.backToClinicInfo} />
-  //   ) : (
-  //     <div>
-  //       <QueueList queue= {this.props.activeClinic.queue}/>
-  //       <div className="row-fluid row-clinicinfo-btn">
-  //         <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn">See more queues...</button></Link>
-  //       </div>
-  //       <div className="row-fluid row-clinicinfo-btn">
-  //       <button id="subscribeClinicButton" type="submit" className="btn btn-info" onClick={this.onClick}>Subscribe to this Clinic</button>
-  //       </div>
-  //     </div>
-  //   )
+  // This removes the chart permanently
+  // componentWillReceiveProps() {
+  //   this.deleteTimeSeries();
   // }
-  componentWillReceiveProps() {
-    this.deleteTimeSeries();
-  }
+
+  // componentWillMount() {
+  //   this.deleteTimeSeries();
+  // }
 
   componentDidMount() {
-    // let svg = d3.select(this.refs.svg);
-    //
-    //   svg.on('mousemove', () => {
-    //       this.updateMousePos();
-    //       console.log(this.props.updateMousePos);
-    //   });
-
       this.doTimeSeries(this.props.activeClinic.properties.historicalQueue, this.props.activeClinic.properties.currentQueue, 'CREATE');
 
    }

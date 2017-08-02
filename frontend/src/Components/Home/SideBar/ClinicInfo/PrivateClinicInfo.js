@@ -6,7 +6,7 @@ import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
 import chasLogo from '../../../../chas-transparent-small.png';
 
-import { triggerNotification } from '../../../../Actions/AppAction';
+import { triggerNotification, nearestClinicToClinic } from '../../../../Actions/AppAction';
 import { userNotification } from '../../../../Actions/UserAction';
 
 // import API to store activeClinic into localStorage
@@ -39,9 +39,18 @@ class PrivateClinicInfo extends Component {
     })
   }
 
-  // storeActiveClinic = () => {
-  //   setActiveClinic(this.props.activeClinic);
-  // }
+  showNearbyClinics = () => {
+    this.props.nearestClinicToClinic();
+  }
+
+  isUserSubscribedToActiveClinic = (subscribeArray) => {
+    let matchArray = subscribeArray.filter((subscribe) => {
+      return subscribe.clinic == this.props.activeClinic._id
+    });
+    console.log("matchArray");
+    console.log(matchArray);
+    return matchArray.length;
+  }
 
   render() {
     const properties = this.props.activeClinic.properties
@@ -70,15 +79,18 @@ class PrivateClinicInfo extends Component {
                 <div className="row-fluid row-clinicinfo-btn">
                   <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
                 </div>
-              ) : (
+              ) :  this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ? (
                 <div className="row-fluid row-clinicinfo-btn">
                   <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
                 </div>
               ) : (
                 <div className="row-fluid row-clinicinfo-btn">
-                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                  <button type="button" className="btn clinic-subscribed-btn">You are subscribed to this Clinic</button>
                 </div>
-              )}
+              ) : null}
+              <div className="row-fluid row-clinicinfo-btn">
+                <button id="showNearbyClinicsButton" type="submit" className="btn clinicinfo-btn" onClick={this.showNearbyClinics}>Show nearby clinics</button>
+              </div>
             </div>
           )
         }
@@ -86,6 +98,12 @@ class PrivateClinicInfo extends Component {
     );
   }
 }
+
+// (
+//   <div className="row-fluid row-clinicinfo-btn">
+//     <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+//   </div>
+// )
 
 const mapStateToProps = (state) => {
   return {
@@ -98,7 +116,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     userNotification: (message) => {dispatch(userNotification(message));},
     triggerNotification: () => {dispatch(triggerNotification());},
-    // activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
+    nearestClinicToClinic: () => {dispatch(nearestClinicToClinic());},
   }
 }
 

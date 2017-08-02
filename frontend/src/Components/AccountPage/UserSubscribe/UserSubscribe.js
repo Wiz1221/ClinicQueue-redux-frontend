@@ -106,32 +106,37 @@ class UserSubscribe extends Component{
   }
 
   unsubscribeButton = () => {
-    let whichSubscribeArray = this.props.user.subscribe.filter((elem,index) => {
-      return elem.clinic === this.state.clinicChoosen._id
-    })
+    if(!this.state.nameOfClinicChoosen){
+      this.props.triggerNotification();
+      this.props.userNotification("You have not chosen any clinic to unsubscribe");
+    } else {
+      let whichSubscribeArray = this.props.user.subscribe.filter((elem,index) => {
+        return elem.clinic === this.state.clinicChoosen._id
+      })
 
-    this.props.deleteSubscribe({
-    subscribe_id: whichSubscribeArray[0]._id,
-    user_id: whichSubscribeArray[0].user,
-    clinic_id: whichSubscribeArray[0].clinic
-    });
+      this.props.deleteSubscribe({
+      subscribe_id: whichSubscribeArray[0]._id,
+      user_id: whichSubscribeArray[0].user,
+      clinic_id: whichSubscribeArray[0].clinic
+      });
 
-    this.props.triggerNotification();
-    this.props.userNotification("You have unsubscribe from "+this.state.nameOfClinicChoosen);
-    this.setState({
-      searchTerm: "",
-      nameOfClinicChoosen: "",
-      clinicChoosen: {}
-    })
+      this.props.triggerNotification();
+      this.props.userNotification("You have unsubscribed from "+this.state.nameOfClinicChoosen);
+      this.setState({
+        searchTerm: "",
+        nameOfClinicChoosen: "",
+        clinicChoosen: {}
+      })
+    }
+
   }
 
   render(){
 
     return(
       <div className="userInfoField userInfoFieldEnding">
-        <h5>My Subscription:</h5>
+        <h5>My Subscribed Clinics</h5>
         <div className="userInfoRow">
-          <input type="text" name="contact" className='inputField' placeholder={this.props.user.subscribe} onChange={this.onChange}/>
           <input className="searching"
                  type="search"
                  name="search"
@@ -149,6 +154,9 @@ class UserSubscribe extends Component{
     )
   }
 }
+
+// <input type="text" name="contact" className='inputField' onChange={this.onChange}/>
+// placeholder={this.props.user.subscribe}
 
 const mapStateToProps = (state) => {
   return {
