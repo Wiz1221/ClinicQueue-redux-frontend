@@ -6,24 +6,17 @@ export default class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      style: {},
       renderComponent: false
     }
   }
 
   popUp = () => {
     this.setState({
-      style: {
-        height: '130px'
-      },
       renderComponent: true
     });
   }
   popDown = () => {
     this.setState({
-      style: {
-        height: '20px'
-      },
       renderComponent: false
     });
   }
@@ -48,7 +41,7 @@ export default class About extends React.Component {
 
   render() {
     return (
-      <div className="AboutBar" onMouseEnter={this.popUp} onMouseLeave={this.popDown} style={this.state.style}>
+      <div className="AboutBar" onMouseEnter={this.popUp} onMouseLeave={this.popDown}>
         <i className="arrow up"></i>
         {this.state.renderComponent ? (
           <div className="container">

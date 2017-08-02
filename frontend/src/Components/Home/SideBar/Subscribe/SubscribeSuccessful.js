@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import './Subscribe.css'
+
 class SubscribeSuccessful extends Component {
 
   onClick = () => {
@@ -9,15 +11,16 @@ class SubscribeSuccessful extends Component {
 
   render() {
     return (
-      <div className="subscribeSuccessful">
-        <div>Thank you for subscribing to {this.props.clinic.properties.name_full}</div>
-        <div>The clinic will post a new queue status every ?? mins</div>
-        <div>This info will be sent to you via SMS at the following contact number</div>
+      <div className="subscribeSuccessful subscribe-successful-clinic-info well container">
+        <p>Thank you for subscribing to {this.props.clinic.properties.name_full}!</p>
+        <p>You will be alerted via SMS whenever a new queue status is posted at the following contact number:</p>
         <h3>{this.props.user.contact}</h3>
-        <div>You can unsubscribe from this clinic or manage your subscriptions at your Account Page</div>
-        <div>Thank you once again for using our service</div>
-        <button type="submit" className="btn btn-danger queueButton" onClick={this.onClick}>back to clinic Info</button>
-        <Link to='/account'><button type="submit" className="btn btn-danger queueButton">go to my Account Page</button></Link>
+        <p>You can unsubscribe from this clinic or manage your subscriptions at your Account Page.</p>
+        <p>Thank you once again for using our service.</p>
+        <div className="subscribe-clinic-info container">
+        <button type="submit" className="btn clinic-back-btn queueButton" onClick={this.onClick}>Back to clinic</button>
+        <Link to='/account'><button type="submit" className="btn clinic-back-btn queueButton">Go to My Account</button></Link>
+        </div>
       </div>
     );
   }

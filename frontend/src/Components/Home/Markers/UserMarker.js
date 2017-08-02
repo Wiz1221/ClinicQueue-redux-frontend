@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
+import userMarker from '../../../userMarker.png';
+
 
 class UserMarker extends Component {
 
   markerStyle = () => {
-    let radius = 40;
+    let width = 30;
+    let height = 45;
     return {
       position: 'absolute',
-      width: radius,
-      height: radius,
-      left: -radius / 2,
-      top: -radius / 2,
+      width: width,
+      height: height,
+      left: -width / 2,
+      top: -height / 2,
       cursor: 'pointer',
-      border: 'none',
-      borderRadius: radius,
-      background: 'rgba(62, 239, 195, 0.6)',
+      //border: '2 solid black',
+      //borderRadius: radius,
+      //background: 'rgba(62, 239, 195, 0.6)',
       textAlign: 'center',
     }
   };
 
   render() {
     return (
-      <div style={this.markerStyle()}>
-        you
+      <div>
+        <img src={userMarker} style={this.markerStyle()}/>
       </div>
     );
   }

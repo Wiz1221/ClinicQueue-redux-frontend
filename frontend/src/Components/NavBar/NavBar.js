@@ -14,7 +14,7 @@ import { sortingAlgorithm } from '../../API/API';
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
 import { localLogout } from '../../Actions/UserAction';
-import { nearestClinic, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
+import { nearestClinicUser, nearestClinicOff, triggerNotification, clearNotif } from '../../Actions/AppAction';
 
 import './NavBar.css';
 
@@ -90,7 +90,7 @@ class NavBar extends Component {
 
   clickNearestClinic = () => {
     this.props.removeActiveClinic();
-    this.props.nearestClinic();
+    this.props.nearestClinicUser();
   }
 
   removeActiveClinicAndNearestClinic = () => {
@@ -140,9 +140,6 @@ class NavBar extends Component {
       this.setState({
         menuTop: true
       });
-      return{
-        top: -200
-      }
     }
   }
   toggleMenu = () => {
@@ -164,9 +161,9 @@ class NavBar extends Component {
       <div >
         {this.state.width < 767 ? (
           <div className="smallScreenNav">
-            <nav>
-              <Link to ='/' onClick={this.removeActiveClinicAndNearestClinic}>
-                <a>
+            <nav className="Navbar">
+              <Link to ='/'>
+                <a onClick={this.removeActiveClinicAndNearestClinic}>
                   <img src={logo} width={50} height={50} className="logo"/>
                 </a>
               </Link>
@@ -194,14 +191,14 @@ class NavBar extends Component {
               <div className='menus' style={this.toggleMenu()}>
                 <div className='menuItem'>
                   {this.props.minNavBar? null :
-                  (<a className="smallMenuBtn" onClick={this.clickNearestClinic}><div>My Nearest Clinics</div></a>)}
+                  (<a onClick={this.clickNearestClinic} className='smallMenuBtn'>My Nearest Clinics</a>)}
                 </div>
 
-                  {this.props.user._id ? <div className='menuItem'><Link to='/MyAccount' className="smallMenuBtn"><div>My account</div></Link></div> : null}
+                  {this.props.user._id ? <div className='menuItem'><Link to='/MyAccount' className='smallMenuBtn'>My account</Link></div> : null}
 
                 <div className='menuItem'>
-                  {this.props.user._id ? <Link to='/' className="smallMenuBtn" onClick={this.execLogout}>Logout</Link> :
-                  <Link to='/login' className="smallMenuBtn"><div onClick={this.clearNotifi}>Login</div></Link>}
+                  {this.props.user._id ? <Link to='/' onClick={this.execLogout} className='smallMenuBtn'>Logout</Link> :
+                  <Link to='/login' onClick={this.clearNotifi} className='smallMenuBtn'>Login</Link>}
                 </div>
               </div>
 
@@ -257,7 +254,7 @@ const mapDispatchToProps = (dispatch) => {
     activeClinic: (clinic) => {dispatch(activeClinic(clinic));},
     removeActiveClinic: () => {dispatch(removeActiveClinic())},
     Logout: () => {dispatch(localLogout());},
-    nearestClinic: () => {dispatch(nearestClinic())},
+    nearestClinicUser: () => {dispatch(nearestClinicUser())},
     nearestClinicOff: () => {dispatch(nearestClinicOff())},
     triggerNotification: () => {dispatch(triggerNotification())},
     clearNotif: () => {dispatch(clearNotif())}
