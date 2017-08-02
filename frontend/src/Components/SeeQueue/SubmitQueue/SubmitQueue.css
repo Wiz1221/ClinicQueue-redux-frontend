@@ -1,4 +1,3 @@
-
 #submitQueue {
   /*width: 200px;*/
   /*height: 80vh;*/
@@ -7,7 +6,56 @@
 }
 
 .queueButton {
-  margin: 10px;
+  font-family: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 12px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 45%;
+  border: 3px solid #7456e9;
+  color: #7456e9;
+  overflow: hidden;
+}
+.queueButton:after{
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  outline: none;
+}
+.queueButton:active {
+  border-color: #fff;
+  color: #fff;
+  outline: none;
+}
+.queueButton:hover {
+	background: #7456e9;
+  color: #fff;
+}
+.queueButton:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3.5;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.queueButton:active:before {
+	color: #fff;
+  outline: none;
 }
 
 .row-upload-file p {
@@ -17,23 +65,14 @@
 
 .well-status {
   background: rgba(255,255,255,1);
-  border: solid 3px rgba(118,33,33,1);
 }
 
 .well-status p {
   font-size: 15px;
   font-weight: normal;
-  color:rgba(118,33,33,1);
+  color: #7456e9;
 }
 
-section {
-  /*display: flex;
-  flex-flow: row wrap;*/
-}
-section > div {
-  /*flex: 1;
-  padding: 0.5rem;*/
-}
 input[type="radio"] {
   display: none;
   &:not(:disabled) ~ label {
@@ -48,65 +87,97 @@ input[type="radio"] {
 }
 .statusSelection {
   height: 100%;
-  display: block;
   background: white;
-  border: 2px solid hsla(150, 75%, 50%, 1);
-  border-radius: 20px;
+  border: 2px solid #7456e9;
+  border-radius: 2px;
   padding: 1rem;
   margin-bottom: 1rem;
+  margin-left: 10px;
   text-align: center;
   box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
   position: relative;
 }
-
+#statusSelection1 {
+  border: 2px solid rgb(61, 224, 52);
+  color: rgb(61, 224, 52);
+  transition: all 0.3s;
+  width: 100px;
+}
+#statusSelection2 {
+  border: 2px solid rgb(235, 221, 40);
+  color: rgb(235, 221, 40);
+  transition: all 0.3s;
+  width: 100px;
+}
+#statusSelection3 {
+  border: 2px solid rgb(247, 134, 78);
+  color: rgb(247, 134, 78);
+  transition: all 0.3s;
+  width: 100px;
+}
+#statusSelection4 {
+  border: 2px solid rgb(212, 51, 59);
+  color: rgb(212, 51, 59);
+  transition: all 0.3s;
+  width: 100px;
+}
 #statusSelection1:hover {
   color: white;
-  background: hsla(150, 75%, 50%, 1);
+  background: rgb(61, 224, 52);
+  border-color: rgb(61, 224, 52);
   box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  cursor: pointer;
+}
+#statusSelection1:focus {
+  color: white;
+  background: rgb(61, 224, 52);
+  border-color: rgb(61, 224, 52);
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  cursor: pointer;
+  outline: none;
 }
 
 #statusSelection2:hover {
   color: white;
-  background: hsla(150, 75%, 50%, 1);
-  border-color: hsla(150, 75%, 50%, 1);
+  background: rgb(235, 221, 40);
+  border-color: rgb(235, 221, 40);
+  cursor: pointer;
+}
+#statusSelection2:focus {
+  color: white;
+  background: rgb(235, 221, 40);
+  border-color: rgb(235, 221, 40);
+  cursor: pointer;
+  outline: none;
 }
 
 #statusSelection3:hover {
   color: white;
-  background: rgb(244, 206, 66);
-  border-color: rgb(244, 206, 66);
+  background: rgb(247, 134, 78);
+  border-color: rgb(247, 134, 78);
+  cursor: pointer;
+}
+#statusSelection3:focus {
+  color: white;
+  background: rgb(247, 134, 78);
+  border-color: rgb(247, 134, 78);
+  cursor: pointer;
+  outline: none;
 }
 
 #statusSelection4:hover {
   color: white;
-  background: red;
-  border-color: red;
+  background: rgb(212, 51, 59);
+  border-color: rgb(212, 51, 59);
+  cursor: pointer;
 }
-
-/*input[type="radio"]:checked + label {
-  background: hsla(150, 75%, 50%, 1);
-  color: hsla(215, 0%, 100%, 1);
-  box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75);
-  &::after {
-    color: hsla(215, 5%, 25%, 1);
-    font-family: FontAwesome;
-    border: 2px solid hsla(150, 75%, 45%, 1);
-    content: "\f00c";
-    font-size: 24px;
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
-  }
+#statusSelection4:focus{
+  color: white;
+  background: rgb(212, 51, 59);
+  border-color: rgb(212, 51, 59);
+  cursor: pointer;
+  outline: none;
 }
-input[type="radio"]#control_05:checked + label {
-  background: red;
-  border-color: red;
-}*/
+.well {
+  border: 3px solid #7456e9;
+}

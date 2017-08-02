@@ -91,34 +91,27 @@ class SeeQueue extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.activeClinic._id ? (
-            <div className="seequeue-container container-fluid">
-              {this.props.minNavBarOn()}
-              <div className="row">
-          <NavBarWhite match={this.props.match}/>
-          <NotificationBar/>
-        </div>
-        <div className="row">
-          <div className="queueGalleryContainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
-              <header className="jumbotron queue-gallery-jumbotron">
-                <QueueGallery queue={this.populateQueues(this.props.activeClinic.queue)}/>
-              </header>
-          </div>
-          <div className="submitQueueContainer col-xs-12 col-sm-6 col-md-4 col-lg-4">
-            <header className="jumbotron queue-gallery-jumbotron">
-              <SubmitQueue clinic={this.props.activeClinic}/>
-            </header>
-          </div>
-        </div>
-      </div>) :
-                (
-            <LoadingPage />
-          )
-        }
-   </div>
- )}
+        {this.props.activeClinic._id ? (
+          <div className="BG container">
+            {this.props.minNavBarOn()}
+            <NavBarWhite match={this.props.match}/>
+            <NotificationBar/>
+            <div className="row">
+              <div className="boxContent col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1">
 
+                <div className="queueLeftSide">
+                  <QueueGallery queue={this.populateQueues(this.props.activeClinic.queue)}/>
+                </div>
+                <div className="queueRightSide">
+                  <SubmitQueue clinic={this.props.activeClinic}/>
+                </div>
+
+              </div>
+            </div>
+          </div>) : (
+        <LoadingPage /> )}
+      </div>
+    )}
  }
 
 

@@ -58,27 +58,24 @@ class QueueItem extends Component {
   render() {
     const queue = this.props.queue;
     return (
-      <div>
-      {queue.user.role =="clinicAdmin" ?
-      (<div className={"queueItem "+ this.queueBorderParse(queue.status) + " container"}>
-       <div className="queue-image">
-          <img src={queue.pic} />
-      </div>
-      <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-      <p className="queue-comments">"{queue.comment}"</p>
-      <div className= {"queue-status " + this.queueClassParse(queue.status)}>{queue.status}</div>
-      </div>) :
-      (<div className="queueItem container">
-       <div className="queue-image">
-          <img src={queue.pic} />
-      </div>
-      <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-        <p className= "queue-user">by @{queue.user.username}</p>
-        <p className="queue-comments">"{queue.comment}"</p>
-      </div>
-    )}
-    </div>
-    )
+      <div >
+        {queue.user.role =="clinicAdmin" ?
+        (<div className={"queueItem "+ this.queueBorderParse(queue.status) + " container"}>
+          <img src={queue.pic} className="queue-image"/>
+          <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
+          <p className="queue-comments">"{queue.comment}"</p>
+
+            <p>Queue status:</p>
+            <div className={"queue-status "+ this.queueClassParse(queue.status)}>{queue.status}</div>
+          
+        </div>) : (
+        <div className="queueItem container">
+          <img src={queue.pic} className="queue-image"/>
+          <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
+          <p className= "queue-user">by @{queue.user.username}</p>
+          <p className="queue-comments">"{queue.comment}"</p>
+        </div> )}
+      </div> )
   }
 }
 

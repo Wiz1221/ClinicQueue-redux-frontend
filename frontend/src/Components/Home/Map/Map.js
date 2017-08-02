@@ -122,7 +122,7 @@ class Map extends Component {
     console.log(coord);
 
     return (
-        <div className="map-container container">
+        <div className="map-container">
           <GoogleMap
            center={this.props.activeClinicObject._id?
              { lat: this.props.activeClinicObject.geometry.coordinates[1], lng: this.props.activeClinicObject.geometry.coordinates[0] } :

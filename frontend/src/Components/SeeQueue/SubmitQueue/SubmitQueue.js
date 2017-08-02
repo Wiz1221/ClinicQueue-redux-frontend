@@ -18,7 +18,8 @@ class SubmitQueue extends Component {
       adminMessage:"",
       isLoggedIn: false,
       submitSuccessful: false,
-      missing: false
+      missing: false,
+      Qstatus: false
     }
   }
 
@@ -29,7 +30,10 @@ class SubmitQueue extends Component {
   statusButtonClicked = (status) => {
     let queue = this.state.queue
     queue.status = status
-    this.setState({queue: queue})
+    console.log("queueS:"+queue.status)
+    this.setState({
+      queue: queue
+    })
   }
 
   onChange = (event) => {
@@ -128,8 +132,8 @@ class SubmitQueue extends Component {
           {this.props.user._id ?
           (this.props.user.role === "clinicAdmin" || "appAdmin")&&(this.props.clinic._id===this.props.user.myClinic)  ? (
               <div className="well well-status">
-                <p>Clinic Admin: select a Queue Status</p>
-                  <QueueStatus onClick={this.statusButtonClicked}/>
+                <p>Clinic Admin: select a Queue Status </p>
+                  <QueueStatus onClick={this.statusButtonClicked} onFocus={this.btnFocus} onBlur={this.btnBlur}/>
               </div>
           ) : null : null}
 
@@ -142,7 +146,7 @@ class SubmitQueue extends Component {
                       onChange={this.onChange}
                       value={this.state.queue.comment? this.state.queue.comment: ""}/>
           </div>
-          <button type="button" className="btn btn-primary queueButton" onClick={this.postQueue}>Submit</button>
+          <button type="button" className=" queueButton" onClick={this.postQueue}>Submit</button>
       </div>
     );
   }
