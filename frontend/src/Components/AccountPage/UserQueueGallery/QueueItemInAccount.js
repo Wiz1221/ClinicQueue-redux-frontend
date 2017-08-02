@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import './QueueItemInAccount.css';
+
 class QueueItemInAccount extends Component{
 
   dateParse = (date,offsethours) => {
@@ -56,9 +58,8 @@ class QueueItemInAccount extends Component{
   render(){
     const queue = this.props.queue;
     return(
-      <div className="queueItemContainer">
-      <a href="#" class="close-thin">×</a>
-      <div className="queueItem">
+      <div className={"queueItem "+ this.queueBorderParse(queue.status) + " container"}>
+      <a className="boxclose" onClick={this.onClick}></a>
         <div className="queue-image">
           <img src={queue.pic} />
         </div>
@@ -69,33 +70,10 @@ class QueueItemInAccount extends Component{
           queue.status ?
           <div className= {"queue-status " + this.queueClassParse(queue.status)}>{queue.status}</div> : null
         }
-        <span class="pull-right clickable" data-effect="fadeOut"><i class="fa fa-times"></i></span>
-        <button onClick={this.onClick}>Delete this post</button>
       </div>
-      </div>
+
     )
   }
 }
-
-// <div>
-// {queue.user.role =="clinicAdmin" ?
-// (<div className={"queueItem "+ this.queueBorderParse(queue.status) + " container"}>
-//  <div className="queue-image">
-//     <img src={queue.pic} />
-// </div>
-// <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-// <p className="queue-comments">"{queue.comment}"</p>
-// <div className= {"queue-status " + this.queueClassParse(queue.status)}>{queue.status}</div>
-// </div>) :
-// (<div className="queueItem container">
-//  <div className="queue-image">
-//     <img src={queue.pic} />
-// </div>
-// <p className="queue-timestamp">Submitted at {this.dateParse(queue.createdAt,8)}</p>
-//   <p className= "queue-user">by @{queue.user.username}</p>
-//   <p className="queue-comments">"{queue.comment}"</p>
-// </div>
-// )}
-// </div>
 
 export default QueueItemInAccount;

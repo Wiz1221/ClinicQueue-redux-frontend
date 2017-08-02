@@ -118,7 +118,10 @@ export const submitQueue = (pic, queue) => {
 socket.on('queueForAllUser', (queue) => {
   store.dispatch(storeQueue(queue));
   store.dispatch(storeQueueInClinic(queue));
-  store.dispatch(storeQueueInActiveClinic(queue));
+  const state = store.getState();
+  if(state.activeClinic._id){
+    store.dispatch(storeQueueInActiveClinic(queue));
+  }
 })
 
 const deleteQueueInStore = (queue_id) => {
@@ -165,12 +168,13 @@ export const deleteQueue = (queueToBeDeleted) => {
 }
 
 socket.on('delete queue done', (queueInfo) => {
-  console.log('delete queue done', queueInfo)
+  store.dispatch(deleteQueueInStore(queueInfo.queue_id))
+  store.dispatch(deleteQueueInClinic(queueInfo.queue_id, queueInfo.clinic_id))
   const state = store.getState();
   if(state.user._id === queueInfo.user_id){
     store.dispatch(deleteQueueInUser(queueInfo.queue_id, queueInfo.user_id))
   }
-  store.dispatch(deleteQueueInStore(queueInfo.queue_id))
-  store.dispatch(deleteQueueInClinic(queueInfo.queue_id, queueInfo.clinic_id))
-  store.dispatch(deleteQueueInActiveClinic(queueInfo.queue_id))
+  if(state.activeClinic._id){
+    store.dispatch(deleteQueueInActiveClinic(queueInfo.queue_id))
+  }
 })

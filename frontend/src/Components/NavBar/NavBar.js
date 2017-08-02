@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import SearchBar from './SearchBar/SearchBar';
 import DropDownItem from './DropDownItem/DropDownItem';
 import logo from '../../ClinicQueue_White.png';
+import { sortingAlgorithm } from '../../API/API';
 
 // Actions
 import { activeClinic, removeActiveClinic } from '../../Actions/ClinicAction';
@@ -95,11 +96,7 @@ class NavBar extends Component {
   removeActiveClinicAndNearestClinic = () => {
     this.props.removeActiveClinic();
     this.props.nearestClinicOff();
-    this.props.clinic.sort((a,b) => {
-      const aLower = a.properties.name_full.toLowerCase();
-      const bLower = b.properties.name_full.toLowerCase();
-      return aLower < bLower ? -1 : 1
-    })
+    // sortingAlgorithm(this.props.clinic)
   }
 
   execLogout = (e) => {

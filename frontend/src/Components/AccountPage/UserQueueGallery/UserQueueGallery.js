@@ -44,9 +44,9 @@ class UserQueueGallery extends Component {
     if(queueFromUserArray.length===0){
       return (<div>you have not posted any queue</div>);
     }else{
-      return queueFromUserArray.map((queue,index) => {
+      return queueFromUserArray.reverse().map((queue,index) => {
         return (
-            <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton}/>
+            <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton} key={queue._id}/>
         )
       })
     }

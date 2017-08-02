@@ -10,24 +10,17 @@ import { history } from '../../index';
 import { ConnectedRouter } from 'react-router-redux';
 
 import Home from "../Home/Home";
-import AccountPage from "../AccountPage/AccountPage";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import SeeQueue from "../SeeQueue/SeeQueue";
 import Error from '../Error/Error';
 import MyAccount from '../AccountPage/AccountPage';
+import { getUserLoginStatus } from '../../API/API';
+
 
 import './App.css';
 
 class App extends Component {
-
-  componentWillReceiveProps(nextProps){
-    if(nextProps.user._id){
-      fakeAuth.isAuthenticated = true
-    }else{
-      fakeAuth.isAuthenticated = false
-    }
-  }
 
   render() {
     return (
@@ -35,7 +28,6 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/account"  component={AccountPage} />
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
             <Route path="/seeQueue/:name" component={SeeQueue}/>
@@ -48,8 +40,10 @@ class App extends Component {
   }
 }
 
+const userLoginStatus = getUserLoginStatus();
+
 const fakeAuth = {
-    isAuthenticated: false
+    isAuthenticated: userLoginStatus === 'user is logged in' ? true : false
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

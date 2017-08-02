@@ -45,8 +45,14 @@ class PolyClinicInfo extends Component {
         showWhichComponent: event.target.id
       })
     }else{
-      if(user.subscribe.indexOf(this.props.activeClinic._id) > -1){
-        console.log("You have already subscribed to this clinic");
+      let checker = false;
+      user.subscribe.forEach((elem,index) => {
+        if(elem.clinic === this.props.activeClinic._id){
+          checker = true
+        }
+      })
+      if(checker){
+        // console.log("You have already subscribed to this clinic");
         this.props.triggerNotification();
         this.props.userNotification("You have already subscribed to this clinic");
         return;
