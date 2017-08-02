@@ -39,15 +39,16 @@
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   width: 80%;
-  border: 2px solid rgba(59,120,77,1);
-  color: rgba(59,120,77,1);
+  border: 2px solid rgb(61, 224, 52);
+  color: rgb(61, 224, 52));
   overflow: hidden;
   margin-top: 10px;
   margin-left:0;
+  background-color: white;
 }
 
 .clinic-confirm-btn:hover {
-	background: rgba(59,120,77,1);
+	background: rgb(61, 224, 52);
   color: #fff;
   border-color: #fff;
 }
@@ -68,15 +69,16 @@
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   width: 80%;
-  border: 2px solid rgba(118,33,33,1);
-  color: rgba(118,33,33,1);
+  border: 2px solid #7456e9;
+  color: #fff;
   overflow: hidden;
   margin-top: 10px;
   margin-left:0;
+  background-color: #7456e9
 }
 
 .clinic-back-btn:hover {
-	background: rgba(118,33,33,1);
+	background: #7456e9;
   color: #fff;
   border-color: #fff;
 }
