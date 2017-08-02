@@ -1,5 +1,10 @@
-.subscribeForm p {
+.subscribeForm p, .subscribeSuccessful p {
   overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 .subscribeForm.well {
@@ -10,6 +15,12 @@
   width: 95%;
   margin: auto;
   text-align: center;
+}
+
+.subscribe-successful-clinic-info.well{
+  width: 90%;
+  margin: auto;
+  background-color: rgba(253,255,219,1);
 }
 
 .clinic-confirm-btn {

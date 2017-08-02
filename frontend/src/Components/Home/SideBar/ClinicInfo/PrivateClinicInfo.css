@@ -55,3 +55,26 @@
 .private-clinic-info-btn {
   margin-top: 30px;
 }
+
+.clinic-subscribed-btn {
+  background: rgba(59,120,77,1);
+  color: #fff;
+  border-color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 6px;
+  /*display: inline-block;*/
+  /*text-transform: uppercase;*/
+  /*letter-spacing: 1px;*/
+  font-weight: normal;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 80%;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left:0;
+}

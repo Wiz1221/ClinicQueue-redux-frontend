@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear, scaleTime, scaleOrdinal, schemeCategory10 } from 'd3-scale';
 import { timeParse, timeFormat } from 'd3-time-format';
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Subscribe from '../Subscribe/Subscribe';
 import QueueList from '../Queue/QueueList';
 
-import { triggerNotification } from '../../../../Actions/AppAction';
+import { triggerNotification, nearestClinicToClinic } from '../../../../Actions/AppAction';
 import { userNotification } from '../../../../Actions/UserAction';
 //import { clearNotif } from '../../../../Actions/AppAction';
 
@@ -70,9 +70,9 @@ class PolyClinicInfo extends Component {
     })
   }
 
-  // storeActiveClinic = () => {
-  //   setActiveClinic(this.props.activeClinic);
-  // }
+  showNearbyClinics = () => {
+    this.props.nearestClinicToClinic();
+  }
 
   // return formatted time data
   dateArrayParser = (queueArray, strip) => {
@@ -89,6 +89,11 @@ class PolyClinicInfo extends Component {
       }});
     }
 
+  // updateMousePos = () => {
+  //       let [x, y] = d3.mouse(this.refs.svg);
+  //       console.log(x,y);
+  //       this.props.updateMousePos(x, y);
+  //   }
 
   // CREATE chart
   doTimeSeries = (historicalQueue, currentQueue, nodeStage) => {
@@ -105,11 +110,13 @@ class PolyClinicInfo extends Component {
 
     const hQ = this.dateArrayParser(historicalQueue, false)
     const cQ = this.dateArrayParser(currentQueue, true);
-    console.log(hQ)
-    console.log(cQ)
+    // console.log("historicalQueue,hQ")
+    // console.log(historicalQueue)
+    // console.log(hQ);
+    //console.log(cQ)
     const margin = {top: 10, right: 10, bottom: 20, left: 10},
           width = 960 - margin.left - margin.right,
-          height = 500 - margin.top - margin.bottom;
+          height = 500 - margin.top - margin.bottom -100;
 
     // Scales and axes. Note the inverted domain for the y-scale: bigger is up!
     const x = scaleTime().range([0, width]),
@@ -117,17 +124,20 @@ class PolyClinicInfo extends Component {
           xAxis = axisBottom(x).tickFormat(timeFormat('%H')),
           yAxis = axisLeft(y);//.ticks(4).orient("left");
 
-    // A line generator for historicalQueue, for the dark stroke.
+    // A line generator for historical and currentQueue
     const line = d3.line()
                   .x(function(d) { return x(d.date); })
                   .y(function(d) { return y(d.queueQty); })
                   .curve(d3.curveStepAfter)
 
+    const valueline = d3.line()
+                        .x(function(d) { return x(d.date); })
+                        .y(function(d) { return y(d.queueQty); });
+
     // Compute the minimum and maximum date, and the maximum queue.
     x.domain([hQ[0].date, hQ[hQ.length - 1].date]);
     y.domain([0,max(data, function(c) { return max(c.values, function(d) { return parseFloat(d.queueQty); }); })+10]);
     //y.domain([0,220]);
-
 
     const colors  = scaleOrdinal(schemeCategory10)
 
@@ -138,18 +148,19 @@ class PolyClinicInfo extends Component {
                       .append("g")
                       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-        // Add the clip path.
-        qLine.append("clipPath")
-              .attr("id", "clip")
-              .append("rect")
-              .attr("width", width)
-              .attr("height", height);
-
         // Add the x-axis.
         qLine.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
+
+        // Text label for the x axis.
+        qLine.append("text")
+             .attr("class", "x-axis-label")
+             .attr("transform",
+                   "translate(" + (width/2 - 100) + " ," +
+                                  (height + margin.top + 50) + ")")
+             .text("Hour of day");
 
         // Add the y-axis.
         qLine.append("g")
@@ -157,7 +168,7 @@ class PolyClinicInfo extends Component {
               .attr("transform", "translate(" + width + ",0)")
               .call(yAxis)
               .text("No. of people waiting");
-
+        //Draw lines
         qLine.selectAll('.line')
              .data([hQ,cQ])
              .enter()
@@ -170,6 +181,53 @@ class PolyClinicInfo extends Component {
                  .attr('d', function(d) {
                    return line(d);
                  });
+
+        // // Vertical line on hover
+        // let lineSvg = qLine.append("g");
+        // // Circle on hover
+        // let focus = qLine.append("g")
+        //                 .style("display", "none");
+        //                 // Add the valueline path.
+        // // Draw the vertical line
+        // lineSvg.append("path")
+        //                 .attr("class", "line")
+        //                 .attr("d", valueline(data));
+        //
+        // // append the circle at the intersection
+        // focus.append("circle")
+        //       .attr("class", "y")
+        //       .style("fill", "none")
+        //       .style("stroke", "blue")
+        //       .attr("r", 4);
+        //
+        // let bisectDate = d3.bisector(function(d) { return d.date; }).left;
+
+        // const mousemove = () => {
+        //   //let [x,y] = d3.mouse(this.refs.qLine)
+        //   let test = this.updateMousePos();
+        //   console.log("in mouse move ",test);
+        //   // let x0 = x.invert(d3.mouse(node)[0]),
+        //   //   i = bisectDate(data, x0, 1),
+        //   //   d0 = data[i - 1],
+        //   //   d1 = data[i],
+        //   //   d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        //   //
+        //   // focus.select("circle.y")
+        //   //       .attr("transform",
+        //   //       "translate(" + x(d.date) + "," +
+        //   //                        y(d.queueQty) + ")");
+        // }
+
+        // // append the rectangle to capture mouse
+        // qLine.append("rect")
+        //     .attr("width", width)
+        //     .attr("height", height)
+        //     .style("fill", "none")
+        //     .style("pointer-events", "all")
+        //     .on("mouseover", function() { focus.style("display", null); })
+        //     .on("mouseout", function() { focus.style("display", "none"); })
+        //     .on("mousemove", mousemove);
+
       break;
       case "UPDATE": // Bind new data and transition
         console.log("went into UPDATE!");
@@ -191,15 +249,22 @@ class PolyClinicInfo extends Component {
 }
     // DESTROY chart
     deleteTimeSeries = () => {
+      console.log("went into deleteTimeSeries!");
       const node = this.node;
       const qLine = select(node);
       qLine.selectAll('.line')
-            .exit()
             .remove()
     }
 
   classParser = (differenceQueue) => {
     return differenceQueue > 0 ? "positiveDifference" : "negativeDifference"
+  }
+
+  isUserSubscribedToActiveClinic = (subscribeArray) => {
+    let matchArray = subscribeArray.filter((subscribe) => {
+      return subscribe.clinic == this.props.activeClinic._id
+    });
+    return matchArray.length;
   }
 
   render() {
@@ -212,35 +277,64 @@ class PolyClinicInfo extends Component {
     //console.log("currentHours " + currentHours);
     return (
       <div>
+      <div className="poly-clinic-info container">
         <h3>{this.props.activeClinic.properties.name_full}</h3>
-        {currentHours < 16 && currentDayNum < 6 && currentDayNum != 0 || currentHours < 12 && currentDayNum == 6 ?
-        (<h4>is now <span className={this.classParser(differenceQueue)}>
+        {currentHours < 16 && currentHours > 7 && currentDayNum < 6 && currentDayNum != 0 || currentHours < 12 && currentHours > 7 && currentDayNum == 6 ?
+        (<h5>is now <span className={this.classParser(differenceQueue)}>
         {differenceQueue > 0 ? (differenceQueue.toFixed(0) + "%more") :
-        (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than its average queue at this hour on {currentDay}</h4>) :
+        (Math.abs(differenceQueue.toFixed(0)) + "%less" )}</span> crowded than its average queue at this hour on {currentDay}</h5>) :
         (<h5>has closed registrations for {currentDay}</h5>)}
 
         <svg ref={node => this.node = node}
               viewBox="0 0 960 500">
         </svg>
-
+        </div>
         {
-          this.state.showWhichComponent==="subscribeClinicButton" && this.props.user._id ?  (
-            <Subscribe backToClinicInfo={this.backToClinicInfo} />
+          this.state.showWhichComponent==="subscribeClinicButton" ?  (
+            <Subscribe clinic={this.props.activeClinic} backToClinicInfo={this.backToClinicInfo}/>
           ) : (
-            <div>
+            <div className="poly-clinic-info container">
               <QueueList queue= {this.props.activeClinic.queue}/>
-              <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button id="subscribeClinicButton" type="submit" className="polyClinicinfo-btn">See more queues or Submit a queue report</button></Link>
-              <button id="subscribeClinicButton" type="submit" className="polyClinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
-
+              <div className="row-fluid row-clinicinfo-btn">
+                <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="button" className="btn clinicinfo-btn">See more queues...</button></Link>
+              </div>
+              {this.props.user._id ?
+                this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
+                </div>
+              ) : this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ? (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                </div>
+              ) : (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <button type="button" className="btn clinic-confirm-btn">You are subscribed to this Clinic</button>
+                </div>
+              ): null}
+              <div className="row-fluid row-clinicinfo-btn">
+                <button id="showNearbyClinicsButton" type="submit" className="btn clinicinfo-btn" onClick={this.showNearbyClinics}>Show nearby clinics</button>
+              </div>
             </div>
           )
         }
+
       </div>
     );
   }
 
+  // This removes the chart permanently
+  // componentWillReceiveProps() {
+  //   this.deleteTimeSeries();
+  // }
+
+  // componentWillMount() {
+  //   this.deleteTimeSeries();
+  // }
+
   componentDidMount() {
       this.doTimeSeries(this.props.activeClinic.properties.historicalQueue, this.props.activeClinic.properties.currentQueue, 'CREATE');
+
    }
 
    componentDidUpdate() {
@@ -251,6 +345,10 @@ class PolyClinicInfo extends Component {
      this.deleteTimeSeries();
    }
 }
+
+// PolyClinicInfo.propTypes = {
+//     updateMousePos: PropTypes.func.isRequired
+// };
 
 
 
@@ -265,6 +363,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     triggerNotification: () => {dispatch(triggerNotification())},
     userNotification: (message) => {dispatch(userNotification(message));},
+    nearestClinicToClinic: () => {dispatch(nearestClinicToClinic());},
     //clearNotif: () => {dispatch(clearNotif());}
   }
 }

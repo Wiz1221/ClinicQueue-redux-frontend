@@ -104,20 +104,37 @@ class Map extends Component {
   }
 
   render() {
+    let coord;
+    switch(this.props.nearestClinicString) {
+      case 'nearest_to_user':
+        coord = this.state.coordinates;
+        break;
+      case 'nearest_to_clinic':
+        coord = {
+          lat: this.props.activeClinicObject.geometry.coordinates[1],
+          lng: this.props.activeClinicObject.geometry.coordinates[0]
+        }
+        break;
+      default:
+        coord = this.state.coordinates;
+    }
+    console.log('coord');
+    console.log(coord);
+
     return (
         <div className="map-container">
           <GoogleMap
            center={this.props.activeClinicObject._id?
              { lat: this.props.activeClinicObject.geometry.coordinates[1], lng: this.props.activeClinicObject.geometry.coordinates[0] } :
-             this.props.nearestClinicString==="true" ?
-             { lat: this.state.coordinates.lat, lng: this.state.coordinates.lng } :
+             this.props.nearestClinicString ?
+             { lat: coord.lat, lng: coord.lng } :
              { lat: 1.352083, lng: 103.819836 }}
-           zoom={this.props.activeClinicObject._id || this.props.nearestClinicString==="true"? 15 :12}
+           zoom={this.props.activeClinicObject._id || this.props.nearestClinicString ? 15 :12}
            >
-           {this.props.nearestClinicString==="true"? this.renderNearestClinic() : this.renderPolyClinicMapComponent()}
-           {this.props.nearestClinicString==="true"? (
-             <UserMarker lat={this.state.coordinates.lat}
-                         lng={this.state.coordinates.lng}/>
+           {this.props.nearestClinicString ? this.renderNearestClinic(coord) : this.renderPolyClinicMapComponent()}
+           {this.props.nearestClinicString==="nearest_to_user"? (
+             <UserMarker lat={coord.lat}
+                         lng={coord.lng}/>
            ): (this.renderPrivateClinicMapComponent())}
          </GoogleMap>
        </div>
@@ -135,7 +152,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     clinic: state.clinic,
     activeClinicObject: state.activeClinic,
-    nearestClinicString: state.nearestClinicBoolean
+    nearestClinicString: state.nearestClinicState,
   }
 }
 

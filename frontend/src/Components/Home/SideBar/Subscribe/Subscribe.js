@@ -55,7 +55,7 @@ class Subscribe extends Component {
           <div className="private-clinic-info container">
             <div className="row-fluid">
               <div className="subscribeForm well">
-                <p>By subscribing to this clinic, you will receive SMS notifications whenever a new queue report is posted by the appointed administrator for {this.props.activeClinic.properties.name_full} </p>
+                <p>By subscribing to this clinic, you agree to receive SMS notifications whenever a new queue report is posted by the appointed administrator for {this.props.activeClinic.properties.name_full} </p>
                 <p>Please confirm that your phone number is correct:</p>
                   <h4>{this.props.user.contact ? this.props.user.contact : "you have not entered any contact info"}</h4>
                   <div className="checkbox" >

@@ -1,5 +1,7 @@
 import { socket } from './ClinicAction';
 import { store } from '../index.js';
+import { triggerNotification } from './AppAction';
+import { userNotification } from './UserAction';
 
 const storeSubscribeInActiveClinic = (newSubscribe) => {
   return {
@@ -38,6 +40,8 @@ export const postNewSubscribe = (newSubscribe) => {
 socket.on('subscription successful', (newSubscribe) => {
   const state = store.getState();
   store.dispatch(storeSubscribeInClinic(newSubscribe));
+  store.dispatch(triggerNotification());
+  store.dispatch(userNotification("Subscribed to clinic!"));
   if(state.user._id === newSubscribe.user){
     store.dispatch(storeSubscribeInUser(newSubscribe));
   }
