@@ -233,7 +233,7 @@ class Signup extends Component {
               <p className="signupComments">A member of the team will be in touch with you soon.</p>
                </div>: <div></div> }
 
-                 {this.state.searching?(<div className="dropDownList" >{this.renderDropDown()}</div>): null}
+                 {this.state.searching?(<div className="dropDownList-signup" >{this.renderDropDown()}</div>): null}
          </div>
 
           <button className="LoginBtn" onClick={this.localSignup}>Sign up</button>

@@ -16,46 +16,46 @@
   display: inline-block;
   margin-top: 15px;
   margin-left: 1%;
-  color: #8E54E9;
+  color: #7456e9;
   font-size: 25px;
   font-weight: 400;
   letter-spacing: .02em;
 }
 
 .navLoginWhite {
-  color: #8E54E9;
+  color: #7456e9;
   font-weight: 400;
   font-size: 25px;
   margin-top: 11px;
   margin-right: 3%;
   letter-spacing: 0.01em;
   padding: 2px 10px 4px 10px;
-  border: 3px solid #8E54E9;
+  border: 3px solid #7456e9;
   transition: all 0.3s;
 }
 .navLoginWhite:hover {
   cursor: pointer;
   color: #fff;
-  background-color: #8E54E9;
+  background-color: #7456e9;
 }
 .navLoginWhite:focus {
-  color: #8E54E9;
+  color: #7456e9;
   text-decoration: none;
 }
 .navLoginWhite:focus:hover {
-  color: #8E54E9;
+  color: #7456e9;
   text-decoration: underline;
 }
 
 .homeBtnWhite {
   margin-left: 2%;
-  color: #8E54E9;
+  color: #7456e9;
   cursor: pointer;
   font-size: 20px;
   font-weight: 300;
 }
 .homeBtnWhite:hover {
-  color: #8E54E9;
+  color: #7456e9;
   cursor: pointer;
   text-decoration: underline;
   font-size: 20px;
@@ -71,7 +71,7 @@ and (max-width : 767px) {
     background: rgba(255, 255, 255, 1);  /* fallback for old browsers */
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     border: 0;
-    border-bottom: 2px solid #8E54E9;
+    border-bottom: 2px solid #7456e9;
   }
   .burgerMenuWhite {
     position: relative;
@@ -84,10 +84,10 @@ and (max-width : 767px) {
     top: 19px;
     width: 3em;
     height: 0.25em;
-    background: #8E54E9;
+    background: #7456e9;
     box-shadow:
-    0 1em 0 0 #8E54E9,
-    0 2em 0 0 #8E54E9;
+    0 1em 0 0 #7456e9,
+    0 2em 0 0 #7456e9;
   }
   .burgerMenuWhite:hover {
     cursor: pointer;
@@ -107,7 +107,7 @@ and (max-width : 767px) {
     border: 1px solid rgba(160, 66, 249, 0.1);
   }
   .burgerMenuAreaWhite:active {
-    border: 1px solid rgba(160, 66, 249,0.5);
+    border: 1px solid rgba(116, 86, 233, 0.5);
   }
   .smallBox {
     margin-right: 60px;
@@ -141,17 +141,17 @@ and (max-width : 767px) {
     margin-bottom: -2px;
     padding: 5px;
     background-color: #fff;
-    border: 2px solid #8E54E9;
+    border: 2px solid #7456e9;
     transition: all 0.3s;
   }
   .menuItemWhite:hover {
-    background-color: #8E54E9;
+    background-color: #7456e9;
     color: #fff;
     cursor: pointer;
   }
   .smallMenuBtnWhite {
     text-align: center;
-    color: #8E54E9;
+    color: #7456e9;
     font-size: 16px;
     font-weight: 300;
   }

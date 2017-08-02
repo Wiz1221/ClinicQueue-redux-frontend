@@ -1,6 +1,6 @@
 .Navbar {
   height: 70px;
-  background: #4776E6;  /* fallback for old browsers */
+  background: #7456e9;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top left, #4776E6, #8E54E9);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
@@ -156,7 +156,7 @@ width: 200px;
   height: 50vh;
   overflow: scroll;
   overflow-x: hidden;
-  right: 4%;
+  right: 5.5%;
   z-index: 5;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
@@ -200,6 +200,7 @@ and (max-width : 1024px) {
   .sideBarBtn:hover {
     font-size: 16px;
   }
+
 }
 
 /* small screen */

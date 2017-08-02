@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Slider from 'react-slick';
+import { Carousel } from 'react-bootstrap';
+
+import QueueGalleryForUser from './QueueGalleryForUser';
 
 import QueueItem from './QueueItem';
 
@@ -7,7 +11,10 @@ class QueueGallery extends Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      index: 0,
+      direction: null
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,9 +34,11 @@ class QueueGallery extends Component {
       console.log(queueFromAdmin)
       return queueFromAdmin.map((queue) => {
         return (
+          <Carousel.Item>
           <QueueItem queue={queue}
                     key={queue._id}
                     id={queue._id}/>
+                    </Carousel.Item>
         )
       });
     }
@@ -47,16 +56,22 @@ class QueueGallery extends Component {
       })
       return queueFromUser.map((queue) => {
         return (
+          <Carousel.Item>
           <QueueItem queue={queue}
                     key={queue._id}
                     id={queue._id}/>
+                    </Carousel.Item>
         )
       });
     }
   }
 
-
-
+ handleSelect = (selectedIndex, e) => {
+  this.setState({
+  index: selectedIndex,
+  direction: e.direction
+});
+}
   render() {
     console.log("Repopulated queue array from activeClinic");
     console.log(this.props.queue);
@@ -76,14 +91,16 @@ class QueueGallery extends Component {
         <div className="row">
           <h2>Queue Gallery</h2>
             <h4>by {Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null} Admin</h4>
-            <div className="row" id="gallery">
+            <div className="row">
+              <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect} className='carousel-Container'>
               {this.renderClinicAdminQueueItem(subject)}
+              </Carousel>
             </div>
         </div>
         <div className="row">
           <h4>by Users</h4>
-          <div className="row" id="gallery">
-            {this.renderUserQueueItem(subject)}
+          <div className="row">
+            <QueueGalleryForUser subject={subject} />
           </div>
         </div>
       </div>

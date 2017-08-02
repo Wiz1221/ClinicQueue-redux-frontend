@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-// import Slider from 'react-slick';
-// @import "~slick-carousel/slick/slick.css";
-// @import "~slick-carousel/slick/slick-theme.css";
 
 import QueueItemInAccount from './QueueItemInAccount';
 import { deleteQueue } from '../../../Actions/QueueAction';
@@ -46,7 +43,7 @@ class UserQueueGallery extends Component {
     }else{
       return queueFromUserArray.reverse().map((queue,index) => {
         return (
-            <QueueItemInAccount queue={queue} deleteQueueButton={this.deleteQueueButton} key={queue._id}/>
+            <QueueItemInAccount queue={queue} user={this.props.user} deleteQueueButton={this.deleteQueueButton} key={queue._id}/>
         )
       })
     }
