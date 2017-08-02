@@ -105,9 +105,13 @@ class PrivateClinicInfo extends Component {
                 </div>
               ) : (
                 <div className="row-fluid row-clinicinfo-btn">
-                  <button type="button" className="btn clinic-subscribed-btn">You are subscribed to this Clinic</button>
+                  <button type="button" className="btn clinic-subscribed-btn">Subscribed to this Clinic</button>
                 </div>
-              ) : null}
+              ) : (
+                <div className="row-fluid row-clinicinfo-btn">
+                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+                </div>
+              )}
               <div className="row-fluid row-clinicinfo-btn">
                 <button id="showNearbyClinicsButton" type="submit" className="btn clinicinfo-btn" onClick={this.showNearbyClinics}>Show nearby clinics</button>
               </div>
