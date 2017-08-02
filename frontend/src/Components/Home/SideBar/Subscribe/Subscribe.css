@@ -40,7 +40,7 @@
   transition: all 0.3s;
   width: 80%;
   border: 2px solid rgb(61, 224, 52);
-  color: rgb(61, 224, 52));
+  color: rgb(61, 224, 52);
   overflow: hidden;
   margin-top: 10px;
   margin-left:0;
@@ -50,7 +50,6 @@
 .clinic-confirm-btn:hover {
 	background: rgb(61, 224, 52);
   color: #fff;
-  border-color: #fff;
 }
 
 .clinic-back-btn {
@@ -68,17 +67,18 @@
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  width: 80%;
+  width: 30%;
   border: 2px solid #7456e9;
-  color: #fff;
+  color: #7456e9;
   overflow: hidden;
   margin-top: 10px;
   margin-left:0;
-  background-color: #7456e9
+  background-color: white;
+  border-radius: 2px;
+  margin-left: 4px;
 }
 
 .clinic-back-btn:hover {
 	background: #7456e9;
   color: #fff;
-  border-color: #fff;
 }

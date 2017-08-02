@@ -18,8 +18,8 @@ class SubscribeSuccessful extends Component {
         <p>You can unsubscribe from this clinic or manage your subscriptions at your Account Page.</p>
         <p>Thank you once again for using our service.</p>
         <div className="subscribe-clinic-info container">
-        <button type="submit" className="btn clinic-back-btn queueButton" onClick={this.onClick}>Back to clinic</button>
-        <Link to='/account'><button type="submit" className="btn clinic-back-btn queueButton">Go to My Account</button></Link>
+        <button type="submit" className="btn clinic-back-btn" onClick={this.onClick}>Back to clinic</button>
+        <Link to='/account'><button type="submit" className="btn clinic-back-btn">Go to My Account</button></Link>
         </div>
       </div>
     );

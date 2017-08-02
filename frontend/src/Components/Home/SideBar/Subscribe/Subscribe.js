@@ -68,12 +68,12 @@ class Subscribe extends Component {
               <div className="row-fluid">
               {
                 this.props.user.contact ?
-                <button type="submit" className="btn clinic-confirm-btn" onClick={this.confirmSubscribe}>Confirm Subscription</button>
+                <button type="submit" className="clinic-confirm-btn" onClick={this.confirmSubscribe}>Confirm Subscription</button>
                 : null
               }
               </div>
               <div className="row-fluid">
-                <button type="submit" className="btn clinic-back-btn queueButton" onClick={this.backToClinicInfo}>Back</button>
+                <button type="submit" className="btn clinic-back-btn" onClick={this.backToClinicInfo}>Back</button>
               </div>
             </div>
           </div>
