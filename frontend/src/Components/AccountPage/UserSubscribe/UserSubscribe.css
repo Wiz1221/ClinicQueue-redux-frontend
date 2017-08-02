@@ -7,8 +7,8 @@
   max-height: 270px;
   overflow: scroll;
   overflow-x: hidden;
-  right: 70px;
-  bottom: -20px;
+  right: 75px;
+  bottom: 65px;
   z-index: 5;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
