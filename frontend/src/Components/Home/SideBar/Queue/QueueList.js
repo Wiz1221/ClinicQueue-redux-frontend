@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QueueItem from '../../../SeeQueue/QueueGallery/QueueItem';
+import QueueItemSideBar from './QueueItemSideBar';
 
 import './QueueList.css'
 
@@ -38,7 +38,7 @@ class QueueList extends Component {
       const populated = this.populateQueue(latestQueue);
       if (populated.length > 0) {
         return (<div className="queueDisplay">
-              <QueueItem queue={populated[0]}
+              <QueueItemSideBar queue={populated[0]}
                           key={populated[0]._id}
                           id={populated[0]._id}/>
                         </div>)

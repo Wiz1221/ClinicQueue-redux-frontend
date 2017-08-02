@@ -25,6 +25,8 @@
   width: 65%;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .accRightSide {

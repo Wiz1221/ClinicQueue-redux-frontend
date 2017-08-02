@@ -100,11 +100,11 @@ class PolyClinicInfo extends Component {
     const node = this.node;
 
     const data = [{
-      id: 'historicalQueue',
+      id: 'historical',
       values: historicalQueue
     },
     {
-      id: 'currentQueue',
+      id: 'current',
       values: currentQueue
     }];
 
@@ -182,6 +182,23 @@ class PolyClinicInfo extends Component {
                    return line(d);
                  });
 
+        qLine.append("text")
+           		.attr("transform", "translate(" + (width-(width-x(cQ[cQ.length-1].date))) + "," + y(cQ[cQ.length-1].queueQty) + ")")
+           		.attr("dy", ".5em")
+              .attr("class","text-label")
+           		.attr("text-anchor", "start")
+           		.style("fill", "rgb(255, 127, 14)")
+           		.text("current: " + cQ[cQ.length-1].queueQty);
+
+        // Add labels
+        // qLine.append("text")
+        //       .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+        //       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.queueQty) + ")"; })
+        //       .attr("x", 3)
+        //       .attr("dy", "0.35em")
+        //       .style("font", "10px sans-serif")
+        //       .text(function(d) { return d.id; });
+
         // // Vertical line on hover
         // let lineSvg = qLine.append("g");
         // // Circle on hover
@@ -231,6 +248,9 @@ class PolyClinicInfo extends Component {
       break;
       case "UPDATE": // Bind new data and transition
         console.log("went into UPDATE!");
+        function transform(d) {
+            return "translate(" + x(d.date) + "," + y(d.queueQty) + ")";
+        }
         const qLineUpdate = select(node);
         qLineUpdate.selectAll('.line')
              .data([hQ,cQ])
@@ -241,6 +261,14 @@ class PolyClinicInfo extends Component {
                .attr('d', function(d) {
                  return line(d);
                });
+        qLineUpdate.selectAll('.text-label')
+                    .transition()
+                    .delay(100)
+                    .duration(1500)
+                    .attr("transform", "translate(" + (width-(width-x(cQ[cQ.length-1].date))) + "," + y(cQ[cQ.length-1].queueQty) + ")")
+                    .attr("dy", ".5em")
+                    .attr('class','text-label')
+                    .text("current: " + cQ[cQ.length-1].queueQty);
         break;
         default:
         break;

@@ -81,9 +81,9 @@ class Map extends Component {
     }
   }
 
-  renderNearestClinic = () => {
-    if(this.state.coordinates.lat){
-      let nearestClinicArray = calculateNearest([...this.props.clinic],this.state.coordinates)
+  renderNearestClinic = (coord) => {
+    if(coord.lat){
+      let nearestClinicArray = calculateNearest([...this.props.clinic],coord)
       // console.log(nearestClinicArray);
       let displayArray = []
       nearestClinicArray.forEach((clinic,index,arr) => {

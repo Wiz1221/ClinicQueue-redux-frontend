@@ -77,7 +77,7 @@ class SeeQueue extends Component {
   componentWillReceiveProps(nextProps){
     if(!nextProps.activeClinic._id){
       let testClinic = nextProps.clinic.filter((elem, index) => {
-        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-') === this.props.match.params.name
+        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'') === this.props.match.params.name
       })
 
       this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);

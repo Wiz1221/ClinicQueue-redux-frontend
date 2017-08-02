@@ -78,8 +78,20 @@ onClickContact = (e) => {
 }
 
 onUpdatePasswordClick = () => {
-
   // this.props.UpdatePassword(this.state);
+}
+
+getClinicName = (id) => {
+  if(this.props.clinics.length > 0 && id) {
+    const clinics = this.props.clinics
+    let admin = clinics.filter( (clinic) => {
+      return clinic._id == id;
+    });
+    return admin[0].properties.name_full;
+  }
+  else {
+    return null;
+  }
 }
 
   render() {
@@ -140,7 +152,7 @@ onUpdatePasswordClick = () => {
                   <div className="userInfoField">
                   <h5>My Administered Clinic:</h5>
                   <div className="userInfoRow">
-                    <input type="text" name="contact" className='inputField' placeholder={this.props.user.myClinic} onChange={this.onChange}/>
+                    <input type="text" name="contact" className='inputField' placeholder={this.getClinicName(this.props.user.myClinic)} onChange={this.onChange}/>
                     <button className="updateBtn" onClick={this.onClick}>update</button>
                   </div>
                 </div>): null}
@@ -171,7 +183,8 @@ onUpdatePasswordClick = () => {
 const mapStateToProps = (state) => {
 
   return {
-    user: state.user
+    user: state.user,
+    clinics: state.clinic,
   }
 }
 
