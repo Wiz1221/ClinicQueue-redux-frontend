@@ -20,6 +20,7 @@ class SubscribeSuccessful extends Component {
         <div className="subscribe-clinic-info container">
         <button type="submit" className="btn clinic-back-btn queueButton" onClick={this.onClick}>Back to clinic</button>
         <Link to='/myAccount'><button type="submit" className="btn clinic-back-btn queueButton">Go to My Account</button></Link>
+
         </div>
       </div>
     );

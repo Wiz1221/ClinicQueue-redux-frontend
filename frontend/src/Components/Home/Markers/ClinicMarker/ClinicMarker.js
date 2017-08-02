@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { markerStylePoly, markerStylePrivate } from './markerStyle.js';
-import privateClinicMarker from '../../../../clinicMarkerYellow.png';
-import polyClinicMarker from '../../../../clinicMarkerRed5.png';
+import privateClinicMarker from '../../../../clinicMarkerGreen2.png';
+import polyClinicMarker from '../../../../clinicMarkerRed4.png';
 
 
 import './clinicHoverWindow.css';
