@@ -6,7 +6,11 @@
   padding-bottom: 5px;*/
 }
 
+
+
+
+
 .dropDownItem:hover {
   cursor: pointer;
-  background-color: rgba(71, 118, 230, 0.8);
+  background-color: rgba(178, 159, 231, 0.8);
 }

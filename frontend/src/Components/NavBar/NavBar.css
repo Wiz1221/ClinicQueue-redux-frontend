@@ -150,7 +150,7 @@ width: 200px;
 
 .dropDownList {
   position:absolute;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   width: 265px;
   height: 50vh;
@@ -158,6 +158,9 @@ width: 200px;
   overflow-x: hidden;
   right: 4%;
   z-index: 5;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* mid screen */
