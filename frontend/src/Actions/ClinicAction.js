@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { sortingAlgorithm } from '../API/API';
 
 
 // socket
@@ -33,12 +34,9 @@ export const getClinic = () => {
     socket.emit('getAllClinic');
     // after receiving all clinic info from backend
     socket.on('allClinic', (clinic) => {
-      // clinic.sort((a,b) => {
-      //   const aLower = a.properties.name_full.toLowerCase();
-      //   const bLower = b.properties.name_full.toLowerCase();
-      //   return aLower < bLower ? -1 : 1
-      // })
-      // console.log(clinic)
+
+      sortingAlgorithm(clinic)
+
       // store clinic info in store
       dispatch(storeClinic(clinic));
       // let allQueue = [];

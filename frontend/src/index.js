@@ -19,7 +19,7 @@ import { getUser } from './Actions/UserAction';
 import { getAllQueue } from './Actions/QueueAction';
 
 //API
-import {setActiveClinic} from './API/API';
+import {setUserLoginStatus} from './API/API';
 
 
 const storeAndHistory = initStore()
@@ -28,7 +28,7 @@ export const history = storeAndHistory[1];
 
 store.subscribe( () => {
   const state = store.getState();
-  setActiveClinic(state.activeClinic);
+  setUserLoginStatus(state.user);
 })
 
 

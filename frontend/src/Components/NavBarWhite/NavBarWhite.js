@@ -28,13 +28,18 @@ class NavBar extends Component {
     //window.location.href = "/";
   }
 
+  removeActiveClinicAndNearestClinic = () => {
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
+  }
+
   render() {
     console.log(this.props.match)
     return (
       <div >
         <nav className="NavbarWhite navbar-fixed-top" >
-        <Link to ='/'>
-          <a onClick={this.removeActiveClinicAndNearestClinic}>
+        <Link to ='/' onClick={this.removeActiveClinicAndNearestClinic}>
+          <a>
             <img src={logo} width={50} height={50} className="logoColor"/>
             <p className='logoNameColor'>ClinicQueueSG</p>
           </a></Link>
