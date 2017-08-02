@@ -109,6 +109,8 @@ class NavBar extends Component {
   }
   clearNotifi = () => {
     this.props.clearNotif();
+    this.props.removeActiveClinic();
+    this.props.nearestClinicOff();
   }
 
   getWidth = () => {
@@ -194,11 +196,11 @@ class NavBar extends Component {
                   (<a onClick={this.clickNearestClinic} className='smallMenuBtn'>My Nearest Clinics</a>)}
                 </div>
 
-                  {this.props.user._id ? <div className='menuItem'><Link to='/myAccount' className='smallMenuBtn'>My account</Link></div> : null}
+                  {this.props.user._id ? <div className='menuItem' onClick={this.removeActiveClinicAndNearestClinic}><Link to='/myAccount' className='smallMenuBtn' onClick={this.removeActiveClinicAndNearestClinic}>My account</Link></div> : null}
 
                 <div className='menuItem'>
                   {this.props.user._id ? <Link to='/' onClick={this.execLogout} className='smallMenuBtn'>Logout</Link> :
-                  <Link to='/login' onClick={this.clearNotifi} className='smallMenuBtn'>Login</Link>}
+                  <Link to='/login' onClick={this.clearNotifi} className='smallMenuBtn' >Login</Link>}
                 </div>
               </div>
 
@@ -214,11 +216,11 @@ class NavBar extends Component {
 
           {this.props.minNavBar? null :
           (<a className="nearsetBtn" onClick={this.clickNearestClinic}>My Nearest Clinics</a>)}
-          {this.props.user._id ? <Link to='/myAccount' className="sideBarBtn">My account</Link> : null}
+          {this.props.user._id ? <Link to='/myAccount' className="sideBarBtn" onClick={this.removeActiveClinicAndNearestClinic}>My account</Link> : null}
 
 
           {this.props.user._id ? <Link to='/' className="navLogin pull-right" onClick={this.execLogout}>Logout</Link> :
-          <Link to='/login' className="navLogin pull-right"><div onClick={this.clearNotifi}>Login</div></Link>}
+          <Link to='/login' className="navLogin pull-right"><div onClick={this.clearNotifi} >Login</div></Link>}
 
           <div className="box pull-right">
             <div className="container-2">
