@@ -30,7 +30,7 @@ Install the dependencies and devDependencies and start the server.
 
 For backend: 
 ```sh
-$ git clone https://github.com/dheamariesta/food-awesome.git
+$ git clone https://github.com/claussian/ClinicQueue-redux-backend.git
 $ cd ClinicQueue-redux-backend
 $ cd npm install
 $ nodemon --exec npm start
@@ -39,6 +39,7 @@ $ nodemon --exec npm start
 For frontend:
 
 ```sh
+$ git clone https://github.com/Wiz1221/ClinicQueue-redux-frontend.git
 $ cd ClinicQueue-redux-frontend
 $ cd frontend
 $ yarn install
