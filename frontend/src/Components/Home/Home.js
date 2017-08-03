@@ -8,6 +8,7 @@ import NotificationBar from './NotificationBar/NotificationBar';
 
 // Components
 import Map from './Map/Map';
+import Legend from '../Legend/Legend';
 
 //Actions
 import { minNavBarOff } from '../../Actions/AppAction';
@@ -29,7 +30,7 @@ class Home extends Component {
         <NavBar/>
         <NotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
-
+        <Legend/>
         <About />
         <Map />
 

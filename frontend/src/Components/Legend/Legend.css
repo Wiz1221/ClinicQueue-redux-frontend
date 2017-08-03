@@ -1,0 +1,49 @@
+.LegendBG {
+  position: absolute;
+  height: 170px;
+  top: 70px;
+  width: 160px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #7456e9;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  z-index: 5;
+
+}
+.legend {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.LegendMarkers {
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.legendWords {
+  position: absolute;
+  text-align: left;
+  top: 15px;
+  left: 60px;
+}
+.legendWords2 {
+  position: absolute;
+  text-align: left;
+  top: 70px;
+  left: 60px;
+}
+.legendWords3 {
+  position: absolute;
+  text-align: left;
+  top: 130px;
+  left: 60px;
+}
+.youMarkers {
+  width: 28px;
+  margin-left: 15px;
+  margin-top: 7px;
+}
