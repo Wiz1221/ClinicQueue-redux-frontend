@@ -10,21 +10,21 @@ const ActiveClinicReducer = (state = {}, action) => {
       return action.clinic  ;
       break;
     case 'STORE_NEW_QUEUE_IN_ACTIVE_CLINIC':
-      let newQueueArray = state.queue;
+      let newQueueArray = {...state}.queue;
       newQueueArray.unshift(action.queue);
       return Object.assign({},state, {
         queue: newQueueArray
       })
       break;
     case 'STORE_SUBSCRIBE_IN_ACTIVE_CLINIC':
-      let newSubscribeArray = state.subscribe;
+      let newSubscribeArray = {...state}.subscribe;
       newSubscribeArray.push(action.newSubscribe);
       return Object.assign({},state, {
         subscribe: newSubscribeArray
       })
       break;
     case 'DELETE_QUEUE_IN_ACTIVE_CLINIC':
-      let queueArrayAfterDelete = [...state.queue].filter((queue,index)=>{
+      let queueArrayAfterDelete = {...state}.queue.filter((queue,index)=>{
         return queue._id !== action.queue_id
       });
       return Object.assign({},state, {
@@ -33,7 +33,7 @@ const ActiveClinicReducer = (state = {}, action) => {
       break;
     case 'DELETE_SUBSCRIBE_IN_ACTIVE_CLINIC':
       if(state._id === action.subscribeInfo.clinic_id){
-        let subscribeArrayAfterDelete = [...state.subscribe].filter((subscribe,index)=>{
+        let subscribeArrayAfterDelete = {...state}.subscribe.filter((subscribe,index)=>{
           return subscribe._id !== action.subscribeInfo.subscribe_id
         });
         return Object.assign({},state, {

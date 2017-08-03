@@ -8,7 +8,7 @@ const ClinicReducer = (state = [], action) => {
     case 'STORE_NEW_QUEUE_IN_CLINIC':
       return state.map((clinic,index) => {
         if(clinic._id == action.queue.clinic){
-          let newQueueArray = [...clinic.queue];
+          let newQueueArray = {...clinic}.queue;
           newQueueArray.unshift(action.queue);
           clinic.queue = newQueueArray
         }
