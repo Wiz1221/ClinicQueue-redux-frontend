@@ -1,4 +1,4 @@
-# ClinicQueue-redux-backend
+# ClinicQueue-redux-frontend
 
 The go to site to find queue information of all clinics in Singapore. Our site provides the following services.
 
