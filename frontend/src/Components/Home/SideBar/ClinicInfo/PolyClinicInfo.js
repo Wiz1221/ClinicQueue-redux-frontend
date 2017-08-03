@@ -13,9 +13,6 @@ import QueueList from '../Queue/QueueList';
 
 import { triggerNotification, nearestClinicToClinic } from '../../../../Actions/AppAction';
 import { userNotification } from '../../../../Actions/UserAction';
-//import { clearNotif } from '../../../../Actions/AppAction';
-
-// import { store } from '../../../../index.js';
 
 // import API to store activeClinic into localStorage
 //import { setActiveClinic } from '../../../../API/activeClinicAPI'
@@ -38,6 +35,7 @@ class PolyClinicInfo extends Component {
     if(!user._id){
       this.props.triggerNotification();
       this.props.userNotification("Please Login to Subscribe");
+      return;
     }
 
     if(!user.subscribe){

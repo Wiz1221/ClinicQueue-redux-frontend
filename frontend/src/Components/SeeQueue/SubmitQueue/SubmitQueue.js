@@ -15,17 +15,10 @@ class SubmitQueue extends Component {
     this.state = {
       queue: {},
       pic: null,
-      adminMessage:"",
       isLoggedIn: false,
-      submitSuccessful: false,
-      missing: false,
       Qstatus: false
     }
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   //console.log(this.props.clinic)
-  // }
 
   statusButtonClicked = (status) => {
     let queue = this.state.queue
@@ -57,26 +50,12 @@ class SubmitQueue extends Component {
       if(!this.state.pic){
         this.props.triggerNotification();
         this.props.userNotification("Please upload a picture of the current queue situation");
-        this.setState({
-          missing: true,
-          adminMessage: "Please upload a picture of Queue"
-        })
       }else{
-
-
-        // if(this.state.user.role==="clinicAdmin"&&!this.state.queue.status){
-        //   this.setState({
-        //     missing: true,
-        //     adminMessage: "Please select a clinic status"
-        //   })
-        //   return;
-        // }
 
         let newQueue = this.state.queue;
 
         newQueue.user_id = this.props.user._id;
         newQueue.clinic_id = this.props.clinic._id;
-        console.log(newQueue)
         /*
         how newQueue looks like
         {
@@ -87,19 +66,10 @@ class SubmitQueue extends Component {
         }
         */
         this.props.submitQueue(this.state.pic, newQueue);
-        this.setState({
-          submitSuccessful: true,
-          missing: false,
-          adminMessage: ""
-        })
       }
     }else{
       this.props.triggerNotification();
       this.props.userNotification("Please login to submit Queue report");
-      this.setState({
-        missing: true,
-        adminMessage: "Please login to submit Queue report"
-      })
     }
   }
 
@@ -112,9 +82,6 @@ class SubmitQueue extends Component {
     const activeClinic = this.props.activeClinic;
     return (
       <div id="submitQueue container">
-        <div className="adminMessage">{
-          this.state.missing? (this.state.adminMessage) : (this.state.submitSuccessful? "Submited successfully" : null)
-        }</div>
         <h4>Submit a Queue report for</h4>
         <h4>{Object.getOwnPropertyNames(activeClinic).length > 0 ? activeClinic.properties.name_full : null}</h4>
         <div className="row-fluid row-upload-file">
