@@ -75,7 +75,6 @@ class Map extends Component {
                         name={clinic.name_full}
                         id={clinic._id}
                         onClick={this.onClick} />
-
         )
       });
       //
@@ -98,9 +97,7 @@ class Map extends Component {
                               onClick={this.onClick}/>
           )
       })
-      // console.log(displayArray)
-      // onClick={this.onClick}
-      return displayArray
+      return displayArray;
     }
   }
 
@@ -108,7 +105,12 @@ class Map extends Component {
     let coord;
     switch(this.props.nearestClinicString) {
       case 'nearest_to_user':
-        coord = this.state.coordinates;
+        if(this.state.coordinates.lat){
+          coord = this.state.coordinates;
+        }else{
+          //fallback for google geolocation break down
+          coord = {lat: 1.307715, lng: 103.831766};
+        }
         break;
       case 'nearest_to_clinic':
         coord = {
@@ -119,8 +121,6 @@ class Map extends Component {
       default:
         coord = this.state.coordinates;
     }
-    console.log('coord');
-    console.log(coord);
 
     return (
         <div className="map-container">
@@ -142,11 +142,6 @@ class Map extends Component {
     );
   }
 }
-// {
-//   this.props.nearestClinicBoolean ? <NearestClinic/> : <NormalPolyAndPrivateShow />
-// }
-// <MyGreatPlace lat={1.352083} lng={103.819836} text={'A'} />
-//<div style={this.props.activeClinicObject._id? ({width: `80vw`, height: `100vh`}): ({width: `100vw`, height: `100vh`})}>
 
 const mapStateToProps = (state) => {
   return {

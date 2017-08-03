@@ -6,7 +6,8 @@ import { sortingAlgorithm } from '../API/API';
 import io from 'socket.io-client';
 
 
-export const socket = io.connect('https://ec2-54-255-153-99.ap-southeast-1.compute.amazonaws.com:443/');
+// export const socket = io.connect('https://ec2-54-255-153-99.ap-southeast-1.compute.amazonaws.com:443/');
+export const socket = io.connect('http://localhost:3001')
 
 
 
@@ -17,13 +18,6 @@ const storeClinic = (clinic) => {
   }
 }
 
-// const storeQueueInfoInReducer = (queue) => {
-//   return {
-//     type: 'STORE_QUEUE',
-//     queue
-//   }
-// }
-
 const loadingClinicError = (error) => {
   return{
     type: 'LOADING_CLINIC_ERROR',
@@ -31,6 +25,7 @@ const loadingClinicError = (error) => {
   }
 }
 
+// called when app is first loaded
 export const getClinic = () => {
   return (dispatch) => {
 
@@ -39,19 +34,11 @@ export const getClinic = () => {
     // after receiving all clinic info from backend
     socket.on('allClinic', (clinic) => {
 
+      // sorting the clinics, Polyclinics first then Private Clinic
       sortingAlgorithm(clinic)
 
       // store clinic info in store
       dispatch(storeClinic(clinic));
-      // let allQueue = [];
-      // clinic.forEach( (elem,index,arr) => {
-      //   elem.queue.forEach((queue,index) => {
-      //     allQueue.push(queue);
-      //   })
-      // })
-      // console.log(allQueue);
-      // store queue info in store (queue have its own reducer)
-      // dispatch(storeQueueInfoInReducer(allQueue));
     })
 
   }
