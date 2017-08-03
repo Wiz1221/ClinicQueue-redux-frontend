@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
 import { Carousel } from 'react-bootstrap';
 
 import QueueGalleryForUser from './QueueGalleryForUser';
@@ -15,10 +14,6 @@ class QueueGallery extends Component {
       index: 0,
       direction: null
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log("queue gallery went into nextProps!")
   }
 
   renderClinicAdminQueueItem = (queueArray) => {
@@ -51,16 +46,16 @@ class QueueGallery extends Component {
 });
 }
   render() {
-    console.log("Repopulated queue array from activeClinic");
-    console.log(this.props.queue);
+    // console.log("Repopulated queue array from activeClinic");
+    // console.log(this.props.queue);
     let subject = [];
     if(typeof(this.props.queue[0])==="undefined") {
       subject = [];
     } else {
       subject = this.props.queue;
     }
-    console.log("subject");
-    console.log(subject);
+    // console.log("subject");
+    // console.log(subject);
 
     const activeClinic = this.props.activeClinic;
 

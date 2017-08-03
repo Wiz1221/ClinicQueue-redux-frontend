@@ -23,6 +23,14 @@ import './App.css';
 class App extends Component {
 
   render() {
+
+    const userLoginStatus = getUserLoginStatus();
+
+    const fakeAuth = {
+        isAuthenticated: userLoginStatus === 'user is logged in' ? true : false
+    }
+
+
     return (
       <div>
         <ConnectedRouter history={history}>
@@ -40,16 +48,25 @@ class App extends Component {
   }
 }
 
+
 const userLoginStatus = getUserLoginStatus();
 
 const fakeAuth = {
-    isAuthenticated: userLoginStatus === 'user is logged in' ? true : false
+  isAuthenticated: userLoginStatus === 'user is logged in' ? true : false
 }
 
+const isAuth = () => {
+    return getUserLoginStatus() === 'user is logged in' ? true : false
+}
+
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
+
+
   <Route {...rest} render={
     props => (
-    fakeAuth.isAuthenticated ?
+
+    isAuth() ?
     (
       <Component {...props}/>
     )
