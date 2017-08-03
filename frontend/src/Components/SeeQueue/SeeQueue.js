@@ -30,19 +30,6 @@ class SeeQueue extends Component {
     //   clinic: null
     // }
   }
-//
-  // componentWillReceiveProps(nextProps){
-  //       console.log(nextProps.clinic)
-  //       let testClinic = nextProps.clinic.filter((elem, index) => {
-  //         return elem.properties.name_full === this.props.match.params.name
-  //       })
-  //       console.log(testClinic)
-  //       // this.setState({
-  //       //   clinic:testClinic
-  //       // })
-  //
-  //       nextProps.activeClinicAction({...testClinic});
-  // }
 
   // componentDidMount(){
   //   console.log(this.props.clinic)
@@ -74,19 +61,19 @@ class SeeQueue extends Component {
     return initQueues;
   }
 
-  componentWillReceiveProps(nextProps){
-    if(!nextProps.activeClinic._id){
-      let testClinic = nextProps.clinic.filter((elem, index) => {
-        return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'') === this.props.match.params.name
-      })
-
-      this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);
-    }
-  }
-
-  dispatchingActiveClinicIntoStoreWhenCopyPasteURL = (clinic) => {
-      this.props.activeClinicAction({...clinic})
-  }
+  // componentWillReceiveProps(nextProps){
+  //   if(!nextProps.activeClinic._id){
+  //     let testClinic = nextProps.clinic.filter((elem, index) => {
+  //       return elem.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'') === this.props.match.params.name
+  //     })
+  //
+  //     this.dispatchingActiveClinicIntoStoreWhenCopyPasteURL(testClinic[0]);
+  //   }
+  // }
+  //
+  // dispatchingActiveClinicIntoStoreWhenCopyPasteURL = (clinic) => {
+  //     this.props.activeClinicAction({...clinic})
+  // }
 
   render() {
     return (
