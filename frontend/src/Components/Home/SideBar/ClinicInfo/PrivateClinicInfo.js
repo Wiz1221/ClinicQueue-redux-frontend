@@ -73,9 +73,42 @@ class PrivateClinicInfo extends Component {
     return matchArray.length;
   }
 
+  whichSubscribeButton = () => {
+    if(this.props.user._id){
+      if(this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id){
+        return (
+          <div className="row-fluid row-clinicinfo-btn">
+            <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
+          </div>
+        )
+      }
+
+      if(this.isUserSubscribedToActiveClinic(this.props.user.subscribe) >0){
+        return (
+          <div className="row-fluid row-clinicinfo-btn">
+            <button type="button" className="btn clinic-subscribed-btn">Subscribed to this Clinic</button>
+          </div>
+        )
+      }
+
+      return (
+        <div className="row-fluid row-clinicinfo-btn">
+          <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+        </div>
+      )
+
+    }else{
+      return (
+        <div className="row-fluid row-clinicinfo-btn">
+          <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+        </div>
+      )
+    }
+  }
+
   render() {
     const properties = this.props.activeClinic.properties
-
+    const whichSubscribeButton = this.whichSubscribeButton()
     return (
       <div>
         <div className="private-clinic-info container ClinicName">
@@ -95,28 +128,7 @@ class PrivateClinicInfo extends Component {
                 <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'')}><button type="button" className="btn clinicinfo-btn">See more queues...</button></Link>
 
               </div>
-              {this.props.user._id ?
-
-                this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (
-                <div className="row-fluid row-clinicinfo-btn">
-                  <Link to={"/seeQueue/"+this.props.activeClinic.properties.name_full.replace(/[^a-zA-Z0-9&@()]/g, '-').replace(/[()]/g,'')}><button type="submit" className="btn clinic-back-btn">Clinic admin: submit a report</button></Link>
-                </div>
-              ) :  this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ?
-              (
-                <div className="row-fluid row-clinicinfo-btn">
-                  <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
-                </div>
-              ) : (
-                <div className="row-fluid row-clinicinfo-btn">
-                  <button type="button" className="btn clinic-subscribed-btn">Subscribed to this Clinic</button>
-                </div>
-              )
-
-              : (
-                <div className="row-fluid row-clinicinfo-btn">
-                  <button id="subscribeClinicButton" type="submit" className="clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
-                </div>
-              )}
+              {whichSubscribeButton}
               <div className="row-fluid row-clinicinfo-btn">
                 <button id="showNearbyClinicsButton" type="submit" className="clinicinfo-btn" onClick={this.showNearbyClinics}>Show nearby clinics</button>
               </div>
@@ -128,6 +140,25 @@ class PrivateClinicInfo extends Component {
   }
 }
 
+
+// {this.props.user._id ?
+//
+//   this.props.user.role == "clinicAdmin" && this.props.user.myClinic == this.props.activeClinic._id ? (
+//
+// ) :  this.isUserSubscribedToActiveClinic(this.props.user.subscribe) === 0 ?
+// (
+//
+// ) : (
+//   <div className="row-fluid row-clinicinfo-btn">
+//     <button type="button" className="btn clinic-subscribed-btn">Subscribed to this Clinic</button>
+//   </div>
+// )
+//
+// : (
+//   <div className="row-fluid row-clinicinfo-btn">
+//     <button id="subscribeClinicButton" type="submit" className="clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
+//   </div>
+// )}
 // (
 //   <div className="row-fluid row-clinicinfo-btn">
 //     <button id="subscribeClinicButton" type="submit" className="btn clinicinfo-btn" onClick={this.onClick}>Subscribe to this Clinic</button>
