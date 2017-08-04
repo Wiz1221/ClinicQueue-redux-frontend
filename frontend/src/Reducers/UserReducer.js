@@ -14,8 +14,10 @@ const UserReducer = (state = {}, action) => {
       break;
 
     case 'STORE_SUBSCRIBE_IN_USER':
+      console.log('user reducer', action)
       let newSubscribeArray = state.subscribe;
       newSubscribeArray.push(action.newSubscribe);
+      console.log('user reducer line 20', newSubscribeArray)
       return Object.assign({},state, {
         subscribe: newSubscribeArray
       })
