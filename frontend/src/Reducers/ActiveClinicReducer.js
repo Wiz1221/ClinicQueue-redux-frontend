@@ -17,7 +17,6 @@ const ActiveClinicReducer = (state = {}, action) => {
       })
       break;
     case 'STORE_SUBSCRIBE_IN_ACTIVE_CLINIC':
-      console.log('activeClinic reducer',action)
       let newSubscribeArray = {...state}.subscribe;
       newSubscribeArray.push(action.newSubscribe);
       console.log('activeClinic reducer line23', newSubscribeArray)
