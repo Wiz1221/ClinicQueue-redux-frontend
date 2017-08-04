@@ -38,6 +38,7 @@ export const postNewSubscribe = (newSubscribe) => {
 }
 
 socket.on('subscription successful', (newSubscribe) => {
+  console.log('newSubscribe come back from socket',newSubscribe)
   const state = store.getState();
   store.dispatch(storeSubscribeInClinic(newSubscribe));
   store.dispatch(triggerNotification());
@@ -45,7 +46,7 @@ socket.on('subscription successful', (newSubscribe) => {
   if(state.user._id === newSubscribe.user){
     store.dispatch(storeSubscribeInUser(newSubscribe));
   }
-  if(state.activeClinic._id){
+  if(state.activeClinic._id===newSubscribe.clinic){
     store.dispatch(storeSubscribeInActiveClinic(newSubscribe));
   }
 })
@@ -93,7 +94,7 @@ socket.on('delete subscribe done', (subscribeComeBack) => {
   if(state.user._id === subscribeComeBack.user_id){
     store.dispatch(deleteSubscribeInUser(subscribeComeBack));
   }
-  if(state.activeClinic._id){
+  if(state.activeClinic._id===subscribeComeBack.clinic_id){
     store.dispatch(deleteSubscribeInActiveClinic(subscribeComeBack));
   }
 })
