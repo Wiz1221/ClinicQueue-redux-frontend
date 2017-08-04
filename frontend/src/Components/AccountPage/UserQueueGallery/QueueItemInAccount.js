@@ -10,8 +10,6 @@ class QueueItemInAccount extends Component{
   }
 
   checkUserRole = (queue) => {
-    console.log(this.props.user)
-    console.log(queue)
     if(this.props.user.myClinic === queue.clinic._id){
       return {
         border: queueBorderParse(queue.status),

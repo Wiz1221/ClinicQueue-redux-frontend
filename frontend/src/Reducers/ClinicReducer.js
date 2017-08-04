@@ -7,8 +7,8 @@ const ClinicReducer = (state = [], action) => {
       break;
     case 'STORE_NEW_QUEUE_IN_CLINIC':
       return state.map((clinic,index) => {
-        if(clinic._id == action.queue.clinic){
-          let newQueueArray = {...clinic}.queue;
+        if(clinic._id === action.queue.clinic._id){
+          let newQueueArray = clinic.queue;
           newQueueArray.unshift(action.queue);
           clinic.queue = newQueueArray
         }
@@ -17,7 +17,7 @@ const ClinicReducer = (state = [], action) => {
       break;
     case 'STORE_SUBSCRIBE_IN_CLINIC':
       return state.map((clinic,index) => {
-        if(clinic._id === action.clinic_id){
+        if(clinic._id === action.newSubscribe.clinic){
           let newSubscribeArray = {...clinic}.subscribe
           newSubscribeArray.push(action.newSubscribe);
           clinic.subscribe = newSubscribeArray

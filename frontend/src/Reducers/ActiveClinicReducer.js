@@ -19,6 +19,7 @@ const ActiveClinicReducer = (state = {}, action) => {
     case 'STORE_SUBSCRIBE_IN_ACTIVE_CLINIC':
       let newSubscribeArray = {...state}.subscribe;
       newSubscribeArray.push(action.newSubscribe);
+      console.log('activeClinic reducer line23', newSubscribeArray)
       return Object.assign({},state, {
         subscribe: newSubscribeArray
       })
