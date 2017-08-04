@@ -29,6 +29,7 @@ const loadingQueueError = (error) => {
 }
 
 const storeQueueInClinic = (queue) => {
+  console.log('action storeQueueInClinic', queue)
   return {
     type: "STORE_NEW_QUEUE_IN_CLINIC",
     queue
@@ -36,6 +37,7 @@ const storeQueueInClinic = (queue) => {
 }
 
 const storeQueueInUser = (queue) => {
+  console.log('action storeQueueInUser', queue)
   return {
     type: "STORE_NEW_QUEUE_IN_USER",
     queue
@@ -43,6 +45,7 @@ const storeQueueInUser = (queue) => {
 }
 
 const storeQueueInActiveClinic = (queue) => {
+  console.log('action storeQueueInActiveClinic', queue)
   return {
     type: "STORE_NEW_QUEUE_IN_ACTIVE_CLINIC",
     queue
@@ -51,6 +54,7 @@ const storeQueueInActiveClinic = (queue) => {
 
 
 const storeQueue = (queue) => {
+  console.log('storeQueue', queue)
   return {
     type: "STORE_NEW_QUEUE",
     queue
@@ -107,10 +111,11 @@ export const submitQueue = (pic, queue) => {
 
 // updating store of other user with the New Queue real-time
 socket.on('queueForAllUser', (queue) => {
+  console.log(queue)
   store.dispatch(storeQueue(queue));
   store.dispatch(storeQueueInClinic(queue));
   const state = store.getState();
-  if(state.activeClinic._id){
+  if(state.activeClinic._id===queue.clinic._id){
     store.dispatch(storeQueueInActiveClinic(queue));
   }
 })
@@ -163,7 +168,7 @@ socket.on('delete queue done', (queueInfo) => {
     store.dispatch(deleteQueueInUser(queueInfo.queue_id, queueInfo.user_id))
   }
   // only update activeClinic if the client side have a activeClinic
-  if(state.activeClinic._id){
+  if(state.activeClinic._id===queueInfo.clinic_id){
     store.dispatch(deleteQueueInActiveClinic(queueInfo.queue_id))
   }
 })
