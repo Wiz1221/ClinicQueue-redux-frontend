@@ -95,7 +95,7 @@ export const submitQueue = (pic, queue) => {
       const cbArray = [
         (data) => {dispatch(storeQueue(data))},
         (data) => {dispatch(storeQueueInClinic(data))},
-        (data) => {dispatch(storeQueueInActiveClinic(data))},
+        // (data) => {dispatch(storeQueueInActiveClinic(data))},
         (data) => {dispatch(storeQueueInUser(data))},
         () => {dispatch(triggerNotification())},
         () => {dispatch(userNotification("Successfully uploaded queue!"))},
@@ -115,9 +115,9 @@ socket.on('queueForAllUser', (queue) => {
   store.dispatch(storeQueue(queue));
   store.dispatch(storeQueueInClinic(queue));
   const state = store.getState();
-  if(state.activeClinic._id===queue.clinic._id){
-    store.dispatch(storeQueueInActiveClinic(queue));
-  }
+  // if(state.activeClinic._id===queue.clinic._id){
+  //   store.dispatch(storeQueueInActiveClinic(queue));
+  // }
 })
 
 const deleteQueueInStore = (queue_id) => {
