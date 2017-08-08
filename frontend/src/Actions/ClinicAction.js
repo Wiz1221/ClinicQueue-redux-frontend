@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 
 
 
-export const socket = io.connect('https://ec2-54-255-185-56.ap-southeast-1.compute.amazonaws.com/');
+export const socket = io.connect('https://ec2-52-76-125-37.ap-southeast-1.compute.amazonaws.com/');
 // export const socket = io.connect('http://localhost:3001')
 
 
