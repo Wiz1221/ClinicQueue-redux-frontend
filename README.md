@@ -7,6 +7,9 @@ The go to site to find queue information of all clinics in Singapore. Our site p
   - Find nearest clinic
   - Subscribe and get SMS on latest queue status
 
+View our site at https://clinicq.sg
+
+Find our backend repo at https://github.com/claussian/ClinicQueue-redux-backend
 
 ### Tech
 
