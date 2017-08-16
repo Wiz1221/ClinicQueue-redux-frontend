@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 
 
 
-export const socket = io.connect('https://52.76.125.37');
+export const socket = io.connect('https://clinicq.sg');
 // export const socket = io.connect('http://localhost:3001')
 
 
