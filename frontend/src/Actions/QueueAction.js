@@ -44,36 +44,11 @@ const storeQueueInUser = (queue) => {
   }
 }
 
-const storeQueueInActiveClinic = (queue) => {
-  console.log('action storeQueueInActiveClinic', queue)
-  return {
-    type: "STORE_NEW_QUEUE_IN_ACTIVE_CLINIC",
-    queue
-  }
-}
-
-
 const storeQueue = (queue) => {
   console.log('storeQueue', queue)
   return {
     type: "STORE_NEW_QUEUE",
     queue
-  }
-}
-
-// called when app is first loaded
-export const getQueue = (id, cbArray) => {
-  return (dispatch) => {
-    axios.get('/queue/'+ id)
-    .then( (response) => {
-      console.log("returned from getQueue")
-      console.log(response.data);
-      cbArray.forEach( (cb) => {
-        cb(response.data);
-      });
-    }).catch((error) =>{
-      dispatch(loadingQueueError(error));
-    });
   }
 }
 
@@ -92,16 +67,17 @@ export const submitQueue = (pic, queue) => {
       console.log('response', response.data)
       // here pic is a url from cloudinary
       const queue = response.data
-      const cbArray = [
-        (data) => {dispatch(storeQueue(data))},
-        (data) => {dispatch(storeQueueInClinic(data))},
-        // (data) => {dispatch(storeQueueInActiveClinic(data))},
-        (data) => {dispatch(storeQueueInUser(data))},
-        () => {dispatch(triggerNotification())},
-        () => {dispatch(userNotification("Successfully uploaded queue!"))},
-        (data) => {socket.emit('latestQueueForAllUser', data)}
-      ];
-      dispatch(getQueue(queue._id, cbArray));
+      if(!queue._id){
+        dispatch(triggerNotification())
+        dispatch(userNotification(queue.error))
+        return;
+      }
+      dispatch(storeQueue(queue))
+      dispatch(storeQueueInClinic(queue))
+      dispatch(storeQueueInUser(queue))
+      dispatch(triggerNotification())
+      dispatch(userNotification("Successfully uploaded queue!"))
+      socket.emit('latestQueueForAllUser', queue)
 
     }).catch( (error) =>{
       dispatch(loadingQueueError(error));
@@ -114,7 +90,7 @@ socket.on('queueForAllUser', (queue) => {
   console.log(queue)
   store.dispatch(storeQueue(queue));
   store.dispatch(storeQueueInClinic(queue));
-  const state = store.getState();
+  // const state = store.getState();
   // if(state.activeClinic._id===queue.clinic._id){
   //   store.dispatch(storeQueueInActiveClinic(queue));
   // }
@@ -143,13 +119,6 @@ const deleteQueueInClinic = (queue_id, clinic_id) => {
   }
 }
 
-const deleteQueueInActiveClinic = (queue_id) => {
-  return {
-    type: 'DELETE_QUEUE_IN_ACTIVE_CLINIC',
-    queue_id
-  }
-}
-
 // sending Queue to be Deleted to backend
 export const deleteQueue = (queueToBeDeleted) => {
   return (dispatch) => {
@@ -166,9 +135,5 @@ socket.on('delete queue done', (queueInfo) => {
   // only update user with new Queue if this is the user that posted the Queue
   if(state.user._id === queueInfo.user_id){
     store.dispatch(deleteQueueInUser(queueInfo.queue_id, queueInfo.user_id))
-  }
-  // only update activeClinic if the client side have a activeClinic
-  if(state.activeClinic._id===queueInfo.clinic_id){
-    store.dispatch(deleteQueueInActiveClinic(queueInfo.queue_id))
   }
 })

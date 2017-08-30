@@ -159,11 +159,6 @@ getClinicName = (id) => {
 
                 <UserSubscribe />
 
-
-
-
-
-
                 <div className="userInfoRow">
                   <button className="DeleteBtn userInfoFieldEnding">Delete Account</button>
                 </div>
@@ -177,9 +172,6 @@ getClinicName = (id) => {
   }
 }
 
-// <UserQueueGallery queue={this.props.user.queue ? this.props.user.queue : []} />
-// <UserSubscribeGallery subscribe={this.props.user.subscribe ? this.props.user.subscribe : []} />
-
 const mapStateToProps = (state) => {
 
   return {
@@ -190,9 +182,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getReviewOfUser: (user_id) => { dispatch(getReviewOfUser(user_id))}
-    // Update: (credentials) => {dispatch(updateProfile(credentials));},
-    // UpdatePassword: (credentials) => {dispatch(updatePassword(credentials));},
     userNotification: (message) => {dispatch(userNotification(message));},
     triggerNotification: () => {dispatch(triggerNotification());}
   }

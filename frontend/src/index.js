@@ -17,7 +17,7 @@ import { getClinic, activeClinic } from './Actions/ClinicAction';
 import { getUser } from './Actions/UserAction';
 import { getAllQueue } from './Actions/QueueAction';
 
-//API
+// API
 import {setUserLoginStatus} from './API/API';
 
 // connected to createHistory declared in Store

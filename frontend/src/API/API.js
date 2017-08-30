@@ -7,18 +7,19 @@ export const setUserLoginStatus = (user) => { //storing into local storage of th
 }
 
 export const getUserLoginStatus = () => {
-  const userStatusJSON = localStorage.getItem('userStatus');    //calling from localStorage using the name
+  const userStatusJSON = localStorage.getItem('userStatus');    // calling from localStorage using the name
   let userStatus = '';
   try{
     userStatus = JSON.parse(userStatusJSON);
   }catch(error){
-    console.log("Error: could not decode restaurants's from localStorage")
+    console.log("Error: could not decode userStatus from localStorage")
   }
   return typeof(userStatus)==="string" ? userStatus: '';
 }
 
 
 export const sortingAlgorithm = (thingToSort) => {
+  // sorting by clinic type and alphabetically. Polyclinics are first
   return thingToSort.sort((a,b) => {
     const aLower = a.properties.name_full.toLowerCase();
     const bLower = b.properties.name_full.toLowerCase();
@@ -32,6 +33,7 @@ export const sortingAlgorithm = (thingToSort) => {
 }
 
 export const cuttingCommentShort = (comment) => {
+  // return only 30 characters
   return comment.split('').splice(0,30).join('') + '...'
 }
 

@@ -9,18 +9,6 @@ import { userNotification } from '../../../Actions/UserAction';
 import '../../SeeQueue/QueueGallery/QueueItem.css';
 
 class UserQueueGallery extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     settings: {
-  //         dots: true,
-  //         infinite: true,
-  //         speed: 500,
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1
-  //       }
-  //   }
-  // }
 
   deleteQueueButton = (queue) => {
     this.props.deleteQueue({

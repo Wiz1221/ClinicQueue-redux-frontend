@@ -43,16 +43,19 @@ class Map extends Component {
   }
 
   onClick = (clinic) => {
+    // dispatch action to store for current active clinic
     this.props.activeClinic({...clinic});
   }
 
+
   renderPrivateClinicMapComponent = () => {
+    // Private clinic should only show when there is a active clinic
     if(this.props.activeClinicObject._id){
       if(this.props.activeClinicObject.properties.type==="Private"){
         return (<ClinicMarker lat={this.props.activeClinicObject.geometry.coordinates[1]}
-                                     lng={this.props.activeClinicObject.geometry.coordinates[0]}
-                                     clinic={this.props.activeClinicObject}
-                                     onClick={this.onClick}/>
+                              lng={this.props.activeClinicObject.geometry.coordinates[0]}
+                              clinic={this.props.activeClinicObject}
+                              onClick={this.onClick}/>
         )
       }
     }
@@ -62,6 +65,7 @@ class Map extends Component {
     if (!this.props.clinic) {
       return  (<div></div>)
     } else {
+      // polyclinics will always be showed unless nearest clinic is triggered
       let onlyPolyClinicArray = this.props.clinic.filter((clinic,index) => {
         return clinic.properties.type === "Public";
       })
@@ -83,9 +87,10 @@ class Map extends Component {
 
   renderNearestClinic = (coord) => {
     if(coord.lat){
+      // find the nearest 10 clinics
       let nearestClinicArray = calculateNearest([...this.props.clinic],coord)
-      // console.log(nearestClinicArray);
       let displayArray = []
+      // render the clinics regardless of type
       nearestClinicArray.forEach((clinic,index,arr) => {
           displayArray.push(
             <ClinicMarker lat={clinic.geometry.coordinates[1]}

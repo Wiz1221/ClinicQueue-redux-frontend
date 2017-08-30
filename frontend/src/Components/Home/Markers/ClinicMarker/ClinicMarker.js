@@ -27,14 +27,6 @@ class ClinicMarker extends Component {
     this.props.onClick(this.props.clinic)
   }
 
-  // renderSub = (string) => {
-  //   return (
-  //     <div>
-  //       <p className="clinicAddress2">{string}</p>
-  //     </div>
-  //   )
-  // }
-
   render() {
     const styleType = this.props.clinic.properties.type ==="Public"? markerStylePoly : markerStylePrivate
     // const subType = this.props.clinic.properties.type ==="Public" ?
@@ -48,14 +40,14 @@ class ClinicMarker extends Component {
         <img src={polyClinicMarker} style={styleType(this.props.clinic)}/>
         {this.state.hover? (
           <div>
-          <div className="polyClinicHoverWindow">
-          <p className="clinicName">{this.props.clinic.properties.name_full}</p>
-          {this.props.clinic.properties.type ==="Public" ? (
-          <div>
-            <p className="clinicAddress2">No. of people waiting: <span>{this.props.clinic.properties.queueQty}</span></p>
-          </div>) : null}
-          </div>
-          <div className="triangleForHoverWindow"></div>
+            <div className="polyClinicHoverWindow">
+              <p className="clinicName">{this.props.clinic.properties.name_full}</p>
+              {this.props.clinic.properties.type ==="Public" ? (
+              <div>
+                <p className="clinicAddress2">No. of people waiting: <span>{this.props.clinic.properties.queueQty}</span></p>
+              </div>) : null}
+            </div>
+            <div className="triangleForHoverWindow"></div>
           </div>
         ): null}
       </div> ) : (

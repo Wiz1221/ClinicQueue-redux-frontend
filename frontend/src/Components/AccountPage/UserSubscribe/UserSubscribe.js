@@ -39,6 +39,7 @@ class UserSubscribe extends Component{
 
   findingClinicSubscribeByUser = (user,clinic) => {
     let subscribeArray = []
+    // user.subscribe only contains user,clinic id, look through clinic array to get more clinic info
     user.subscribe.forEach((elem,index) =>{
        clinic.forEach((clinic,index) => {
         if(clinic._id === elem.clinic){
@@ -73,10 +74,10 @@ class UserSubscribe extends Component{
     })
   }
 
-  dropDownItemClicked = (clinic) => {
+  onFocus = () => {
     this.setState({
-      clinicChoosen: {...clinic},
-      nameOfClinicChoosen: clinic.properties.name_full
+      searching: true,
+      clinicDropDownList: this.state.clinicSubscribeByUser
     })
   }
 
@@ -90,13 +91,6 @@ class UserSubscribe extends Component{
     }
   }
 
-  onFocus = () => {
-    this.setState({
-      searching: true,
-      clinicDropDownList: this.state.clinicSubscribeByUser
-    })
-  }
-
   onBlur = () => {
     setTimeout(()=>{
       this.setState({
@@ -107,23 +101,35 @@ class UserSubscribe extends Component{
     },200)
   }
 
+  dropDownItemClicked = (clinic) => {
+    this.setState({
+      clinicChoosen: {...clinic},
+      nameOfClinicChoosen: clinic.properties.name_full
+    })
+  }
+
   unsubscribeButton = () => {
     if(!this.state.nameOfClinicChoosen){
       this.props.triggerNotification();
       this.props.userNotification("You have not chosen any clinic to unsubscribe");
     } else {
+      // getting subscribe information from user subscribe array (easier to query) of that clinic of that user
       let whichSubscribeArray = this.props.user.subscribe.filter((elem,index) => {
         return elem.clinic === this.state.clinicChoosen._id
       })
 
+      // dispatch action to delete Subscription
       this.props.deleteSubscribe({
-      subscribe_id: whichSubscribeArray[0]._id,
-      user_id: whichSubscribeArray[0].user,
-      clinic_id: whichSubscribeArray[0].clinic
+        subscribe_id: whichSubscribeArray[0]._id,
+        user_id: whichSubscribeArray[0].user,
+        clinic_id: whichSubscribeArray[0].clinic
       });
 
+      // dispatch action to trigger notification
       this.props.triggerNotification();
       this.props.userNotification("You have unsubscribed from "+this.state.nameOfClinicChoosen);
+
+      // clear states
       this.setState({
         searchTerm: "",
         nameOfClinicChoosen: "",
@@ -156,11 +162,6 @@ class UserSubscribe extends Component{
     )
   }
 }
-//height={this.state.clinicSubscribeByUser.length}
-//
-
-// <input type="text" name="contact" className='inputField' onChange={this.onChange}/>
-// placeholder={this.props.user.subscribe}
 
 const mapStateToProps = (state) => {
   return {

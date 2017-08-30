@@ -43,21 +43,15 @@ class SeeQueue extends Component {
   // }
   populateQueues = (queue) => {
     let queues = queue;
-    // console.log("activeClinic.queue");
-    // console.log(queue);
     let statequeues = this.props.statequeues;
-    // console.log("statequeues");
-    // console.log(statequeues)
+
     // replace the activeClinic queues with actual queue objects
     const initQueues = queues.map( (queue)=> {
       return statequeues.filter( (statequeue) => {
-        // console.log("statequeue " + statequeue._id);
-        // console.log("queue " + queue._id);
         return statequeue._id == queue._id;
       })[0];
     });
-    console.log("initQueues");
-    console.log(initQueues);
+
     return initQueues;
   }
 
@@ -101,14 +95,6 @@ class SeeQueue extends Component {
     )}
  }
 
-
-// <div className="queueGalleryContainer">
-//   <QueueGallery queue={this.props.activeClinic.queue} />
-// </div>
-// <div className="submitQueueContainer">
-//   <SubmitQueue clinic={this.props.activeClinic}/>
-// </div>
-// <Link to='/'><button>back</button></Link>
 
 const mapStateToProps = (state) => {
   return {
