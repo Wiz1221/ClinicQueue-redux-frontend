@@ -134,6 +134,18 @@ width: 200px;
   font-size: 20px;
 }
 
+.alertWatch {
+  /* margin-top: -10px; */
+  margin-left: 1%;
+  position: absolute;
+  max-width: 220px;
+  top: 260px;
+  z-index: 1;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .sideBarBtn {
   margin-left: 2%;
   color: white;

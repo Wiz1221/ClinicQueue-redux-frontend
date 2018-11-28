@@ -31,6 +31,7 @@ class Home extends Component {
         <NotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
         <Legend/>
+        <div className="alertWatch">NOTICE: Singhealth QueueWatch service has been inactive since September 2018. As such, there is no queue data for Bedok, Bukit Merah, Geylang, Marine Parade, Outram, Pasir Ris, Queenstown, Sengkang and Tampines polyclinics till further notice.</div>
         <About />
         <Map />
 
