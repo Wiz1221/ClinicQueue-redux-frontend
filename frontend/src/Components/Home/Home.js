@@ -31,7 +31,7 @@ class Home extends Component {
         <NotificationBar/>
         { this.props.activeClinic._id ? ( <SideBar/> ) : null }
         <Legend/>
-        <div className="alertWatch">NOTICE: Singhealth QueueWatch service has been inactive since September 2018. As such, there is no queue data for Bedok, Bukit Merah, Geylang, Marine Parade, Outram, Pasir Ris, Queenstown, Sengkang and Tampines polyclinics till further notice.</div>
+        <div className="alertWatch">NOTICE: Both Singhealth QueueWatch and NHG See Me In Line (S.M.I.L.E) services have been deprecated as of September 2019. As such, there is no longer any real-time queue data for any polyclinics. This website is maintained for historical interest and displays the queue situation as of September 5 2019, the last day queue data was available. If you have any questions, send them to <a href="mailto:admin@hanifsamad.com<">admin@hanifsamad.com</a></div>
         <About />
         <Map />
 
